@@ -1,0 +1,1926 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+
+ \usepackage[utf8]{inputenc}  
+\usepackage{graphicx}
+\include{environnements}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+% Packages Déco
+\usepackage[svgnames]{xcolor}
+\usepackage{fancyhdr}
+
+% Packages d'environnements
+\usepackage{framed}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc,decorations.pathreplacing}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{sffamily} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[scale=0.1]{logo.jpg}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+includegraphics[scale=1.2]{insa.jpg}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+textsc{
+\backslash
+Large Projet de Recherche Opérationnelle}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+HRule 
+\backslash
+
+\backslash
+[0.4cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+    { 
+\backslash
+huge 
+\backslash
+bfseries Composition musical par réseau de neurones 
+\backslash
+
+\backslash
+[0.4cm] }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+HRule 
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+begin{minipage}{0.4
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+begin{flushleft} 
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+	  DRIGUEZ CLAIRE 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      CATELAIN Jeremy 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      RAMAGE Lucas
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      GM4 
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+end{flushleft}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{minipage}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+begin{minipage}{0.4
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+begin{flushright} 
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+emph{Tuteur :} M.
+ 
+\backslash
+textsc{Knippel}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+end{flushright}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{minipage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+vfill
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+large Octobre - Décembre 2017}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{sffamily}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Réseau de neurones et apprentissage
+\end_layout
+
+\begin_layout Section
+Réseau de neurones
+\end_layout
+
+\begin_layout Subsection
+Le neurone, un modèle spécifique
+\end_layout
+
+\begin_layout Standard
+Un neurone est un mécanisme possédant une entrée, une unité de Processing
+ et une sortie.
+ C'est une fonction paramétrée non linéaire à valeurs bornées.
+\end_layout
+
+\begin_layout Standard
+Les variables sur lesquelles opère le neurone sont appelées les entrées
+ du neurone et la valeur de la fonction est désignée comme la sortie de
+ la fonction.
+ Ci-dessous est représenté un neurone représentant une fonction non linéaire
+ paramétrée bornée 
+\begin_inset Formula $y=f(x,w)$
+\end_inset
+
+ avec x les variables et w les paramètres.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/neurone schВma.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modélisation d'un neurone
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+L'entrée 
+\end_layout
+
+\begin_layout Standard
+du neurone calcule la véritable variable d'entrée de l'unité de Processing
+ en effectuant la somme des variables envoyées au mécanisme.
+ Chaque variable envoyée au mécanisme est le produit entre une variable
+ propre à un neurone précédent 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ et son paramètre 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ appelé le poids.
+\end_layout
+
+\begin_layout Standard
+La valeur résultante peut alors être appelé le 
+\begin_inset Quotes fld
+\end_inset
+
+potentiel
+\begin_inset Quotes frd
+\end_inset
+
+ 
+\begin_inset Formula $v$
+\end_inset
+
+ tel que 
+\begin_inset Formula $v={\displaystyle \sum_{i\in I}}w_{i}x_{i}+w_{0}$
+\end_inset
+
+ avec 
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ appelé le biais ou seuil d'activation.
+ Le seuil d'activation est propre à chaque neurone.
+\end_layout
+
+\begin_layout Paragraph
+L'unité de Processing 
+\end_layout
+
+\begin_layout Standard
+comporte une fonction d'activation 
+\begin_inset Formula $f$
+\end_inset
+
+ et un poids 
+\begin_inset Formula $w'_{i}$
+\end_inset
+
+.
+ Le processus consiste à appliquer cette fonction d'activation à la variable
+ 
+\begin_inset Formula $v$
+\end_inset
+
+ et à considérer la valeur de sortie spécifique dépendant de la nature de
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ uniquement si le potentiel 
+\begin_inset Formula $v$
+\end_inset
+
+ est supérieur au seuil d'activation.
+ Si c'est le cas, la valeur résultante est alors le produit entre le résultat
+ de 
+\begin_inset Formula $f$
+\end_inset
+
+ appliquée à 
+\begin_inset Formula $v$
+\end_inset
+
+ et le poids 
+\begin_inset Formula $w'_{i}$
+\end_inset
+
+ propre au neurone 
+\begin_inset Formula $i$
+\end_inset
+
+ en question.
+ Soit 
+\begin_inset Formula $s$
+\end_inset
+
+ la sortie tel que: 
+\begin_inset Formula $s=f(v)\cdot w'_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+La sortie
+\end_layout
+
+\begin_layout Standard
+consiste à considérer la valeur résultante 
+\begin_inset Formula $s$
+\end_inset
+
+, si celle-ci est différente de zéro, comme une variable d'entrée pour le
+ neurone suivant et à transmettre cette valeur à toutes les entrées des
+ neurones suivants.
+ 
+\end_layout
+
+\begin_layout Subsection
+Les réseaux de neurones
+\end_layout
+
+\begin_layout Standard
+On compte deux types de réseaux de neurones; les réseaux à propagation avant
+ ou réseaux de neurone acycliques et les réseaux de neurones cycliques.
+ Un réseau de neurone est modélisé comme un graphe, adapté au problème en
+ question.
+ Les nœuds sont alors les neurones et les arêtes, les connexions entre ces
+ neurones.
+ 
+\end_layout
+
+\begin_layout Standard
+Le réseau à propagation avant réalise une ou plusieurs fonctions non linéaires
+ de ses entrées par composition des fonctions réalisées par chacun de ses
+ neurones.
+ Les informations circulent des entrées vers les sorties sans retour en
+ arrière.
+ Les neurones effectuant le dernier calcul de la composition de fonctions
+ sont appelés neurones de sorties et ceux effectuant des calculs intermédiaires
+ sont appelés neurones cachés.
+\end_layout
+
+\begin_layout Paragraph
+Perceptron multicouche
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le réseau à propagation avant le plus simplifié est le 
+\begin_inset Quotes fld
+\end_inset
+
+Perceptrons multicouche
+\begin_inset Quotes frd
+\end_inset
+
+ (Multi-Layer Perceptron).
+ C'est un réseau de neurones dont les neurones cachés ont des fonctions
+ d'activation sigmoïde.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/PLC.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle de perceptron multicouche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La couche d'entrée représente les informations que l'on donne à l'entrée
+ du réseau (exemple: pixel des images etc..).
+ Les couches cachées permettent de donner une abstraction au modèle.
+ Toutes les flèches d'un nœud ont le même poids car chaque nœud a une valeur
+ de sortie unique.
+\end_layout
+
+\begin_layout Standard
+Il fait parti des algorithmes supervisés de classificateurs binaires.
+ Celui-ci est constitué de neurones munie d'une 
+\begin_inset Quotes fld
+\end_inset
+
+règle d'apprentissage
+\begin_inset Quotes frd
+\end_inset
+
+ qui détermine les poids de manière automatique tel que 
+\begin_inset Formula $s=f(v).w'_{i}$
+\end_inset
+
+ est la sortie.
+ En fonction du résultat de 
+\begin_inset Formula $s$
+\end_inset
+
+, on en déduit la réponse prédictive de l’objet en question.
+\end_layout
+
+\begin_layout Subparagraph
+Remarque: 
+\end_layout
+
+\begin_layout Standard
+La notion de nœud est alors introduit, celui-ci correspond à un neurone
+ d'une couche cachée.
+ De plus, toutes les flèches d’un nœud ont donc le même poids car chaque
+ nœud a une valeur de sortie unique.
+ Par ailleurs, le comportement du réseau neuronal est déterminé par l’ensemble
+ des poids 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ et des biais ou seuil d'activation 
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ propre à chaque nœud, donc il faut les ajuster à une valeur correcte.
+ Cela est réalisable lors de la phase d'apprentissage.
+ Il faut aussi définir la qualité de chaque sortie donnée (bien ou pas bien)
+ compte tenu de l’entrée.
+ Cette valeur est appelé le coût (norme 2 par exemple avec la différence
+ entre la réponse de la fonction et la sortie du réseau, au carré).
+\end_layout
+
+\begin_layout Standard
+Une fois le coût calculé, la rétro-propagation peut être utilisée afin de
+ réduire le calcul du gradient du coût par rapport au poids (c'est-à-dire
+ la dérivée du coût par rapport à chaque poids pour chaque nœuds dans chaque
+ couche).
+ Ensuite, une méthode d'optimisation est utilisée pour ajuster les poids
+ afin de réduire les coûts.
+ Ces méthodes peuvent être retrouvées dans des bibliothèques et les gradients
+ peuvent ainsi être alimentés par la bonne fonction et cette dernière, par
+ la suite, ajuste les poids correctement.
+\end_layout
+
+\begin_layout Paragraph
+La fonction sigmoïde
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La fonction d'activation est défini comme suit: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{cases}
+f(x_{1},..x_{p})=1 & \textrm{si}{\displaystyle \sum_{i\in I}}w_{i}x_{i}>w_{0}\\
+f(x_{1},..,x_{p})=0 & \textrm{sinon}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+avec b le seuil d'activation ou biais 
+\end_layout
+
+\begin_layout Standard
+Il s'agit de la fonction de Heaviside définie par 
+\begin_inset Formula $f(x_{1},..,x_{p})=H({\displaystyle \sum_{i\in I}}w_{i}x_{i}-w_{0})$
+\end_inset
+
+ mais celle-ci ne répond pas aux critères permettant d'utiliser la méthode
+ du gradient car elle n'est pas dérivable et continue.
+ De ce fait, la fonction d'activation généralement recommandée est la fonction
+ sigmoïde (en forme de s) qui est symétrique par rapport à l'origine.
+\end_layout
+
+\begin_layout Standard
+Elle est définie par:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{1}(x)=\frac{1}{1+e^{-x}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+et plus généralement:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{λ}(x)=\frac{1}{1+e^{-λx}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remarque: si 
+\begin_inset Formula $λ=\frac{1}{T}$
+\end_inset
+
+, si T tend vers 0, la fonction sigmoïde tend vers une fonction de Heaviside.
+\end_layout
+
+\begin_layout Standard
+Voici l'allure de la courbe pour 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/sigmoide.png
+	lyxscale 40
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle de perceptron multicouche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Celle-ci possède des propriétés intéressantes.
+ Celle-ci est continue et dérivable à l'infini.
+ Le calcul de la dérivée de cette fonction en un point est directement calculabl
+e à partir de ce point, ce qui rend facilement applicable la méthode du
+ gradient.
+ De plus, la fonction renvoie des valeurs entre 0 et 1 donc l'interprétation
+ en tant que probabilité est alors possible.
+ Par contre, celle-ci peut être difficilement programmable car le calcul
+ d’exponentiel négative correspond à des nombres très proche de 0 et donc
+ inférieur à l'epsilon machine.
+ 
+\begin_inset Formula $1+e^{-x}$
+\end_inset
+
+ peut parfois être équivalent à 1.
+ Un codage particulier des nombres tel que la normalisation est alors à
+ effectuer.
+\end_layout
+
+\begin_layout Section
+Apprentissage
+\end_layout
+
+\begin_layout Subsection
+L'apprentissage
+\end_layout
+
+\begin_layout Standard
+Après avoir créer le réseau de neurones, on doit procéder à son apprentissage.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Définition
+\end_layout
+
+\begin_layout Standard
+L ’apprentissage est une phase du développement d’un réseau de neurones
+ durant laquelle le comportement du réseau est modifié jusqu’à l’obtention
+ du comportement désiré.
+ Il y a deux types d’algorithmes d’apprentissage : 
+\end_layout
+
+\begin_layout Enumerate
+L’apprentissage supervisé 
+\end_layout
+
+\begin_layout Enumerate
+L’apprentissage non supervisé 
+\end_layout
+
+\begin_layout Standard
+Dans le cas de l'apprentissage supervisé, les exemples sont des couples
+ (Entrée, Sortie associée à l'entrée) alors que pour l'apprentissage non
+ supervisé, on ne dispose que des valeurs Entrée.
+ 
+\end_layout
+
+\begin_layout Standard
+L'apprentissage consiste à modifier le poids des connections entre les neurones.
+ Au démarrage de la phase de l'apprentissage, nous disposons d'une base
+ de données.
+ Nous avons les entrées 
+\begin_inset Formula $(x_{i})_{i\in I}$
+\end_inset
+
+ et les sorties 
+\begin_inset Formula $(\overline{y}_{i})_{i\in I}$
+\end_inset
+
+.
+ Durant la phase d'apprentissage, nous allons utiliser les entrées 
+\begin_inset Formula $(x_{i})_{i\in I}$
+\end_inset
+
+ connues et tester si l'apprentissage a bien fonctionné en comparant les
+ sorties 
+\begin_inset Formula $(y_{i})_{i\in I}$
+\end_inset
+
+.
+ avec les sorties 
+\begin_inset Formula $(\overline{y}_{i})_{i\in I}$
+\end_inset
+
+ connues de bases.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/ES.png
+	lyxscale 30
+	scale 45
+	rotateOrigin center
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma Entrées/Sorties
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour que l'apprentissage fonctionne correctement, il est ainsi nécessaire
+ que l'on ait: 
+\begin_inset Formula $y_{i}\simeq\overline{y_{i}}$
+\end_inset
+
+ 
+\begin_inset Formula $\forall i\in I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit f, une fonction paramétrée non linéaire dite d'activation, telle que:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y_{i}= & f(x_{i},w)=f_{i}(w)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où w est le vecteur poids représentant les paramètres.
+ Plus généralement, on a: 
+\begin_inset Formula $y=f(x,w)$
+\end_inset
+
+.
+ La sortie y est ainsi fonction non linéaire d'une combinaison des variables
+ 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ pondérées par les paramètres 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+On a alors le schéma suivant: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/schema.png
+	lyxscale 30
+	scale 50
+	rotateOrigin center
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma d'un neurone avec 4 entrées
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Légende: les carrés jaunes correspondent aux entrées, le losange noir correspond
+ à un nœud et le cercle bleu à un neurone.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour que l'apprentissage fonctionne, il suffit alors d'avoir: 
+\begin_inset Formula $\forall i\in I$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f_{i}(w)\simeq & \overline{y_{i}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le système étant non linéaire, il n'est pas possible d'utiliser les méthodes
+ classiques pour la résolution de systèmes comme la méthode de Gauss.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Problème 
+\end_layout
+
+\begin_layout Standard
+Nous cherchons à trouver les éléments du vecteur poids w afin que 
+\begin_inset Formula $\forall i\in I$
+\end_inset
+
+ 
+\begin_inset Formula $f_{i}(w)$
+\end_inset
+
+ soit le plus proche possible de 
+\begin_inset Formula $\overline{y_{i}}$
+\end_inset
+
+ en utilisant une méthode de résolution de systèmes non linéaires.
+ L'apprentissage est ainsi un problème numérique d'optimisation.
+ Les poids ont initialement des valeurs aléatoires et sont modifiés grâce
+ à un algorithme d'apprentissage.
+ 
+\end_layout
+
+\begin_layout Standard
+Par la méthode des moindres carrés, le problème en utilisant la norme 2
+ se ramène à:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f_{i}(w)\simeq & \overline{y_{i}}\Leftrightarrow\underset{w}{min}(\sum_{i\in I}(f_{i}(w)-\overline{y_{i}})^{2})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il est aussi possible d'utiliser les normes 
+\begin_inset Formula $\shortparallel\cdot\shortparallel_{\infty}$
+\end_inset
+
+ ou 
+\begin_inset Formula $\shortparallel\cdot\shortparallel_{1}.$
+\end_inset
+
+ La fonction de coût des moindres carrés, en ajoutant un coefficient 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+ pour simplifier les futurs calculs du gradient, est alors:
+\begin_inset Formula 
+\begin{align*}
+J(w)=\frac{1}{2} & \cdot\sum_{i\in I}(f_{i}(w)-\overline{y_{i}})^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Estimation des paramètres d'un réseau de neurones à propagation avant
+\end_layout
+
+\begin_layout Subsubsection
+Évaluation du gradient par rétro-propagation
+\end_layout
+
+\begin_layout Standard
+On rappelle que l'objectif est de minimiser la fonction coût des moindres
+ carrées.
+ Le modèle n'étant pas linéaire, il faut avoir recours à des méthodes itératives
+ issues de techniques d'optimisation non linéaire qui modifient les paramètres
+ du modèle en fonction du gradient de la fonction de coût par rapport à
+ ses paramètres.
+ A chaque étape du processus d'apprentissage, il faut évaluer le gradient
+ de la fonction de coût J et modifier les paramètres en fonction de ce gradient
+ afin de minimiser la fonction J.
+ L'évaluation du gradient de la fonction de coût peut être évalué grâce
+ à l'algorithme de rétro-propagation.
+ Nous allons expliquer cette méthode d'évaluation du gradient.
+\end_layout
+
+\begin_layout Standard
+Soit un réseau de neurones à propagation avant avec des neurones cachés
+ et un neurone de sortie.
+ Nous allons changer la définition de la fonction f pour simplifier les
+ notations mais cela ne modifie pas la valeur de la sortie 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+.
+ Ainsi la la sortie 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ du neurone i est défini à présent de la manière suivante: 
+\begin_inset Formula 
+\begin{align*}
+y_{i}=f(\nu_{i}) & =f({\displaystyle \sum_{j=1}^{n_{i}}}w_{ij}x_{j}^{i})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+avec 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{j}^{i}$
+\end_inset
+
+ la variable j du neurone i.
+ Elle désigne soit la sortie 
+\begin_inset Formula $y_{j}$
+\end_inset
+
+du neurone i ou soit une variable d'entrée du réseau.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ le nombre de variables du neurone i.
+ Ces variables peuvent être les sorties d'autres neurones ou les variables
+ du réseau.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{ij}$
+\end_inset
+
+ est le poids de la variable j du neurone i.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\nu_{i}$
+\end_inset
+
+ est le potentiel du neurone i.
+ 
+\end_layout
+
+\begin_layout Itemize
+f est la fonction d'activation.
+ 
+\end_layout
+
+\begin_layout Standard
+Soit l'entier N égal au nombre d'exemples que comprend la phase d'apprentissage.
+ Soit 
+\begin_inset Formula $\overline{y_{k}}$
+\end_inset
+
+ la sortie du réseau de neurones pour le 
+\begin_inset Formula $k^{ème}$
+\end_inset
+
+exemple, elle est appelée la prédiction du modèle pour l'exemple k.
+ La fonction de coût est alors: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+J(w) & =\frac{1}{2}\cdot\sum_{k=1}^{N}\left(f(\nu_{k})-\overline{y_{k}}\right)^{2}\\
+ & =\frac{1}{2}\cdot\sum_{k=1}^{N}\left(y_{k}-\overline{y_{k}}\right)^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+avec 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ la valeur prise par la grandeur à modéliser pour l'exemple k.
+ 
+\end_layout
+
+\begin_layout Standard
+On pose la fonction de perte relative à l'exemple k 
+\begin_inset Formula $\Pi(x_{k},w)=\left(f(\nu_{k})-\overline{y_{k}}\right)^{2}=\left(y_{k}-\overline{y_{k}}\right)^{2}$
+\end_inset
+
+ et on a alors: 
+\begin_inset Formula 
+\begin{align*}
+J(w) & =\frac{1}{2}\cdot\sum_{k=1}^{N}\Pi(x_{k},w)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En remarquant que la fonction de perte dépend des variables poids seulement
+ par le potentiel, calculons les dérivées partielles de la fonction 
+\begin_inset Formula $\Pi$
+\end_inset
+
+ par rapport aux poids: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left(\frac{\partial\Pi(x,w)}{\partial w_{ij}}\right)_{x=x_{k}} & =\left(\frac{\partial\Pi(x,w)}{\partial\nu_{i}}\right)_{x=x_{k}}\cdot\left(\cdot\frac{\partial\nu_{i}}{\partial w_{ij}}\right)_{x=x_{k}}\\
+ & =\delta_{k}^{i}(x)\cdot\left(\frac{\partial\left({\displaystyle \sum_{l=1}^{n_{i}}}w_{il}x_{l}^{i}\right)}{\partial w_{ij}}\right)_{x=x_{k}}\\
+ & =\delta_{k}^{i}(x)\cdot x_{j,k}^{i}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+avec 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\nu_{i}={\displaystyle \sum_{j=1}^{n_{i}}}w_{ij}x_{j}^{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+On pose 
+\begin_inset Formula $\delta_{k}^{i}(x)=\left(\frac{\partial\Pi(x,w)}{\partial\nu_{i}}\right)_{x=x_{k}}$
+\end_inset
+
+ pour le neurone i pour l'exemple k.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{j,k}^{i}$
+\end_inset
+
+ est la valeur de la variable j du neurone i pour l'exemple k.
+ Ces valeurs sont, à chaque étape du processus d'apprentissage, connues.
+ 
+\end_layout
+
+\begin_layout Standard
+Nous cherchons alors à calculer les quantités 
+\begin_inset Formula $\delta_{k}^{i}(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Pour le neurone de sortie s de potentiel 
+\begin_inset Formula $\nu_{s}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{align*}
+\delta_{k}^{s}(x) & =\left(\frac{\partial\Pi(x,w)}{\partial\nu_{s}}\right)_{x=x_{k}}\\
+ & =\left(\frac{\partial}{\partial\nu_{s}}\left[\left(f(\nu_{k})-\overline{y_{k}}\right)^{2}\right]\right)_{x=x_{k}}\\
+ & =2\cdot\left(f(\nu_{k})-\overline{y_{k}}\right)\cdot\left(\frac{\partial f(\nu_{s})}{\partial\nu_{s}}\right)_{x=x_{k}}\\
+ & =2\cdot\left(f(\nu_{k})-\overline{y_{k}}\right)\cdot f'(\nu_{s}^{k})
+\end{align*}
+
+\end_inset
+
+Généralement, la dernière couche est constituée d’un seul neurone muni de
+ la fonction d’activation identité tandis que les autres neurones des couches
+ cachées sont munis de la fonction sigmoïde.
+ On considère alors que le neurone de sortie est linéaire et ainsi: 
+\begin_inset Formula 
+\begin{align*}
+\left(\frac{\partial f(\nu_{s})}{\partial\nu_{s}}\right)_{x=x_{k}} & =\left(\frac{\partial f\left({\displaystyle \sum_{j=1}^{n_{s}}}w_{sj}x_{j}^{s}\right)}{\partial\nu_{s}}\right)_{x=x_{k}}\\
+ & =\left({\displaystyle \sum_{j=1}^{n_{s}}}w_{sj}\cdot\frac{\partial f\left(x_{j}^{s}\right)}{\partial\nu_{s}}\right)_{x=x_{k}}\\
+ & =\left(\frac{\partial{\displaystyle \sum_{j=1}^{n_{s}}}w_{sj}\cdot x_{j}^{s}}{\partial\nu_{s}}\right)_{x=x_{k}}\\
+ & =\left(\frac{\partial v_{s}}{\partial\nu_{s}}\right)_{x=x_{k}}\\
+ & =1
+\end{align*}
+
+\end_inset
+
+Ainsi, nous obtenons: 
+\begin_inset Formula $\delta_{k}^{s}(x)=2\cdot\left(f(\nu_{k})-\overline{y_{k}}\right)$
+\end_inset
+
+ pour le neurone de sortie s pour l'exemple k.
+\end_layout
+
+\begin_layout Enumerate
+Pour un neurone caché i de potentiel 
+\begin_inset Formula $\nu_{i}$
+\end_inset
+
+: la fonction de coût dépend du potentiel 
+\begin_inset Formula $\nu_{i}$
+\end_inset
+
+ seulement par l'intermédiaire des potentiels des neurones 
+\begin_inset Formula $m\in M\subset I$
+\end_inset
+
+ dont une des variables est la valeur de la sortie du neurone i, c'est-à-dire
+ 
+\begin_inset Formula $f(\nu_{i})$
+\end_inset
+
+.
+ Cela concerne alors tous les neurones qui sont adjacents au neurone i,
+ entre ce dernier neurone et la sortie, sur le graphe du réseau de neurones
+ (voir le schéma ci-dessous).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/neuronecache.png
+	lyxscale 40
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma des neurones m et i (sans les poids)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{align*}
+\delta_{k}^{i}(x) & =\left(\frac{\partial\Pi(x,w)}{\partial\nu_{i}}\right)_{x=x_{k}}\\
+ & =\sum_{m\in M}\left(\left(\frac{\partial\Pi(x,w)}{\partial\nu_{m}}\right)_{x=x_{k}}\cdot\left(\frac{\partial\nu_{m}}{\partial\nu_{i}}\right)_{x=x_{k}}\right)\\
+ & =\sum_{m\in M}\left(\delta_{k}^{m}(x)\cdot\left(\frac{\partial\nu_{m}}{\partial\nu_{i}}\right)_{x=x_{k}}\right)\\
+ & =\sum_{m\in M}\left(\delta_{k}^{m}(x)\cdot\left(\frac{\partial\left({\displaystyle \sum_{j=1}^{n_{m}}}w_{mj}x_{j}^{m}\right)}{\partial\nu_{i}}\right)_{x=x_{k}}\right)\\
+ & =\sum_{m\in M}\left(\delta_{k}^{m}(x)\cdot\left(\frac{\partial\left({\displaystyle \sum_{i=1}^{n_{m}}}w_{mi}\cdot f(v_{i})\right)}{\partial\nu_{i}}\right)_{x=x_{k}}\right)\\
+ & =\sum_{m\in M}\left(\delta_{k}^{m}(x)\cdot w_{mi}\cdot f'(v_{i}^{k})\right)\\
+ & =f'(v_{i}^{k})\cdot\sum_{m\in M}\left(\delta_{k}^{m}(x)\cdot w_{mi}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut ainsi remarquer que 
+\begin_inset Formula $\delta_{k}^{i}(x)$
+\end_inset
+
+ peuvent se calculer de manière récursive, c'est-à-dire en parcourant le
+ graphe de la sortie vers l'entrée du réseau: c'est la rétro-propagation.
+ 
+\end_layout
+
+\begin_layout Standard
+Ainsi nous pouvons calculer le gradient de la fonction de coût, comme suit:
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial J(w)}{\partial w} & =\frac{1}{2}\cdot\sum_{k=1}^{N}\frac{\partial\Pi(x_{k},w)}{\partial w}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Résumé de la rétro-propagation
+\end_layout
+
+\begin_layout Standard
+Résumons les différentes étapes de la retro-propagation: 
+\end_layout
+
+\begin_layout Enumerate
+La propagation avant: les variables de l'exemple de k sont utilisées pour
+ calculer les sorties et les potentiels de tous les neurones.
+ 
+\end_layout
+
+\begin_layout Enumerate
+La retro-propagation: les quantités 
+\begin_inset Formula $\delta_{k}^{i}(x)$
+\end_inset
+
+ sont calculés.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Calcul des fonctions de perte: 
+\begin_inset Formula ${\displaystyle \left(\frac{\partial\Pi(x,w)}{\partial w_{ij}}\right)_{x=x_{k}}=\delta_{k}^{i}(x)\cdot x_{j,k}^{i}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calcul du gradient de la fonction de coût: 
+\begin_inset Formula ${\displaystyle \frac{\partial J(w)}{\partial w}=\frac{1}{2}\cdot{\displaystyle \sum_{k=1}^{N}\frac{\partial\Pi(x_{k},w)}{\partial w}}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nous sommes ainsi capable d'évaluer le gradient de la fonction de coût,
+ à chaque itération de l'apprentissage, par rapport aux paramètres du modèle
+ que sont les poids.
+ Il suffit, à présent, de modifier les paramètres du modèle afin de minimiser
+ cette fonction de coût.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Modification des paramètres (poids)
+\end_layout
+
+\begin_layout Standard
+La règle delta, appelé méthode du gradient simple, stipule que:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{flalign*}
+w(i) & =w(i-1)-\eta_{i}\nabla J(w(i-1))\\
+ & =w(i-1)-\eta_{i}\cdot\frac{\partial J}{\partial w}(w(i-1))
+\end{flalign*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+avec 
+\begin_inset Formula $\eta_{i}>0$
+\end_inset
+
+ une constante, appelé pas d'apprentissage.
+ 
+\end_layout
+
+\begin_layout Chapter
+Réseau de neurones et composition musicale
+\end_layout
+
+\begin_layout Paragraph
+Résumé du site 
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://medium.com/towards-data-science/can-a-deep-neural-network-compose-mus
+ic-f89b6ba4978d}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le projet peut se faire en 2 étapes.
+ La première étape est la création d'un modèle, où tous les paramètres d'un
+ réseau de neurone généraux à toute partition de musique sont alors déterminés
+ et fixés.
+ La deuxième étape est la prédiction de l'objet à déterminer, ici une note
+ de musique.
+ En effet, une fois que le modèle est finalisé, le réseaux de neurone est
+ alors opérationnel, et celui-ci peut être utilisé pour prédire la note
+ suivante de la partition attendue.
+ 
+\end_layout
+
+\begin_layout Standard
+La première étape est la plus complexe.
+ On peut diviser cette étape en la détermination de l'entrée puis celle
+ du mécanisme du réseau de neurone et enfin la sortie.
+\end_layout
+
+\begin_layout Standard
+Il faut tout d'abord récupérer un échantillon de données, ces données peut
+ être en format MP3, appelé format MIDI.
+ Il faut alors trouver un moyen de traduire les informations données par
+ cet échantillon en matrice contenant les informations nécessaires.
+ Pour cela, il faut déterminer quelles informations doivent être prises
+ en compte pour réaliser cette prédiction.
+ 
+\end_layout
+
+\begin_layout Standard
+Prenons l'exemple du piano.
+ On peut alors tout d'abord considérer les attributs liées à la partition:
+ la pulsation choisie, le nombre de mesures et la clé du morceau en question.
+ On peut par exemple fixer un nombre de pulsation ou un nombre de mesures
+ pour chaque morceau à effectuer.
+\end_layout
+
+\begin_layout Standard
+Ensuite, on peut considérer les attributs liés à une note de musique, par
+ exemple l'attribut appelé “Position”.
+ En effet, comme un piano est composé de 88 touches, à chaque attribut “Position
+” peut être associé un nombre entier entre 1 et 88, se référant à la touche
+ utilisée.
+ Ensuite, le rythme associé à chaque note peut être un attribut, par exemple
+ déterminer si on est dans le cas d'une ronde, d'une blanche, d'une croche
+ etc.
+ Par ailleurs, la spécificité d'un morceau réside dans l'enchaînement des
+ notes.
+ Il est donc important de connaître les informations sur la note précédant
+ et succédant la note considérée.
+ De plus, la place de la note dans une mesure peut être également à déterminer.
+\end_layout
+
+\begin_layout Standard
+Enfin, la sortie peut associer aux 88 touches du piano, son état prédictif
+ sous forme de probabilité déduisant ainsi, en considérant le maximum de
+ probabilité, la note à jouer.
+\end_layout
+
+\begin_layout Standard
+Ensuite, il faut déterminer quel type de réseaux de neurone utilisé, si
+ on est dans le cas d'un réseaux de neurone acyclique ou cyclique ainsi
+ que les opérations intrinsèque au mécanisme.
+\end_layout
+
+\begin_layout Standard
+Par ailleurs, une fois que le modèle est construit, il faut le tester.
+ Le test consiste à comparer le résultat de l'algorithme avec le véritable
+ résultat à obtenir, en utilisant un échantillon spécifique et adaptant,
+ les paramètres jusqu'à ce que l'erreur soit minimal.
+\end_layout
+
+\begin_layout Standard
+Une fois ces étapes réalisées, le réseau est alors opérationnel, et il est
+ possible de l'appliquer alors pour avoir le morceau voulu.
+\end_layout
+
+\begin_layout Chapter
+Programmation du réseau de neurones
+\end_layout
+
+\begin_layout Paragraph
+Choix du langage de programmation 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Choix du langage de programmation Nous avons choisi d’utiliser le langage
+ Python pour coder le réseau de neurones.
+ En effet, Python est un langage qui possède de nombreux outils afin de
+ simplifier la mise en œuvre d’applications mathématiques.
+ Aussi, TensorFlow (Google), Theano, MXNet et CNTK (Microsoft) sont quatre
+ bibliothèques très utilisées pour mettre en place des réseaux de neurones
+ bien qu’il en existe d’autres.
+ Ces bibliothèques ne sont pas spécialisées dans la création de réseaux
+ de neurones mais proposent un plus large éventail d’applications concernant
+ l’apprentissage automatique (« machine learning »).
+ Par exemple Theano permet de manipuler et d’évaluer des expressions matricielle
+s en utilisant la syntaxe de NumPy, une autre bibliothèque Python qui permet
+ la manipulation de matrices (similaire à Matlab).
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De plus, les fonctions regroupées dans ces bibliothèques sont très optimisées
+ et sont souvent compilées ce qui permet d’obtenir une vitesse d’exécution
+ supérieure à l’utilisation du Python interprété.
+ L’utilisation d’un GPU (Graphical Processing Unit / carte graphique) est
+ aussi très facilitée grâce à ces programmes.
+ Cela augmente aussi énormément la vitesse de calcul car ce type de processeur
+ est spécialisé dans le calcul matriciel et parallèle contrairement au CPU
+ (Central Processing Unit / processeur) qui est efficace en calcul séquentiel
+ (un processeur possède une dizaine de cœurs logiques quand une carte graphique
+ en possède plusieurs milliers).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cependant, la non spécificité de ces bibliothèques peut conduire à des écritures
+ lourdes pour construire un réseau de neurones alors que l’on n’utilise
+ pas toutes les capacités offertes par la bibliothèque.
+\end_layout
+
+\begin_layout Standard
+Ainsi, nous n’utiliserons pas directement ces bibliothèques mais implémenterons
+ notre code à l’aide de Keras une bibliothèque Python qui agit comme une
+ API (Application Program Interface) pour les bibliothèques précédemment
+ citées.
+ C’est-à-dire que Keras sert d’intermédiaire avec TensorFlow par exemple.
+ Keras est une API de réseau de neurones de haut niveau : elle permet de
+ programmer un réseau de neurone avec une syntaxe plus facilement appréhendable
+ puisqu’elle est spécifiquement pensée pour ce type d’apprentissage automatique.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En utilisant Keras, un programme ne perd que très peu en vitesse d’exécution
+ puisque ce sont les bibliothèques très optimisées qui vont être utilisées
+ en arrière-plan.
+\end_layout
+
+\begin_layout Standard
+Une seule bibliothèque à la fois peut être utilisée par Keras.
+ Cependant, un programme écrit avec la syntaxe de Keras pourra être réutilisé
+ après avoir changé de bibliothèque.
+ Nous avons choisi d’utiliser Keras avec TensorFlow car étant tous deux
+ développés par Google, leur couplage est facilité.
+ En effet, TensorFlow a ajouté la prise en charge de Keras dans sa bibliothèque
+ en 2017.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Sources
+\end_layout
+
+\begin_layout Enumerate
+https://www.youtube.com/watch?v=KVNhk6uGmr8 : Réseaux de neurones: introduction
+ et applications par Joseph Ghafari
+\end_layout
+
+\begin_layout Enumerate
+http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-network
+s/ 
+\end_layout
+
+\begin_layout Enumerate
+Apprentissage statistique - Gerard Dreyfus
+\end_layout
+
+\begin_layout Enumerate
+Réseaux de Neurones Artificiels - Manuel Clergue (Université de Nice)
+\end_layout
+
+\begin_layout Enumerate
+https://medium.com/towards-data-science/can-a-deep-neural-network-compose-music-f
+89b6ba4978d
+\end_layout
+
+\end_body
+\end_document
