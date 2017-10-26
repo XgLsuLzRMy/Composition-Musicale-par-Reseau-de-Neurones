@@ -1,5 +1,4 @@
 #LyX 2.2 created this file. For more info see http://www.lyx.org/
-#changement
 \lyxformat 508
 \begin_document
 \begin_header
@@ -23,6 +22,7 @@
 \usepackage{tcolorbox}
 \usepackage{tikz}
 \usetikzlibrary{calc,decorations.pathreplacing}
+\usepackage{tabularx}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -57,7 +57,7 @@
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
-\papersize default
+\papersize a4paper
 \use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
@@ -198,7 +198,7 @@ HRule
 \backslash
 huge 
 \backslash
-bfseries Composition musical par réseau de neurones 
+bfseries Composition musicale par réseau de neurones 
 \backslash
 
 \backslash
@@ -507,6 +507,15 @@ potentiel
 
  appelé le biais ou seuil d'activation.
  Le seuil d'activation est propre à chaque neurone.
+ Le biais 
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ peut être considéré comme un neurone avec comme variable 
+\begin_inset Formula $x_{0}=1.$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -680,7 +689,7 @@ Modèle de perceptron multicouche
 La couche d'entrée représente les informations que l'on donne à l'entrée
  du réseau (exemple: pixel des images etc..).
  Les couches cachées permettent de donner une abstraction au modèle.
- Toutes les flèches d'un nœud ont le même poids car chaque nœud a une valeur
+ Tous les arcs d'un nœud ont le même poids car chaque nœud a une valeur
  de sortie unique.
 \end_layout
 
@@ -713,8 +722,8 @@ Remarque:
 \begin_layout Standard
 La notion de nœud est alors introduit, celui-ci correspond à un neurone
  d'une couche cachée.
- De plus, toutes les flèches d’un nœud ont donc le même poids car chaque
- nœud a une valeur de sortie unique.
+ De plus, tous les arcs d’un nœud ont donc le même poids car chaque nœud
+ a une valeur de sortie unique.
  Par ailleurs, le comportement du réseau neuronal est déterminé par l’ensemble
  des poids 
 \begin_inset Formula $w_{i}$
@@ -877,21 +886,81 @@ Modèle de perceptron multicouche
 \begin_layout Standard
 Celle-ci possède des propriétés intéressantes.
  Celle-ci est continue et dérivable à l'infini.
+ En effet, 
+\begin_inset Formula $f'_{λ}(x)=f(x)\cdot(1-f(x))$
+\end_inset
+
+ et 
+\begin_inset Formula $f\in C^{\infty}$
+\end_inset
+
+.
  Le calcul de la dérivée de cette fonction en un point est directement calculabl
 e à partir de ce point, ce qui rend facilement applicable la méthode du
  gradient.
  De plus, la fonction renvoie des valeurs entre 0 et 1 donc l'interprétation
  en tant que probabilité est alors possible.
- Par contre, celle-ci peut être difficilement programmable car le calcul
- d’exponentiel négative correspond à des nombres très proche de 0 et donc
- inférieur à l'epsilon machine.
  
-\begin_inset Formula $1+e^{-x}$
+\end_layout
+
+\begin_layout Standard
+La fonction ReLu (Unité de Rectification Linéaire () peut aussi être utilisée
+ comme fonction d'activation.
+ Elle définie comme suit: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)=\begin{cases}
+0 & x<0\\
+x & x\geq0
+\end{cases}
+\]
+
 \end_inset
 
- peut parfois être équivalent à 1.
- Un codage particulier des nombres tel que la normalisation est alors à
- effectuer.
+
+\end_layout
+
+\begin_layout Standard
+Voici l'allure de la courbe pour f:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/relu.jpeg
+	lyxscale 40
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle de perceptron multicouche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -912,9 +981,18 @@ Définition
 \end_layout
 
 \begin_layout Standard
-L ’apprentissage est une phase du développement d’un réseau de neurones
- durant laquelle le comportement du réseau est modifié jusqu’à l’obtention
- du comportement désiré.
+L'apprentissage (en anglais machine learning) est une méthode utilisée en
+ intelligence artificielle.
+ Il s'agit d'algorithme qui développent la reconnaissance de schémas, l’aptitude
+ à apprendre continuellement et à faire des prévisions grâce à l'analyse
+ d'une base de données.
+ 
+\end_layout
+
+\begin_layout Standard
+Dans le domaine des réseaux de neurones, il s'agit d'une phase du développement
+ du réseau durant laquelle le comportement du réseau est modifié jusqu’à
+ l’obtention du comportement désiré.
  Il y a deux types d’algorithmes d’apprentissage : 
 \end_layout
 
@@ -1578,8 +1656,8 @@ Résumons les différentes étapes de la retro-propagation:
 \end_layout
 
 \begin_layout Enumerate
-La propagation avant: les variables de l'exemple de k sont utilisées pour
- calculer les sorties et les potentiels de tous les neurones.
+La propagation avant: les variables de l'exemple k sont utilisées pour calculer
+ les sorties et les potentiels de tous les neurones.
  
 \end_layout
 
@@ -1593,7 +1671,7 @@ La retro-propagation: les quantités
 \end_layout
 
 \begin_layout Enumerate
-Calcul des fonctions de perte: 
+Calcul du gradient des fonctions de perte: 
 \begin_inset Formula ${\displaystyle \left(\frac{\partial\Pi(x,w)}{\partial w_{ij}}\right)_{x=x_{k}}=\delta_{k}^{i}(x)\cdot x_{j,k}^{i}}$
 \end_inset
 
@@ -1642,16 +1720,65 @@ avec
 \begin_inset Formula $\eta_{i}>0$
 \end_inset
 
- une constante, appelé pas d'apprentissage.
- 
+ un scalaire, appelé pas d'apprentissage ou pas de gradient qui peut être
+ fixé ou adaptatif.
 \end_layout
 
 \begin_layout Chapter
-Réseau de neurones et composition musicale
+Composition musicale
+\end_layout
+
+\begin_layout Section
+Les fichiers MIDI
+\end_layout
+
+\begin_layout Standard
+Un fichier MIDI (Musical Instrument Digital Interface), contrairement au
+ fichier audio, ne contient aucun son, à proprement parler, mais une série
+ de 
+\begin_inset Quotes fld
+\end_inset
+
+directives
+\begin_inset Quotes frd
+\end_inset
+
+ que seul un instrument compatible MIDI peut comprendre.
+ L’instrument MIDI d’après les 
+\begin_inset Quotes fld
+\end_inset
+
+consignes
+\begin_inset Quotes frd
+\end_inset
+
+ contenues dans le fichier MIDI peut alors produire le son.
+ 
 \end_layout
 
 \begin_layout Paragraph
-Résumé du site 
+Fréquences 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://newt.phys.unsw.edu.au/jw/notes.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Définition des entrées/sorties du modèle
+\end_layout
+
+\begin_layout Paragraph
+Sources
 \end_layout
 
 \begin_layout Paragraph
@@ -1671,89 +1798,30 @@ ic-f89b6ba4978d}
 
 \end_layout
 
-\begin_layout Standard
-Le projet peut se faire en 2 étapes.
- La première étape est la création d'un modèle, où tous les paramètres d'un
- réseau de neurone généraux à toute partition de musique sont alors déterminés
- et fixés.
- La deuxième étape est la prédiction de l'objet à déterminer, ici une note
- de musique.
- En effet, une fois que le modèle est finalisé, le réseaux de neurone est
- alors opérationnel, et celui-ci peut être utilisé pour prédire la note
- suivante de la partition attendue.
- 
-\end_layout
-
-\begin_layout Standard
-La première étape est la plus complexe.
- On peut diviser cette étape en la détermination de l'entrée puis celle
- du mécanisme du réseau de neurone et enfin la sortie.
-\end_layout
-
-\begin_layout Standard
-Il faut tout d'abord récupérer un échantillon de données, ces données peut
- être en format MP3, appelé format MIDI.
- Il faut alors trouver un moyen de traduire les informations données par
- cet échantillon en matrice contenant les informations nécessaires.
- Pour cela, il faut déterminer quelles informations doivent être prises
- en compte pour réaliser cette prédiction.
- 
-\end_layout
-
-\begin_layout Standard
-Prenons l'exemple du piano.
- On peut alors tout d'abord considérer les attributs liées à la partition:
- la pulsation choisie, le nombre de mesures et la clé du morceau en question.
- On peut par exemple fixer un nombre de pulsation ou un nombre de mesures
- pour chaque morceau à effectuer.
-\end_layout
-
-\begin_layout Standard
-Ensuite, on peut considérer les attributs liés à une note de musique, par
- exemple l'attribut appelé “Position”.
- En effet, comme un piano est composé de 88 touches, à chaque attribut “Position
-” peut être associé un nombre entier entre 1 et 88, se référant à la touche
- utilisée.
- Ensuite, le rythme associé à chaque note peut être un attribut, par exemple
- déterminer si on est dans le cas d'une ronde, d'une blanche, d'une croche
- etc.
- Par ailleurs, la spécificité d'un morceau réside dans l'enchaînement des
- notes.
- Il est donc important de connaître les informations sur la note précédant
- et succédant la note considérée.
- De plus, la place de la note dans une mesure peut être également à déterminer.
-\end_layout
-
-\begin_layout Standard
-Enfin, la sortie peut associer aux 88 touches du piano, son état prédictif
- sous forme de probabilité déduisant ainsi, en considérant le maximum de
- probabilité, la note à jouer.
-\end_layout
-
-\begin_layout Standard
-Ensuite, il faut déterminer quel type de réseaux de neurone utilisé, si
- on est dans le cas d'un réseaux de neurone acyclique ou cyclique ainsi
- que les opérations intrinsèque au mécanisme.
-\end_layout
-
-\begin_layout Standard
-Par ailleurs, une fois que le modèle est construit, il faut le tester.
- Le test consiste à comparer le résultat de l'algorithme avec le véritable
- résultat à obtenir, en utilisant un échantillon spécifique et adaptant,
- les paramètres jusqu'à ce que l'erreur soit minimal.
-\end_layout
-
-\begin_layout Standard
-Une fois ces étapes réalisées, le réseau est alors opérationnel, et il est
- possible de l'appliquer alors pour avoir le morceau voulu.
-\end_layout
-
-\begin_layout Chapter
-Programmation du réseau de neurones
-\end_layout
-
 \begin_layout Paragraph
-Choix du langage de programmation 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-net
+works/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+L'entrée
+\end_layout
+
+\begin_layout Standard
+L’entrée est un segment.
+ Un segment est composé de : 
 \begin_inset ERT
 status open
 
@@ -1769,6 +1837,593 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top" width="15cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Temps
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Le segment a 128 pas de temps.
+ Chaque pas de temps représente 100 millisecondes de la chanson.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Notes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Chaque pas de temps a 88 notes (de piano).
+ Cela représente les lignes et espaces sur une partition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attribut
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Chaque note a 78 attributs qui décrit l’état de la note.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Les attributs sont : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top" width="13.5cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Position [1]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Un chiffre entre 1 et 88 (position sur le clavier) permettant de connaître
+ le ton/hauteur des notes.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+La valeur de la note
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Classe de hauteur [12]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Un tableau où chaque élément correspond à une note avec une bémol et un
+ dièse.
+ La valeur vraie est associé au ton associé avec la note correspondante.
+ Chaque autre ton est fixé à la valeur faux.
+\end_layout
+
+\begin_layout Plain Layout
+OU Il sera 1 à la position de la note courante, en commençant par A pour
+ 0 et en augmentant de 1 par demi-pas, et 0 pour tous les autres.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Proximité [50]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Un tableau qui contient l’état des notes qui sont voisines à la note corresponda
+nte.
+ On stocke 2 valeurs pour chaque note voisine.
+ On stocke la valeur vraie si la note a été joué (faux sinon) et vraie si
+ la note a retenue (faux sinon).
+ On capture seulement les notes voisines à l’octave le plus élevé et le
+ plus bas de la note correspondante.
+\end_layout
+
+\begin_layout Plain Layout
+Cela donne le contexte pour les notes qui l'entourent dans le dernier pas
+ de temps, un octave dans chaque direction.
+ La valeur à l'indice 
+\begin_inset Formula $2(i+12)$
+\end_inset
+
+ est 1 si la note au décalage i de la note courante a été jouée au dernier
+ pas de temps et 0 sinon.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+La valeur 
+\begin_inset Formula $2(i+1)+1$
+\end_inset
+
+est 1 si cette note est la même que dans le dernier pas de temps et 0 sinon.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Exemple: si on joue une note et qu'on la maintient alors le premier pas
+ de temps a 1 dans les deux et le second pas de temps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rythme
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'emplacement de la note correspondante dans sa mesure.
+ Par exemple, une note est associée à un nombre entier compris entre 0 et
+ 16 puisque notre résolution temporelle est à 16 notes.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+La sortie
+\end_layout
+
+\begin_layout Standard
+La sortie prédit ce qui doit être joué à l'étape suivante du segment d'entrée.
+ On l’appelle prédiction.
+ C'est juste une matrice à deux dimensions:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top" width="15cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Note
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La prédiction a 88 notes pour chaque touche du piano.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attributs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Chaque note a 2 attributs qui décrivent l’état de prédiction de la note.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Les attributs sont : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Probabilité de jouer
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La probabilité de la note qui sera joué à l’étape suivante.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Probabilité d’articulation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La probabilité de la note qui sera tenu à l’étape suivante.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Les couches
+\end_layout
+
+\begin_layout Standard
+Les différentes couches : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top" width="13cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Couche du temps
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Une couche qui capture les modèles temporels de la musique.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La couche de transpose
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Une couche de traitement qui transpose la dimension du temps et la dimension
+ de Note.
+ Pourquoi retournons-nous ces deux dimensions? Ceci définit la dimension
+ Note comme la nouvelle dimension temporelle du LSTM, qui le prépare pour
+ la couche suivante.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Couche des notes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Une couche qui capture les modèles spatiales ou de notes de la musique.
+ Cela permet au réseau de connaître comment les attributs varient selon
+ les notes.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Couche dense
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Une couche entièrement connectée qui réduit la sortie de grande dimension
+ du bloc de notes à une prédiction non normalisée.
+ Cette couche résume ce que la couche de temps et la couche de notes ont
+ appris.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Couche d’activation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Une couche qui normalise - ou écrase - chaque élément de la prédiction non
+ normalisée du Couche Dense.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un exemple de l’apprentissage est une paire de deux matrices, c’est-à-dire
+ les matrices d’entrées et de sorties :
+\end_layout
+
+\begin_layout Itemize
+les caractéristiques sont un segment (la matrice à 3 dimensions avec le
+ Time, Note, and Attribute dimensions).
+\end_layout
+
+\begin_layout Itemize
+L’étiquette est une prédiction (matrice à deux dimensions avec Note and
+ Attribute dimensions).
+\end_layout
+
+\begin_layout Subsubsection
+Génération
+\end_layout
+
+\begin_layout Enumerate
+Sélection d'un segment aléatoire dans l'ensemble d'apprentissage.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Alimenter ce segment dans le réseau en tant qu'entrée.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Obtention d'une prédiction du réseau en sortie.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Conversion de la prédiction en un nouveau segment.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Retour à l'étape 2.
+ 
+\end_layout
+
+\begin_layout Chapter
+Programmation du réseau de neurones
+\end_layout
+
+\begin_layout Section
+Choix du langage de programmation 
 \end_layout
 
 \begin_layout Standard
@@ -1880,15 +2535,42 @@ Une seule bibliothèque à la fois peut être utilisée par Keras.
  
 \end_layout
 
+\begin_layout Section
+Syntaxe Keras
+\end_layout
+
 \begin_layout Standard
-\begin_inset ERT
-status open
+Un réseau de neurones est considéré comme un « model ».
+ On instancie un modèle séquentiel puis on peut ajouter des couches selon
+ nos besoins.
+ Une couche où chaque nœud est connecté avec les suivant (graphe complet)
+ est appelée « Dense ».
+ Pour les utiliser il faut tout d’abord les inclure dans le programme avec
+ la commande « import ».
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/collé2.png
+
+\end_inset
 
 
-\backslash
-pagebreak
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Keras import
 \end_layout
 
 \end_inset
@@ -1896,31 +2578,256 @@ pagebreak
 
 \end_layout
 
-\begin_layout Section*
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Pour créer une couche il faut donc instancier la classe Dense, son premier
+ paramètre est le nombre de neurones et son deuxième le nombre de variables
+ en entrées.
+ Il est nécessaire de préciser le nombre de variable en entré de la première
+ couche mais pas des suivantes : Keras le détermine directement.
+\end_layout
+
+\begin_layout Standard
+On peut définir la dimension du vecteur en entrée avec input_shape ou input_dim
+ et input_length.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/collé3.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Keras input
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On définit aussi les fonctions d’activation pour chaque couche.
+ Keras propose de nombreuses fonctions d’activation comme la sigmoid ou
+ ReLu.
+ On peut définir la fonction d’activation directement lors de l’instanciation
+ de la couche (attribut de Dense) ou après.
+ Il faut d’abord importer le module « Activation ».
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/collé4.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Module Activation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finalement, un modèle peut ressembler à :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/collé5.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lorsque le modèle est terminé, il faut le compiler.
+ C’est cette étape qui va faire appel à la bibliothèque en arrière-plan
+ (TensorFlow dans notre cas).
+\end_layout
+
+\begin_layout Chapter*
 Sources
 \end_layout
 
 \begin_layout Enumerate
-https://www.youtube.com/watch?v=KVNhk6uGmr8 : Réseaux de neurones: introduction
- et applications par Joseph Ghafari
+\begin_inset Quotes fld
+\end_inset
+
+Réseaux de neurones: introduction et applications
+\begin_inset Quotes frd
+\end_inset
+
+, vidéo présenté par Joseph Ghafari.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://www.youtube.com/watch?v=KVNhk6uGmr8}
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Enumerate
-http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-network
-s/ 
+Site web relatant un projet sur la composition musicale par réseaux de neurones,
+ par Daniel Johnson.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-net
+works/ }
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Enumerate
-Apprentissage statistique - Gerard Dreyfus
+\begin_inset Quotes fld
+\end_inset
+
+
+\bar under
+Apprentissage statistique
+\bar default
+
+\begin_inset Quotes frd
+\end_inset
+
+ , écrit par Gerard Dreyfus et édité par Eyrolles.
+ 
 \end_layout
 
 \begin_layout Enumerate
-Réseaux de Neurones Artificiels - Manuel Clergue (Université de Nice)
+\begin_inset Quotes fld
+\end_inset
+
+Can a deep neural network compose music?
+\begin_inset Quotes frd
+\end_inset
+
+, article écrit par Justin Svegliato pour le blog 
+\begin_inset Quotes fld
+\end_inset
+
+Medium.com
+\begin_inset Quotes frd
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
 \end_layout
 
-\begin_layout Enumerate
-https://medium.com/towards-data-science/can-a-deep-neural-network-compose-music-f
-89b6ba4978d
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://medium.com/towards-data-science/can-a-deep-neural-network-compose-mus
+ic-f89b6ba4978d}
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \end_body
