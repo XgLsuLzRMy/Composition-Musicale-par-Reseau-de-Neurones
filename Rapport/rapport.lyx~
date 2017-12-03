@@ -482,7 +482,7 @@ Les variables sur lesquelles opère le neurone sont appelées les entrées
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -702,7 +702,7 @@ Perceptrons multicouche
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -899,7 +899,7 @@ Voici l'allure de la courbe pour
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -979,7 +979,7 @@ Voici l'allure de la courbe pour f:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1094,7 +1094,7 @@ L'apprentissage consiste à modifier le poids des connections entre les neurones
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1195,7 +1195,7 @@ On a alors le schéma suivant:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1629,7 +1629,7 @@ Pour un neurone caché i de potentiel
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1811,8 +1811,7 @@ Résumons les différentes étapes à suivre pour l'apprentissage.
 \end_layout
 
 \begin_layout Standard
-Construisons les matrices nécessaires pour stocker les variables utilisées.
- On pose: 
+En utilisant les calculs des sections précédentes, on pose: 
 \end_layout
 
 \begin_layout Standard
@@ -1843,9 +1842,10 @@ J_{k}=\frac{1}{2}\sum_{i=1}^{n_{L}}\left(y_{i}-\overline{y_{i}}\right)_{x=x_{k}}
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2448,7 +2448,7 @@ En appliquant l'algorithme pour la propagation avant, on obtient:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2503,7 +2503,7 @@ En appliquant l'algorithme pour la propagation arrière, on obtient:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2547,7 +2547,7 @@ En modifiant les poids, on obtient:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2701,7 +2701,7 @@ L’entête est de 14 octets (taille fixe) tel que récapitulé dans le tableau
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2815,7 +2815,7 @@ On peut donc représenter l’en-tête de cette façon:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3134,12 +3134,12 @@ Exemple d'en-tête
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/MIDI images/exemple_enTete.png
+	filename MIDI images/exemple_enTete.png
 	lyxscale 50
 	scale 50
 
@@ -3196,7 +3196,7 @@ Dans ce cas on a le tableau suviant:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3884,7 +3884,7 @@ Dans le cas om le MSB vaut 1 on a :
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4294,7 +4294,7 @@ Le corps du texte s’articule d’une façon similaire à l’en-tête : il com
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4468,12 +4468,12 @@ Dans cet exemple on représente le début de la piste (partie gauche du tableau)
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/MIDI images/exemple_piste.png
+	filename MIDI images/exemple_piste.png
 	lyxscale 50
 	scale 40
 
@@ -4598,7 +4598,7 @@ Un MIDI événement se compose de 2 parties : un type d'événement et les donn�
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4972,7 +4972,7 @@ Note Off
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5113,12 +5113,12 @@ Il y a 88 touches au total sur un piano (36 noires et 52 blanches).
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/MIDI images/numerotation.png
+	filename MIDI images/numerotation.png
 	lyxscale 50
 	scale 40
 
@@ -5162,12 +5162,12 @@ Par exemple, le message "Appuyer sur le do milieu (60ème touche) avec un
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/MIDI images/exemple_noteOn.png
+	filename MIDI images/exemple_noteOn.png
 	lyxscale 50
 	scale 40
 
@@ -5351,16 +5351,27 @@ Un réseau de neurones est considéré comme un « model ».
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Keras/code/exemple_modele.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/Images/collé2.png
+	filename Images/colle2.png
 
 \end_inset
 
@@ -5402,12 +5413,12 @@ On peut définir la dimension du vecteur en entrée avec input_shape ou input_di
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/Images/collé3.png
+	filename Images/colle3.png
 
 \end_inset
 
@@ -5445,12 +5456,12 @@ On définit aussi les fonctions d’activation pour chaque couche.
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/Images/collé4.png
+	filename Images/colle4.png
 
 \end_inset
 
@@ -5483,12 +5494,12 @@ Finalement, un modèle peut ressembler à :
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/jeremy/git-repos/Composition-Musicale-par-Reseau-de-Neurones/Rapport/Images/collé5.png
+	filename Images/colle5.png
 
 \end_inset
 
