@@ -1,0 +1,14 @@
+
+  112  git config --global user.name jcatelain
+  113  git config --global user.email jeremy.catelain@insa-rouen.fr
+  114  git clone https://jcatelain@monprojet.insa-rouen.fr/git/mini_projet_java_gm4-tarot
+
+  123  git pull -r
+  124  git push -u origin master
+  133  git add maquette_IHM_V1_12_10.epgz
+  134  git add maquette_IHM_V1_12_10.png
+  135  git status
+  136  git commit
+(ctrl + O pour quitter l'éditeur)
+  137  git status
+  138  git push

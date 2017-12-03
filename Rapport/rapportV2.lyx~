@@ -1,0 +1,1217 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+
+ \usepackage[utf8]{inputenc}  
+\usepackage{graphicx}
+\include{environnements}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+% Packages Déco
+\usepackage[svgnames]{xcolor}
+\usepackage{fancyhdr}
+
+% Packages d'environnements
+\usepackage{framed}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc,decorations.pathreplacing}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{sffamily} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[scale=0.1]{logo.jpg}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+includegraphics[scale=1.2]{insa.jpg}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+textsc{
+\backslash
+Large Projet de Recherche Opérationnelle}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+HRule 
+\backslash
+
+\backslash
+[0.4cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+    { 
+\backslash
+huge 
+\backslash
+bfseries Composition musical par réseau de neurones 
+\backslash
+
+\backslash
+[0.4cm] }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+HRule 
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+begin{minipage}{0.4
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+begin{flushleft} 
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+	  DRIGUEZ CLAIRE
+\end_layout
+
+\begin_layout Plain Layout
+
+      CATELAIN Jeremy 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      RAMAGE Lucas
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      GM4 
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+end{flushleft}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{minipage}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+begin{minipage}{0.4
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+begin{flushright} 
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+emph{Tuteur :} M.
+ 
+\backslash
+textsc{Knippel}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+end{flushright}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{minipage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+vfill
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+large Octobre - Décembre 2017}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{sffamily}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Réseau de neurones et apprentissage
+\end_layout
+
+\begin_layout Section
+Réseau de neurones
+\end_layout
+
+\begin_layout Subsection
+Le neurone, un modèle spécifique
+\end_layout
+
+\begin_layout Standard
+Un neurone est un mécanisme possédant une entrée, une unité de Processing
+ et une sortie.
+ C'est une fonction paramétrée non linéaire à valeurs bornées.
+\end_layout
+
+\begin_layout Standard
+Les variables sur lesquelles opère le neurone sont appelées les entrées
+ du neurone et la valeur de la fonction est désignée comme la sortie de
+ la fonction.
+ Ci-dessous est représenté un neurone représentant une fonction non linéaire
+ paramétrée bornée 
+\begin_inset Formula $y=f(x,w)$
+\end_inset
+
+ avec x les variables et w les paramètres.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/neurone schВma.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modélisation d'un neurone
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+L'entrée 
+\end_layout
+
+\begin_layout Standard
+du neurone calcule la véritable variable d'entrée de l'unité de Processing
+ en effectuant la somme des variables envoyées au mécanisme.
+ Chaque variable envoyée au mécanisme est le produit entre une variable
+ propre à un neurone précédent 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ et son paramètre 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ appelé le poids.
+\end_layout
+
+\begin_layout Standard
+La valeur résultante peut alors être appelé le 
+\begin_inset Quotes fld
+\end_inset
+
+potentiel
+\begin_inset Quotes frd
+\end_inset
+
+ 
+\begin_inset Formula $v$
+\end_inset
+
+ tel que 
+\begin_inset Formula $v=\sum w_{i}x_{i}+w_{0}$
+\end_inset
+
+ avec 
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ appelé le biais ou seuil d'activation.
+ Le seuil d'activation est propre à chaque neurone.
+\end_layout
+
+\begin_layout Paragraph
+L'unité de Processing 
+\end_layout
+
+\begin_layout Standard
+comporte une fonction d'activation 
+\begin_inset Formula $f$
+\end_inset
+
+ et un poids 
+\begin_inset Formula $w'_{i}$
+\end_inset
+
+.
+ Le processus consiste à appliquer cette fonction d'activation à la variable
+ 
+\begin_inset Formula $v$
+\end_inset
+
+ et à considérer la valeur de sortie spécifique dépendant de la nature de
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ uniquement si le potentiel 
+\begin_inset Formula $v$
+\end_inset
+
+ est supérieur au seuil d'activation.
+ Si c'est le cas, la valeur résultante est alors le produit entre le résultat
+ de 
+\begin_inset Formula $f$
+\end_inset
+
+ appliquée à 
+\begin_inset Formula $v$
+\end_inset
+
+ et le poids 
+\begin_inset Formula $w'_{i}$
+\end_inset
+
+ propre au neurone 
+\begin_inset Formula $i$
+\end_inset
+
+ en question.
+ Soit 
+\begin_inset Formula $s$
+\end_inset
+
+ la sortie tel que: 
+\begin_inset Formula $s=f(v)\cdot w'_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+La sortie
+\end_layout
+
+\begin_layout Standard
+consiste à considérer la valeur résultante 
+\begin_inset Formula $s$
+\end_inset
+
+, si celle-ci est différente de zéro, comme une variable d'entrée pour le
+ neurone suivant et à transmettre cette valeur à toutes les entrées des
+ neurones suivants.
+ 
+\end_layout
+
+\begin_layout Subsection
+Les réseaux de neurones
+\end_layout
+
+\begin_layout Standard
+On compte deux types de réseaux de neurones; les réseaux à propagation avant
+ ou réseaux de neurone acycliques et les réseaux de neurones cycliques.
+ Un réseau de neurone est modélisé comme un graphe, adapté au problème en
+ question.
+ Les nœuds sont alors les neurones et les arêtes, les connexions entre ces
+ neurones.
+ 
+\end_layout
+
+\begin_layout Standard
+Le réseau à propagation avant réalise une ou plusieurs fonctions non linéaires
+ de ses entrées par composition des fonctions réalisées par chacun de ses
+ neurones.
+ Les informations circulent des entrées vers les sorties sans retour en
+ arrière.
+ Les neurones effectuant le dernier calcul de la composition de fonctions
+ sont appelés neurones de sorties et ceux effectuant des calculs intermédiaires
+ sont appelés neurones cachés.
+\end_layout
+
+\begin_layout Paragraph
+Perceptron multicouche
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le réseau à propagation avant le plus simplifié est le 
+\begin_inset Quotes fld
+\end_inset
+
+Perceptrons multicouche
+\begin_inset Quotes frd
+\end_inset
+
+ (Multi-Layer Perceptron).
+ C'est un réseau de neurones dont les neurones cachés ont des fonctions
+ d'activation sigmoïde.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/jeremy/Dropbox/GM4/Projet/Claire/PLC.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle de perceptron multicouche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La couche d'entrée représente les informations que l'on donne à l'entrée
+ du réseau (exemple: pixel des images etc..).
+ Les couches cachées permettent de donner une abstraction au modèle.
+ Toutes les flèches d'un nœud ont le même poids car chaque nœud a une valeur
+ de sortie unique.
+\end_layout
+
+\begin_layout Standard
+Il fait parti des algorithmes supervisés de classificateurs binaires.
+ Celui-ci est constitué de neurones munie d'une 
+\begin_inset Quotes fld
+\end_inset
+
+règle d'apprentissage
+\begin_inset Quotes frd
+\end_inset
+
+ qui détermine les poids de manière automatique tel que 
+\begin_inset Formula $s=f(v).w'_{i}$
+\end_inset
+
+ est la sortie.
+ En fonction du résultat de 
+\begin_inset Formula $s$
+\end_inset
+
+, on en déduit la réponse prédictive de l’objet en question.
+\end_layout
+
+\begin_layout Subparagraph
+Remarque: 
+\end_layout
+
+\begin_layout Standard
+La notion de nœud est alors introduit, celui-ci correspond à un neurone
+ d'une couche cachée.
+ De plus, toutes les flèches d’un nœud ont donc le même poids car chaque
+ nœud a une valeur de sortie unique.
+ Par ailleurs, le comportement du réseau neuronal est déterminé par l’ensemble
+ des poids 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ et des biais ou seuil d'activation 
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ propre à chaque nœud, donc il faut les ajuster à une valeur correcte.
+ Cela est réalisable lors de la phase d'apprentissage.
+ Il faut aussi définir la qualité de chaque sortie donnée (bien ou pas bien)
+ compte tenu de l’entrée.
+ Cette valeur est appelé le coût (norme 2 par exemple avec la différence
+ entre la réponse de la fonction et la sortie du réseau, au carré).
+\end_layout
+
+\begin_layout Standard
+Une fois le coût calculé, la rétrogradation peut être utilisée afin de réduire
+ le calcul du gradient du coût par rapport au poids (c'est-à-dire la dérivée
+ du coût par rapport à chaque poids pour chaque noeuds dans chaque couche).
+ Ensuite, une méthode d'optimisation est utilisée pour ajuster les poids
+ afin de réduire les coûts.
+ Ces méthodes peuvent être retrouvées dans des bibliothèques et les gradients
+ peuvent ainsi être alimentés par la bonne fonction et cette dernière, par
+ la suite, ajuste les poids correctement.
+\end_layout
+
+\begin_layout Paragraph
+La fonction sigmoïde
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La fonction d'activation la plus simple est la fonction de Heaviside telle
+ que: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x_{1},..x_{p})=1$
+\end_inset
+
+ si 
+\begin_inset Formula $\sum w_{i}x_{i}>b$
+\end_inset
+
+ avec b le seuil d'activation ou biais.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x_{1},..,x_{p})=0$
+\end_inset
+
+ sinon
+\end_layout
+
+\begin_layout Standard
+tel que 
+\begin_inset Formula $f(x_{1},..,x_{p})=H(\sum w_{i}x_{i}+b)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mais celle-ci ne réponds pas aux critères permettant d'utiliser la méthode
+ du gradient car elle n'est pas dérivable et continue.
+ De ce fait, la fonction d'activation généralement recommandée est la fonction
+ sigmoïde (en forme de s) qui est symétrique par rapport à l'origine.
+\end_layout
+
+\begin_layout Standard
+Elle est définie par:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{sig}(x)=\frac{1}{1+e^{-x}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+et plus généralement:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{λ}(x)=\frac{1}{1+e^{-λx}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remarque: si 
+\begin_inset Formula $λ=\frac{1}{T}$
+\end_inset
+
+, si T tend vers 0, la fonction sigmoïde tend vers une fonction de Heaviside.
+\end_layout
+
+\begin_layout Standard
+Celle-ci possède des propriétés intéressantes.
+ Celle-ci est continue et dérivable à l'infini.
+ Le calcul de la dérivée de cette fonction en un point est directement calculabl
+e à partir de ce point, ce qui rend facilement applicable la méthode du
+ gradient.
+ De plus, la fonction renvoie des valeurs entre 0 et 1 donc l'interprétation
+ en tant que probabilité est alors possible.
+ Par contre, celle-ci peut être difficilement programmable car le calcul
+ d’exponentiel négative correspond à des nombres très proche de 0 et donc
+ inférieur à l'epsilon machine.
+ 
+\begin_inset Formula $1+e^{-x}$
+\end_inset
+
+ peut parfois être équivalent à 1.
+ Un codage particulier des nombres tel que la normalisation est alors à
+ effectuer.
+\end_layout
+
+\begin_layout Section
+Apprentissage
+\end_layout
+
+\begin_layout Standard
+Après avoir créer le réseau de neurones, on doit procéder à son apprentissage.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Définition
+\end_layout
+
+\begin_layout Standard
+L ’apprentissage est une phase du développement d’un réseau de neurones
+ durant laquelle le comportement du réseau est modifié jusqu’à l’obtention
+ du comportement désiré.
+ Il y a deux types d’algorithmes d’apprentissage : 
+\end_layout
+
+\begin_layout Enumerate
+L’apprentissage supervisé 
+\end_layout
+
+\begin_layout Enumerate
+L’apprentissage non supervisé 
+\end_layout
+
+\begin_layout Standard
+Dans le cas de l'apprentissage supervisé, les exemples sont des couples
+ (Entrée, Sortie associée à l'entrée) alors que pour l'apprentissage non
+ supervisé, on ne dispose que des valeurs Entrée.
+ 
+\end_layout
+
+\begin_layout Standard
+L'apprentissage consiste à modifier le poids des connections entre les neurones.
+ Au démarrage de la phase de l'apprentissage, nous disposons d'une base
+ de données.
+ Nous avons les entrées 
+\begin_inset Formula $(x_{i})_{i\in I}$
+\end_inset
+
+ et les sorties 
+\begin_inset Formula $(\overline{y}_{i})_{i\in I}$
+\end_inset
+
+.
+ Durant la phase d'apprentissage, nous allons utiliser les entrées 
+\begin_inset Formula $(x_{i})_{i\in I}$
+\end_inset
+
+ connues et tester si l'apprentissage a bien fonctionné en comparant les
+ sorties 
+\begin_inset Formula $(y_{i})_{i\in I}$
+\end_inset
+
+.
+ avec les sorties 
+\begin_inset Formula $(\overline{y}_{i})_{i\in I}$
+\end_inset
+
+ connues de bases.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/ES.png
+	lyxscale 30
+	scale 45
+	rotateOrigin center
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma Entrées/Sorties
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour que l'apprentissage fonctionne correctement, il est ainsi nécessaire
+ que l'on ait: 
+\begin_inset Formula $y_{i}\simeq\overline{y_{i}}$
+\end_inset
+
+ 
+\begin_inset Formula $\forall i\in I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit f, une fonction paramétrée non linéaire dite d'activation, telle que:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y_{i}= & f(x_{i},w)=f_{i}(w)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où w est le vecteur poids représentant les paramètres.
+ Plus généralement, on a: 
+\begin_inset Formula $y=f(x,w)$
+\end_inset
+
+.
+ La sortie y est ainsi fonction non linéaire d'une combinaison des variables
+ 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ pondérées par les paramètres 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+On a alors le schéma suivant: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/schema.png
+	lyxscale 30
+	scale 50
+	rotateOrigin center
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma d'un neurone avec 4 entrées
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Légende: les carrés jaunes correspondent aux entrées, le losange noir correspond
+ à un noeud et le cercle bleu à un neurone.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour que l'apprentissage fonctionne, il suffit alors d'avoir: 
+\begin_inset Formula $\forall i\in I$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f_{i}(w)\simeq & \overline{y_{i}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le système étant non linéaire, il n'est pas possible d'utiliser les méthodes
+ classiques pour la résolution de systèmes comme la méthode de Gauss.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Problème 
+\end_layout
+
+\begin_layout Standard
+Nous cherchons à trouver les éléments du vecteur poids w afin que 
+\begin_inset Formula $\forall i\in I$
+\end_inset
+
+ 
+\begin_inset Formula $f_{i}(w)$
+\end_inset
+
+ soit le plus proche possible de 
+\begin_inset Formula $\overline{y_{i}}$
+\end_inset
+
+ en utilisant une méthode de résolution de systèmes non linéaires.
+ L'apprentissage est ainsi un problème numérique d'optimisation.
+\end_layout
+
+\begin_layout Standard
+Par la méthode des moindres carrés, le problème en utilisant la norme 2
+ se ramène à:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f_{i}(w)\simeq & \overline{y_{i}}\Leftrightarrow\underset{w}{min}(\sum_{i\in I}(f_{i}(w)-\overline{y_{i}})^{2})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il est aussi possible d'utiliser les normes 
+\begin_inset Formula $\shortparallel\cdot\shortparallel_{\infty}$
+\end_inset
+
+ ou 
+\begin_inset Formula $\shortparallel\cdot\shortparallel_{1}.$
+\end_inset
+
+ La fonction de coût des moindres carrés est alors:
+\begin_inset Formula 
+\begin{align*}
+J(w)= & \sum_{i\in I}(f_{i}(w)-\overline{y_{i}})^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La méthode du gradient peut être appliquer au problème d'optimisation non
+ linéaire.
+ A chaque étape du processus d'apprentissage, il faut évaluer le gradient
+ de la fonction de coût J et modifier les paramètres en fonction de ce gradient
+ afin de minimiser la fonction J.
+ Le gradient peut être évalué grâce à l'algorithme de rétro-propagation.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Sources
+\end_layout
+
+\begin_layout Enumerate
+https://www.youtube.com/watch?v=KVNhk6uGmr8 : Réseaux de neurones: introduction
+ et applications par Joseph Ghafari
+\end_layout
+
+\begin_layout Enumerate
+http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-network
+s/ 
+\end_layout
+
+\begin_layout Enumerate
+Apprentissage statistique - Gerard Dreyfus
+\end_layout
+
+\begin_layout Enumerate
+Réseaux de Neurones Artificiels - Manuel Clergue (Université de Nice)
+\end_layout
+
+\end_body
+\end_document

@@ -1811,7 +1811,8 @@ Résumons les différentes étapes à suivre pour l'apprentissage.
 \end_layout
 
 \begin_layout Standard
-En utilisant les calculs des sections précédentes, on pose: 
+Construisons les matrices nécessaires pour stocker les variables utilisées.
+ On pose: 
 \end_layout
 
 \begin_layout Standard
@@ -1842,7 +1843,6 @@ J_{k}=\frac{1}{2}\sum_{i=1}^{n_{L}}\left(y_{i}-\overline{y_{i}}\right)_{x=x_{k}}
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement H
 wide false
 sideways false
 status collapsed
