@@ -1351,7 +1351,7 @@ J(w)=\frac{1}{2} & \cdot\sum_{i\in I}(f_{i}(w)-\overline{y_{i}})^{2}
 \end_layout
 
 \begin_layout Subsection
-Estimation des paramètres d'un réseau de neurones à propagation avant
+Estimation des paramètres d'un réseau de neurones
 \end_layout
 
 \begin_layout Subsubsection
@@ -1629,7 +1629,7 @@ Pour un neurone caché i de potentiel
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1719,7 +1719,7 @@ La retro-propagation: les quantités
 \begin_inset Formula $\delta_{k}^{i}(x)$
 \end_inset
 
- sont calculés.
+ sont calculés récursivement.
  
 \begin_inset Formula 
 \begin{align*}
@@ -1762,7 +1762,7 @@ Nous sommes ainsi capable d'évaluer le gradient de la fonction de coût,
 \end_layout
 
 \begin_layout Subsubsection
-Modification des paramètres (poids)
+Modification des poids
 \end_layout
 
 \begin_layout Standard
@@ -1791,6 +1791,10 @@ avec
 
 \begin_layout Section
 L'algorithme d'apprentissage par rétro-propagation
+\end_layout
+
+\begin_layout Subsection
+Notations
 \end_layout
 
 \begin_layout Standard
@@ -1831,8 +1835,8 @@ y_{i}=a_{i}^{L} & :\textrm{ la ième valeur du neurone de la couche de sortie. }
 \delta_{j}^{l}=f'(\nu_{j}^{l})\sum_{i=1}^{n_{l+1}}\delta_{i}^{l+1}w_{ji}^{l} & \textrm{ la valeur du gradient pour le neurone j de la couche l. }\\
 J_{k}=\frac{1}{2}\sum_{i=1}^{n_{L}}\left(y_{i}-\overline{y_{i}}\right)_{x=x_{k}}^{2}: & \textrm{ l'erreur quadratique entre la sortie obtenue et la sortie attendue pour l'exemple k. }\\
 \Gamma=\underset{k\in K}{max(J_{k})}: & \textrm{ la valeur maximale entre tous les }J_{k}.\\
-\varepsilon: & \textrm{la précision souhaitée, une valeur réelle très proche de 0. }\\
-\eta_{l}: & \textrm{ le pas d'apprentissage pour la couche l. }
+\varepsilon\;: & \textrm{ la précision souhaitée, une valeur réelle très proche de 0. }\\
+\eta_{l}\:: & \textrm{ le pas d'apprentissage pour la couche l. }
 \end{align*}
 
 \end_inset
@@ -1840,12 +1844,16 @@ J_{k}=\frac{1}{2}\sum_{i=1}^{n_{L}}\left(y_{i}-\overline{y_{i}}\right)_{x=x_{k}}
 
 \end_layout
 
+\begin_layout Subsection
+L'algorithme
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float algorithm
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2119,7 +2127,7 @@ cdot
 \backslash
 delta_{j}^{l}(x)
 \backslash
-cdot a_j^l$
+cdot a_i^l$
 \end_layout
 
 \begin_layout Plain Layout
@@ -2218,6 +2226,10 @@ Algorithme de rétro-propagation
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Matrices de stockage
 \end_layout
 
 \begin_layout Standard
@@ -2373,7 +2385,7 @@ J_{K}
  
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Exemple d'un apprentissage
 \end_layout
 
@@ -2401,7 +2413,7 @@ Nous allons appliquer l'algorithme précédent afin de mieux comprendre son
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 On a N=2, L=4 et 
 \begin_inset Formula $n_{1}=n_{2}=n_{3}=2$
 \end_inset
@@ -2411,44 +2423,71 @@ On a N=2, L=4 et
 \end_inset
 
 .
- De plus, on a initialisé aléatoirement les poids de la sorte:
+ 
+\end_layout
+
+\begin_layout Itemize
+De plus, on a initialisé aléatoirement les poids de la sorte:
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $W_{1}=\left(\begin{array}{cc}
+\begin_inset Formula 
+\begin{align*}
+W_{1} & =\left(\begin{array}{cc}
 1 & 2\\
 0.5 & -1
-\end{array}\right)$
-\end_inset
-
- et 
-\begin_inset Formula $W_{2}=\left(\begin{array}{cc}
+\end{array}\right)\textrm{ }\\
+W_{2} & =\left(\begin{array}{cc}
 -1 & 2\\
 1 & 3
-\end{array}\right)$
+\end{array}\right)\\
+W_{3} & =\left(\begin{array}{c}
+2\\
+1
+\end{array}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+On prend comme précision 
+\begin_inset Formula $\epsilon=10^{-6}$
+\end_inset
+
+ et on prend un pas d'apprentissage identique pour chaque couche: 
+\begin_inset Formula $\eta=0.1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+La fonction d'activation est 
+\begin_inset Formula $f(x)=\frac{1}{1+e^{-x}}$
 \end_inset
 
  et 
-\begin_inset Formula $W_{3}=\left(\begin{array}{c}
-2\\
-1
-\end{array}\right).$
-\end_inset
-
- On prend 
-\begin_inset Formula $\epsilon=10^{-6}$
+\begin_inset Formula $f'(x)=\frac{e^{-x}}{(1+e^{-x})^{2}}=f(x)\cdot(1-f(x))$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Paragraph
+1ere étape
+\end_layout
+
+\begin_layout Standard
 En appliquant l'algorithme pour la propagation avant, on obtient: 
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2477,17 +2516,18 @@ Exemple propagation avant
 \end_inset
 
  Et alors on a: 
-\begin_inset Formula $A=\left(\begin{array}{cccc}
+\begin_inset Formula 
+\begin{align*}
+A & =\left(\begin{array}{cccc}
 3 & 0.971 & 0.505 & 0.881\\
 1 & 0.993 & 0.993 & 0
-\end{array}\right)$
-\end_inset
-
- et 
-\begin_inset Formula $\gamma=\left(\begin{array}{ccc}
+\end{array}\right)\\
+\gamma & =\left(\begin{array}{ccc}
 3.5 & 0.022 & 2.003\\
 5 & 4.921 & 0
-\end{array}\right)$
+\end{array}\right)
+\end{align*}
+
 \end_inset
 
  et 
@@ -2495,15 +2535,31 @@ Exemple propagation avant
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+Exemple: 
+\begin_inset Formula $\nu_{1}^{1}=1\cdot3+0.5\cdot1=3.5$
+\end_inset
+
+ et 
+\begin_inset Formula $a_{1}^{1}=f(3.5)=0.971$
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Paragraph
+2ème étape
+\end_layout
+
+\begin_layout Standard
 En appliquant l'algorithme pour la propagation arrière, on obtient: 
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2533,21 +2589,33 @@ Exemple propagation arrière
 
  Et alors on a: 
 \begin_inset Formula $\gamma=\left(\begin{array}{ccc}
-0.04 & -0.112 & -0.238\\
--0.090 & -0.047 & 0
+3.23\cdot10^{-3} & -0.118 & -0.238\\
+-8.55\cdot10^{-4} & -1.65\cdot10^{-3} & 0
 \end{array}\right)$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Exemple: 
+\begin_inset Formula $\delta_{1}^{1}=f'(\nu_{1}^{1})\cdot(-1\cdot(-0.118)+2\cdot(-1.65\cdot10^{-3}))=f(\nu_{1}^{1})\cdot(1-f(\nu_{1}^{1}))\cdot0.1147=0.971\cdot(1-0.971)\cdot0.1147=3.23\cdot10^{-3}$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Paragraph
+3ème étape
+\end_layout
+
+\begin_layout Standard
 En modifiant les poids, on obtient: 
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2577,15 +2645,15 @@ Exemple modification des poids
 
  et on a alors: 
 \begin_inset Formula $W_{1}=\left(\begin{array}{cc}
-0.998 & 2.015\\
-0.496 & -0.995
+0.999 & 2.000\\
+0.490 & -0.999
 \end{array}\right)$
 \end_inset
 
  et 
 \begin_inset Formula $W_{2}=\left(\begin{array}{cc}
--0.989 & 2.005\\
-1.011 & 3.005
+-0.988 & 2.000\\
+1.012 & 3.000
 \end{array}\right)$
 \end_inset
 
@@ -2596,7 +2664,11 @@ Exemple modification des poids
 \end{array}\right).$
 \end_inset
 
- On peut ainsi recommencer l'apprentissage avec un autre exemple et avec
+
+\begin_inset Newline newline
+\end_inset
+
+On peut ainsi recommencer l'apprentissage avec un autre exemple et avec
  ces nouveaux poids initiaux.
  Ayant qu'un seul exemple, on a alors 
 \begin_inset Formula $\Gamma=J_{1}<\varepsilon$
@@ -2604,10 +2676,18 @@ Exemple modification des poids
 
  et il faut alors continuer l'apprentissage.
  
+\begin_inset Newline newline
+\end_inset
+
+Exemple: 
+\begin_inset Formula $w_{11}^{1}=1-0.1\cdot3\cdot3.23\cdot10^{-3}=0.999.$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
-Composition musicale
+Composition musicale: les fichiers MIDI
 \end_layout
 
 \begin_layout Section
@@ -2653,10 +2733,10 @@ url{http://newt.phys.unsw.edu.au/jw/notes.html}
 \end_inset
 
 
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Subsection
-Structure de fichier
+
 \end_layout
 
 \begin_layout Standard
@@ -2675,11 +2755,11 @@ Les fichiers MIDI sont des fichiers binaires : les données sont stockées
  en format binaire et non codées (texte, objets etc)
 \end_layout
 
-\begin_layout Subsection
-En-tête du fichier
+\begin_layout Section
+En-tête des fichiers MIDI
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Structure de l'en-tête
 \end_layout
 
@@ -3076,7 +3156,7 @@ Représentation de l'en-tête
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Les formats MIDI
 \end_layout
 
@@ -3103,7 +3183,7 @@ Le troisième format (2) indique que le fichier MIDI possède une ou plusieurs
  1.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Les pistes MIDI
 \end_layout
 
@@ -3115,7 +3195,7 @@ t MIDI).
  le titre de la musique ou encore le copyright (Meta événement).
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 La division MIDI
 \end_layout
 
@@ -3125,7 +3205,7 @@ La division MIDI permet de définir la durée du delta-time, le delta time
  par exemple ou la durée d'appuie d'une note).
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Exemple d'en-tête
 \end_layout
 
@@ -4272,11 +4352,11 @@ Division cas MSB=1
  En effet, un nombre de delta-time nous indiquera le temps entre deux événements.
 \end_layout
 
-\begin_layout Subsection
-Corps du fichier
+\begin_layout Section
+Corps des fichiers
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Représentation du corps
 \end_layout
 
@@ -4452,7 +4532,7 @@ Le delta-time, équivalent au nombre de ticks, correspond au temps écoulé
  Son nombre de ticks sera donc de 0.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Exemple de début de piste
 \end_layout
 
@@ -4545,11 +4625,11 @@ Le but est de récupérer une donnée relative à une variable de plus de 1
  
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Les événements MIDI
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Meta événements
 \end_layout
 
@@ -4584,7 +4664,7 @@ Remarque
 La taille des données est codée en VLQ.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 MIDI événement
 \end_layout
 
@@ -5095,7 +5175,7 @@ Note on
  sauf que le codage hexadécimal est de 9.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Numéro de touches du piano
 \end_layout
 
@@ -5193,7 +5273,7 @@ Exemple Note On
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 SysEx événement
 \end_layout
 
@@ -5341,6 +5421,22 @@ Création d'un modèle
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{inputencoding=utf8/latin1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Un réseau de neurones est considéré comme un « model ».
  On instancie un modèle séquentiel puis on peut ajouter des couches selon
  nos besoins.
@@ -5465,19 +5561,6 @@ La méthode d’optimisation peut être implémentée par un alias présent dans
 
 \begin_layout Standard
 Finalement une compilation de modèle se fait sous la forme suivante : 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-lstset{inputencoding=utf8/latin1}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
