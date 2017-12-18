@@ -1,0 +1,9 @@
+sudo apt-get install python-setuptools
+sudo easy_install pip
+sudo pip install keras
+sudo pip install tensorflow
+sudo pip install h5py
+sudo pip install graphviz 
+sudo apt-get install graphviz
+sudo pip install pydot
+

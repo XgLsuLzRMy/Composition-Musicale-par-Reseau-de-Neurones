@@ -447,6 +447,10 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Chapter*
+Introduction
+\end_layout
+
 \begin_layout Chapter
 Réseau de neurones et apprentissage
 \end_layout
@@ -482,7 +486,7 @@ Les variables sur lesquelles opère le neurone sont appelées les entrées
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -702,7 +706,7 @@ Perceptrons multicouche
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -767,23 +771,24 @@ Remarque:
 \end_layout
 
 \begin_layout Standard
-La notion de nœud est alors introduit, celui-ci correspond à un neurone
- d'une couche cachée.
- De plus, tous les arcs d’un nœud ont donc le même poids car chaque nœud
- a une valeur de sortie unique.
- Par ailleurs, le comportement du réseau neuronal est déterminé par l’ensemble
- des poids 
+La notion de nœud est alors introduite.
+ Les nœuds, qui peuvent appelés neurones, reçoivent une information de leurs
+ prédécesseurs (les neurones de la couche précédente) et combinent cette
+ information selon des pondérations identifiées par des poids 
 \begin_inset Formula $w_{i}$
 \end_inset
 
- et des biais ou seuil d'activation 
+ .
+ Chaque nœud peut aussi posséder un seuil d’activation, appelé aussi biais,
+ noté 
 \begin_inset Formula $w_{0}$
 \end_inset
 
- propre à chaque nœud, donc il faut les ajuster à une valeur correcte.
+.
+ Le but est d'ajuster ces poids afin d'obtenir une sortie relativement correcte.
  Cela est réalisable lors de la phase d'apprentissage.
- Il faut aussi définir la qualité de chaque sortie donnée (bien ou pas bien)
- compte tenu de l’entrée.
+ Il faut aussi définir la qualité de chaque sortie donnée compte tenu de
+ l’entrée.
  Cette valeur est appelé le coût (norme 2 par exemple avec la différence
  entre la réponse de la fonction et la sortie du réseau, au carré).
 \end_layout
@@ -820,7 +825,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-La fonction d'activation est défini comme suit: 
+La fonction d'activation est définie comme suit: 
 \end_layout
 
 \begin_layout Standard
@@ -899,7 +904,7 @@ Voici l'allure de la courbe pour
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -979,7 +984,7 @@ Voici l'allure de la courbe pour f:
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1030,8 +1035,8 @@ Définition
 \begin_layout Standard
 L'apprentissage (en anglais machine learning) est une méthode utilisée en
  intelligence artificielle.
- Il s'agit d'algorithme qui développent la reconnaissance de schémas, l’aptitude
- à apprendre continuellement et à faire des prévisions grâce à l'analyse
+ Il s'agit d'algorithmes qui développent la reconnaissance de schémas, l’aptitud
+e à apprendre continuellement et à faire des prévisions grâce à l'analyse
  d'une base de données.
  
 \end_layout
@@ -1282,7 +1287,8 @@ f_{i}(w)\simeq & \overline{y_{i}}
 
 \begin_layout Standard
 Le système étant non linéaire, il n'est pas possible d'utiliser les méthodes
- classiques pour la résolution de systèmes comme la méthode de Gauss.
+ classiques pour la résolution de systèmes linéaires comme la méthode de
+ Gauss.
  
 \end_layout
 
@@ -1388,7 +1394,7 @@ Soit un réseau de neurones à propagation avant avec des neurones cachés
 \end_inset
 
 .
- Ainsi la la sortie 
+ Ainsi la sortie 
 \begin_inset Formula $y_{i}$
 \end_inset
 
@@ -1581,6 +1587,8 @@ Pour le neurone de sortie s de potentiel
 Généralement, la dernière couche est constituée d’un seul neurone muni de
  la fonction d’activation identité tandis que les autres neurones des couches
  cachées sont munis de la fonction sigmoïde.
+ C'est un choix arbitraire et cela ne modifie pas les résultats si la couche
+ de sortie a plusieurs de neurones.
  On considère alors que le neurone de sortie est linéaire et ainsi: 
 \begin_inset Formula 
 \begin{align*}
@@ -1787,6 +1795,13 @@ avec
 
  un scalaire, appelé pas d'apprentissage ou pas de gradient qui peut être
  fixé ou adaptatif.
+ Ce pas d'apprentissage est très important et aura une influence sur la
+ convergence de la solution.
+ Plus ce pas est petit et plus la convergence sera lente.
+ Et plus ce pas est grand et plus la solution aura tendance à diverger.
+ Il faut alors judicieusement choisir le pas.
+ Nous définirons, par la suite, comment le définir.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1809,6 +1824,7 @@ Résumons les différentes étapes à suivre pour l'apprentissage.
  De plus, on considère que les couches n'ont pas forcément le même nombre
  de neurones et on suppose que les données d'entrées sont de même taille
  pour tous les exemples.
+ Nous considérons aussi que les neurones n'ont pas de biais.
  Pour finir, nous allons aussi différencier les variables selon la couche
  auxquelles elles appartiennent.
  
@@ -2233,8 +2249,10 @@ Matrices de stockage
 \end_layout
 
 \begin_layout Standard
-Nous avons besoin de stocker les différentes valeurs calculés.
- Nous allons les stocker dans les matrices définies ci-dessous.
+Nous avons besoin de stocker les différentes valeurs calculées.
+ Nous choisissons de les stocker dans des matrices définies ci-dessous.
+ Ce choix est arbitraire et ne définit la manière dont nous allons stocker
+ nos données lors de la programmation de notre réseau de neurones.
  
 \end_layout
 
@@ -2396,7 +2414,7 @@ Nous allons appliquer l'algorithme précédent afin de mieux comprendre son
  couche d'entrée et de sorties ainsi que deux couches cachées.
  La couche d'entrée ainsi que les couches cachées contiennent chacune deux
  neurones.
- La couche de sortie contient qu'un seul neurone.
+ La couche de sortie contient un seul neurone.
  Nous allons utilisé qu'un seul exemple.
  Voici les données: 
 \begin_inset Formula 
@@ -2670,7 +2688,7 @@ Exemple modification des poids
 
 On peut ainsi recommencer l'apprentissage avec un autre exemple et avec
  ces nouveaux poids initiaux.
- Ayant qu'un seul exemple, on a alors 
+ Ayant un seul exemple, on a alors 
 \begin_inset Formula $\Gamma=J_{1}<\varepsilon$
 \end_inset
 
@@ -2687,7 +2705,7 @@ Exemple:
 \end_layout
 
 \begin_layout Chapter
-Composition musicale: les fichiers MIDI
+Composition musicale: les données
 \end_layout
 
 \begin_layout Section
@@ -2755,11 +2773,11 @@ Les fichiers MIDI sont des fichiers binaires : les données sont stockées
  en format binaire et non codées (texte, objets etc)
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 En-tête des fichiers MIDI
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Structure de l'en-tête
 \end_layout
 
@@ -2781,7 +2799,7 @@ L’entête est de 14 octets (taille fixe) tel que récapitulé dans le tableau
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2895,7 +2913,7 @@ On peut donc représenter l’en-tête de cette façon:
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3156,7 +3174,7 @@ Représentation de l'en-tête
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Les formats MIDI
 \end_layout
 
@@ -3183,7 +3201,7 @@ Le troisième format (2) indique que le fichier MIDI possède une ou plusieurs
  1.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Les pistes MIDI
 \end_layout
 
@@ -3195,7 +3213,7 @@ t MIDI).
  le titre de la musique ou encore le copyright (Meta événement).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 La division MIDI
 \end_layout
 
@@ -3205,7 +3223,7 @@ La division MIDI permet de définir la durée du delta-time, le delta time
  par exemple ou la durée d'appuie d'une note).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Exemple d'en-tête
 \end_layout
 
@@ -3214,7 +3232,7 @@ Exemple d'en-tête
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3276,7 +3294,7 @@ Dans ce cas on a le tableau suviant:
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3964,7 +3982,7 @@ Dans le cas om le MSB vaut 1 on a :
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4352,11 +4370,11 @@ Division cas MSB=1
  En effet, un nombre de delta-time nous indiquera le temps entre deux événements.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Corps des fichiers
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Représentation du corps
 \end_layout
 
@@ -4374,7 +4392,7 @@ Le corps du texte s’articule d’une façon similaire à l’en-tête : il com
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4532,7 +4550,7 @@ Le delta-time, équivalent au nombre de ticks, correspond au temps écoulé
  Son nombre de ticks sera donc de 0.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Exemple de début de piste
 \end_layout
 
@@ -4548,7 +4566,7 @@ Dans cet exemple on représente le début de la piste (partie gauche du tableau)
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4625,11 +4643,11 @@ Le but est de récupérer une donnée relative à une variable de plus de 1
  
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Les événements MIDI
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Meta événements
 \end_layout
 
@@ -4664,7 +4682,7 @@ Remarque
 La taille des données est codée en VLQ.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 MIDI événement
 \end_layout
 
@@ -4678,7 +4696,7 @@ Un MIDI événement se compose de 2 parties : un type d'événement et les donn�
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5052,7 +5070,7 @@ Note Off
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5175,7 +5193,7 @@ Note on
  sauf que le codage hexadécimal est de 9.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Numéro de touches du piano
 \end_layout
 
@@ -5193,7 +5211,7 @@ Il y a 88 touches au total sur un piano (36 noires et 52 blanches).
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5242,7 +5260,7 @@ Par exemple, le message "Appuyer sur le do milieu (60ème touche) avec un
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5273,7 +5291,7 @@ Exemple Note On
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 SysEx événement
 \end_layout
 
@@ -5293,6 +5311,107 @@ Ces événements permettent de faire appel à des appareils extérieurs et dépe
 \series bold
 nous ne les utiliserons pas et nous n'en tiendrons pas compte si nous en
  rencontrons un dans nos fichiers.
+\end_layout
+
+\begin_layout Section
+Les données
+\end_layout
+
+\begin_layout Standard
+Nos données seront des fichiers contenant des informations extraites de
+ plusieurs fichiers MIDI.
+ Nous allons avoir un ensemble de données que l'on partagera en deux: les
+ données pour l'apprentissage et les données pour les tests.
+\end_layout
+
+\begin_layout Subsection
+Les fichiers
+\end_layout
+
+\begin_layout Standard
+Où a-t-on trouvé les données? Sous quelles formes sont-elles? Combien d'exemples
+ pour l'apprentissage et pour les tests?
+\end_layout
+
+\begin_layout Subsection
+Analyse de nos données
+\end_layout
+
+\begin_layout Standard
+corrélation...
+\end_layout
+
+\begin_layout Chapter
+Composition musicale: le réseau de neurones
+\end_layout
+
+\begin_layout Standard
+Nous allons définir dans cette partie l'architecture de notre réseau.
+ 
+\end_layout
+
+\begin_layout Paragraph
+La couche d'entrée et de sortie
+\end_layout
+
+\begin_layout Standard
+Si une note est représentée par 3 valeurs alors une note sera représentée
+ par 3 neurones de la couche d'entrée.
+ La couché d'entrée contiendra plusieurs notes.
+ Si la couche d'entrée contient 5 notes alors il y aura 
+\begin_inset Formula $3\times5=15$
+\end_inset
+
+ neurones.
+ La couche de sortie contiendra 3 neurones correspondant à la note qui devra
+ être jouée après la séquence de notes de la couche d'entrée.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Les couches cachées
+\end_layout
+
+\begin_layout Standard
+Le nombre de couches cachées est arbitraire et il dépendra de nos résultats.
+ 
+\end_layout
+
+\begin_layout Paragraph
+L'architecture du réseau
+\end_layout
+
+\begin_layout Standard
+Fonction d'activation, formule des changements de poids avec le pas d'apprentiss
+age, réseau récurrent, profond ? etc...
+\end_layout
+
+\begin_layout Standard
+A utiliser: 
+\end_layout
+
+\begin_layout Enumerate
+Conv2D 
+\begin_inset Formula $model.add(Conv2D(32,(3,3),activation='relu',input_{s}hape=(100,100,3)))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Dense 
+\begin_inset Formula $model.add(Dense(64,activation='relu',input_{d}im=20))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+LSTM 
+\begin_inset Formula $model.add(LSTM(32,return_{s}equences=True,stateful=True,batch_{i}nput_{s}hape=(batch_{s}ize,timesteps,data_{d}im)))$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -5667,6 +5786,35 @@ lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Le plan d'expérience
+\end_layout
+
+\begin_layout Chapter
+Les résultats
+\end_layout
+
+\begin_layout Standard
+Statistique, optimisation, corrélation, temps de calcul, taux d'apprentissage,
+ minimisation directionnelle = line search,gradient stochastique
+\end_layout
+
+\begin_layout Chapter*
+Conclusion
+\end_layout
+
+\begin_layout Section*
+Les difficultés
+\end_layout
+
+\begin_layout Section*
+Les bénéfices
+\end_layout
+
+\begin_layout Section*
+Ouverture
 \end_layout
 
 \begin_layout Chapter*
