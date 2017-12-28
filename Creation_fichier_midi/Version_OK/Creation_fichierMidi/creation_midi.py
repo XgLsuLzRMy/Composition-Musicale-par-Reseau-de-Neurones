@@ -31,4 +31,4 @@ for line in donnees :
 donnees.close()	
 mon_fichier.write('\nmidi.write_midifile("newMusic.mid", pattern)')	
 mon_fichier.close()
-nomFichier = subprocess.call("python3 new_midi.py", shell=True)
+subprocess.call("python3 new_midi.py", shell=True)
