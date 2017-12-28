@@ -2888,6 +2888,39 @@ Dans cette partie, nous allons expliquer comment nous avons programmer notre
 Keras
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://stackoverflow.com/questions/44747343/keras-input-explanation-input-sh
+ape-units-batch-size-dim-etc}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://stackoverflow.com/questions/47988983/how-does-keras-read-input-data}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Création du modèle
 \end_layout
@@ -5687,7 +5720,7 @@ Les données s'interprètent différemment selon la valeur du type.
 \end_layout
 
 \begin_layout Standard
-En effet, le type est composé de 2 nombres héxadécimaux H
+En effet, le type est composé de 2 nombres hexadécimaux H
 \begin_inset ERT
 status open
 
@@ -5734,8 +5767,8 @@ $_{1}$
 
 \end_inset
 
- quant à lui, donne l'événement qui à lieu (une note est appuiyée, une note
- est relachée, etc...).
+ quant à lui, donne l'événement qui à lieu (une note est appuyée, une note
+ est relâchée, etc...).
 \end_layout
 
 \begin_layout Standard

@@ -2793,7 +2793,739 @@ Les fichiers MIDI sont des fichiers binaires : les données sont stockées
  en format binaire et non codées (texte, objets etc)
 \end_layout
 
+\begin_layout Section
+Les données
+\end_layout
+
+\begin_layout Standard
+Nos données seront des fichiers contenant des informations extraites de
+ plusieurs fichiers MIDI.
+ Nous allons avoir un ensemble de données que l'on partagera en deux: les
+ données pour l'apprentissage et les données pour les tests.
+\end_layout
+
 \begin_layout Subsection
+Les fichiers
+\end_layout
+
+\begin_layout Standard
+Où a-t-on trouvé les données? Sous quelles formes sont-elles? Combien d'exemples
+ pour l'apprentissage et pour les tests?
+\end_layout
+
+\begin_layout Subsection
+Extraction d'informations des données
+\end_layout
+
+\begin_layout Subsection
+Analyse de nos données
+\end_layout
+
+\begin_layout Standard
+corrélation...
+\end_layout
+
+\begin_layout Chapter
+Composition musicale: le réseau de neurones
+\end_layout
+
+\begin_layout Standard
+Nous allons définir dans cette partie l'architecture de notre réseau.
+ 
+\end_layout
+
+\begin_layout Section
+Les différentes couches
+\end_layout
+
+\begin_layout Paragraph
+La couche d'entrée et de sortie
+\end_layout
+
+\begin_layout Standard
+Si une note est représentée par 3 valeurs alors une note sera représentée
+ par 3 neurones de la couche d'entrée.
+ La couché d'entrée contiendra plusieurs notes.
+ Si la couche d'entrée contient 5 notes alors il y aura 
+\begin_inset Formula $3\times5=15$
+\end_inset
+
+ neurones.
+ La couche de sortie contiendra 3 neurones correspondant à la note qui devra
+ être jouée après la séquence de notes de la couche d'entrée.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Les couches cachées
+\end_layout
+
+\begin_layout Standard
+Le nombre de couches cachées est arbitraire et il dépendra de nos résultats.
+ 
+\end_layout
+
+\begin_layout Section
+L'architecture du réseau
+\end_layout
+
+\begin_layout Standard
+Fonction d'activation, formule des changements de poids avec le pas d'apprentiss
+age, réseau récurrent, profond ? etc...
+\end_layout
+
+\begin_layout Chapter
+Programmation du réseau de neurones
+\end_layout
+
+\begin_layout Standard
+Dans cette partie, nous allons expliquer comment nous avons programmer notre
+ réseau de neurones.
+ 
+\end_layout
+
+\begin_layout Section
+Keras
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://stackoverflow.com/questions/44747343/keras-input-explanation-input-sh
+ape-units-batch-size-dim-etc}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://stackoverflow.com/questions/47988983/how-does-keras-read-input-data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Section
+Création du modèle
+\end_layout
+
+\begin_layout Standard
+A utiliser: 
+\end_layout
+
+\begin_layout Enumerate
+Conv2D 
+\begin_inset Formula $model.add(Conv2D(32,(3,3),activation='relu',input_{s}hape=(100,100,3)))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Dense 
+\begin_inset Formula $model.add(Dense(64,activation='relu',input_{d}im=20))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+LSTM 
+\begin_inset Formula $model.add(LSTM(32,returnequences=True,stateful=True,batch_{i}nput_{s}hape=(batch_{s}ize,timesteps,data_{d}im)))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Modèle faux...juste pour donner une idée
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Keras/code/exemple_creationModele.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Normalisation de nos données
+\end_layout
+
+\begin_layout Section
+Apprentissage
+\end_layout
+
+\begin_layout Section
+Interprétation de la sortie
+\end_layout
+
+\begin_layout Subsection
+Dé-normalisation
+\end_layout
+
+\begin_layout Subsection
+Création d'un fichier MIDI
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{inputencoding=utf8/latin1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+1er exemple
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/exemple1_creation_fichierMIDI.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+2eme exemple
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/exemple2_creation_fichierMIDI.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Le plan d'expérience
+\end_layout
+
+\begin_layout Chapter
+Les résultats
+\end_layout
+
+\begin_layout Standard
+Statistique, optimisation, corrélation, temps de calcul, taux d'apprentissage,
+ minimisation directionnelle = line search,gradient stochastique
+\end_layout
+
+\begin_layout Chapter*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{
+\backslash
+protect
+\backslash
+numberline{}Conclusion}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Les difficultés
+\end_layout
+
+\begin_layout Section*
+Les bénéfices
+\end_layout
+
+\begin_layout Section*
+Ouverture
+\end_layout
+
+\begin_layout Chapter*
+Sources
+\end_layout
+
+\begin_layout Subsection*
+Sources concernant les réseaux de neurones
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes fld
+\end_inset
+
+Réseaux de neurones: introduction et applications
+\begin_inset Quotes frd
+\end_inset
+
+, vidéo présenté par Joseph Ghafari.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://www.youtube.com/watch?v=KVNhk6uGmr8}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Site web relatant un projet sur la composition musicale par réseaux de neurones,
+ par Daniel Johnson.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-net
+works/ }
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes fld
+\end_inset
+
+
+\bar under
+Apprentissage statistique
+\bar default
+
+\begin_inset Quotes frd
+\end_inset
+
+ , écrit par Gerard Dreyfus et édité par Eyrolles (2008).
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes fld
+\end_inset
+
+Can a deep neural network compose music?
+\begin_inset Quotes frd
+\end_inset
+
+, article écrit par Justin Svegliato pour le blog 
+\begin_inset Quotes fld
+\end_inset
+
+Medium.com
+\begin_inset Quotes frd
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://medium.com/towards-data-science/can-a-deep-neural-network-compose-mus
+ic-f89b6ba4978d}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes fld
+\end_inset
+
+Intelligence Artificielle
+\begin_inset Quotes frd
+\end_inset
+
+, ensemble de vidéos présenté par Hugo Larochelle professeur à l'Université
+ de Sherbrooke.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://www.youtube.com/watch?v=stuU2TK3t0Q&list=PL6Xpj9I5qXYGhsvMWM53ZLfwUInz
+vYWsm}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection*
+Sources concernant les bibliothèques Python (Keras)
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align left
+Le modèle séquentiel 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://keras.io/getting-started/sequential-model-guide/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Les fonctions d'activation 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://keras.io/activations/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Les méthodes d'optimisation 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://keras.io/optimizers/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Les fonctions de coût 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://keras.io/losses/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Tuto pour utiliser Keras 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://machinelearningmastery.com/tutorial-first-neural-network-python-keras
+/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Sources concernant les fichiers MIDI
+\end_layout
+
+\begin_layout Enumerate
+Spécifications MIDI : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://web.archive.org/web/20120317213145/http://www.sonicspot.com/guide/midifi
+les.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Norme MIDI et les fichiers MIDI : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.jchr.be/linux/format-midi.htm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align left
+Standard MIDI-File Format Spec : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The MIDI File Format : 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://www.csie.ntu.edu.tw/~r92092/ref/midi/}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+appendix
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Les fichiers MIDI
+\end_layout
+
+\begin_layout Section
+Les fichiers MIDI
+\end_layout
+
+\begin_layout Standard
+Un fichier MIDI (Musical Instrument Digital Interface), contrairement au
+ fichier audio, ne contient aucun son, à proprement parler, mais une série
+ de 
+\begin_inset Quotes fld
+\end_inset
+
+directives
+\begin_inset Quotes frd
+\end_inset
+
+ que seul un instrument compatible MIDI peut comprendre.
+ L’instrument MIDI d’après les 
+\begin_inset Quotes fld
+\end_inset
+
+consignes
+\begin_inset Quotes frd
+\end_inset
+
+ contenues dans le fichier MIDI peut alors produire le son.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Fréquences 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://newt.phys.unsw.edu.au/jw/notes.html}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un fichier MIDI est composé d'un en-tête et d'un corps de fichier.
+ L'en-tête décrit des informations nécessaires à la lecture du fichier.
+ 
+\end_layout
+
+\begin_layout Standard
+Le corps du fichier est composé d'une ou plusieurs pistes.
+ 
+\end_layout
+
+\begin_layout Standard
+Les fichiers MIDI sont des fichiers binaires : les données sont stockées
+ en format binaire et non codées (texte, objets etc)
+\end_layout
+
+\begin_layout Section
 En-tête des fichiers MIDI
 \end_layout
 
@@ -4390,7 +5122,7 @@ Division cas MSB=1
  En effet, un nombre de delta-time nous indiquera le temps entre deux événements.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Corps des fichiers
 \end_layout
 
@@ -4663,7 +5395,7 @@ Le but est de récupérer une donnée relative à une variable de plus de 1
  
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Les événements MIDI
 \end_layout
 
@@ -4992,7 +5724,7 @@ Les données s'interprètent différemment selon la valeur du type.
 \end_layout
 
 \begin_layout Standard
-En effet, le type est composé de 2 nombres héxadécimaux H
+En effet, le type est composé de 2 nombres hexadécimaux H
 \begin_inset ERT
 status open
 
@@ -5039,8 +5771,8 @@ $_{1}$
 
 \end_inset
 
- quant à lui, donne l'événement qui à lieu (une note est appuiyée, une note
- est relachée, etc...).
+ quant à lui, donne l'événement qui à lieu (une note est appuyée, une note
+ est relâchée, etc...).
 \end_layout
 
 \begin_layout Standard
@@ -5333,634 +6065,8 @@ nous ne les utiliserons pas et nous n'en tiendrons pas compte si nous en
  rencontrons un dans nos fichiers.
 \end_layout
 
-\begin_layout Section
-Les données
-\end_layout
-
-\begin_layout Standard
-Nos données seront des fichiers contenant des informations extraites de
- plusieurs fichiers MIDI.
- Nous allons avoir un ensemble de données que l'on partagera en deux: les
- données pour l'apprentissage et les données pour les tests.
-\end_layout
-
-\begin_layout Subsection
-Les fichiers
-\end_layout
-
-\begin_layout Standard
-Où a-t-on trouvé les données? Sous quelles formes sont-elles? Combien d'exemples
- pour l'apprentissage et pour les tests?
-\end_layout
-
-\begin_layout Subsection
-Extraction d'informations des données
-\end_layout
-
-\begin_layout Subsection
-Analyse de nos données
-\end_layout
-
-\begin_layout Standard
-corrélation...
-\end_layout
-
 \begin_layout Chapter
-Composition musicale: le réseau de neurones
-\end_layout
-
-\begin_layout Standard
-Nous allons définir dans cette partie l'architecture de notre réseau.
- 
-\end_layout
-
-\begin_layout Section
-Les différentes couches
-\end_layout
-
-\begin_layout Paragraph
-La couche d'entrée et de sortie
-\end_layout
-
-\begin_layout Standard
-Si une note est représentée par 3 valeurs alors une note sera représentée
- par 3 neurones de la couche d'entrée.
- La couché d'entrée contiendra plusieurs notes.
- Si la couche d'entrée contient 5 notes alors il y aura 
-\begin_inset Formula $3\times5=15$
-\end_inset
-
- neurones.
- La couche de sortie contiendra 3 neurones correspondant à la note qui devra
- être jouée après la séquence de notes de la couche d'entrée.
- 
-\end_layout
-
-\begin_layout Paragraph
-Les couches cachées
-\end_layout
-
-\begin_layout Standard
-Le nombre de couches cachées est arbitraire et il dépendra de nos résultats.
- 
-\end_layout
-
-\begin_layout Section
-L'architecture du réseau
-\end_layout
-
-\begin_layout Standard
-Fonction d'activation, formule des changements de poids avec le pas d'apprentiss
-age, réseau récurrent, profond ? etc...
-\end_layout
-
-\begin_layout Chapter
-Programmation du réseau de neurones
-\end_layout
-
-\begin_layout Standard
-Dans cette partie, nous allons expliquer comment nous avons programmer notre
- réseau de neurones.
- 
-\end_layout
-
-\begin_layout Section
 Keras
-\end_layout
-
-\begin_layout Section
-Création du modèle
-\end_layout
-
-\begin_layout Standard
-A utiliser: 
-\end_layout
-
-\begin_layout Enumerate
-Conv2D 
-\begin_inset Formula $model.add(Conv2D(32,(3,3),activation='relu',input_{s}hape=(100,100,3)))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Dense 
-\begin_inset Formula $model.add(Dense(64,activation='relu',input_{d}im=20))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-LSTM 
-\begin_inset Formula $model.add(LSTM(32,returnequences=True,stateful=True,batch_{i}nput_{s}hape=(batch_{s}ize,timesteps,data_{d}im)))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Modèle faux...juste pour donner une idée
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "Keras/code/exemple_creationModele.py"
-lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Normalisation de nos données
-\end_layout
-
-\begin_layout Section
-Apprentissage
-\end_layout
-
-\begin_layout Section
-Interprétation de la sortie
-\end_layout
-
-\begin_layout Subsection
-Dé-normalisation
-\end_layout
-
-\begin_layout Subsection
-Création d'un fichier MIDI
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-lstset{inputencoding=utf8/latin1}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-1er exemple
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "Midi/code/exemple1_creation_fichierMIDI.py"
-lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-2eme exemple
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "Midi/code/exemple2_creation_fichierMIDI.py"
-lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Le plan d'expérience
-\end_layout
-
-\begin_layout Chapter
-Les résultats
-\end_layout
-
-\begin_layout Standard
-Statistique, optimisation, corrélation, temps de calcul, taux d'apprentissage,
- minimisation directionnelle = line search,gradient stochastique
-\end_layout
-
-\begin_layout Chapter*
-Conclusion
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-addcontentsline{toc}{chapter}{
-\backslash
-protect
-\backslash
-numberline{}Conclusion}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section*
-Les difficultés
-\end_layout
-
-\begin_layout Section*
-Les bénéfices
-\end_layout
-
-\begin_layout Section*
-Ouverture
-\end_layout
-
-\begin_layout Chapter*
-Sources
-\end_layout
-
-\begin_layout Subsection*
-Sources concernant les réseaux de neurones
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Quotes fld
-\end_inset
-
-Réseaux de neurones: introduction et applications
-\begin_inset Quotes frd
-\end_inset
-
-, vidéo présenté par Joseph Ghafari.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://www.youtube.com/watch?v=KVNhk6uGmr8}
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Enumerate
-Site web relatant un projet sur la composition musicale par réseaux de neurones,
- par Daniel Johnson.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-net
-works/ }
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Quotes fld
-\end_inset
-
-
-\bar under
-Apprentissage statistique
-\bar default
-
-\begin_inset Quotes frd
-\end_inset
-
- , écrit par Gerard Dreyfus et édité par Eyrolles (2008).
- 
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Quotes fld
-\end_inset
-
-Can a deep neural network compose music?
-\begin_inset Quotes frd
-\end_inset
-
-, article écrit par Justin Svegliato pour le blog 
-\begin_inset Quotes fld
-\end_inset
-
-Medium.com
-\begin_inset Quotes frd
-\end_inset
-
-.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://medium.com/towards-data-science/can-a-deep-neural-network-compose-mus
-ic-f89b6ba4978d}
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Quotes fld
-\end_inset
-
-Intelligence Artificielle
-\begin_inset Quotes frd
-\end_inset
-
-, ensemble de vidéos présenté par Hugo Larochelle professeur à l'Université
- de Sherbrooke.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://www.youtube.com/watch?v=stuU2TK3t0Q&list=PL6Xpj9I5qXYGhsvMWM53ZLfwUInz
-vYWsm}
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Subsection*
-Sources concernant les bibliothèques Python (Keras)
-\end_layout
-
-\begin_layout Enumerate
-\noindent
-\align left
-Le modèle séquentiel 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://keras.io/getting-started/sequential-model-guide/}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Les fonctions d'activation 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://keras.io/activations/}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Les méthodes d'optimisation 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://keras.io/optimizers/}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Les fonctions de coût 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://keras.io/losses/}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Tuto pour utiliser Keras 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://machinelearningmastery.com/tutorial-first-neural-network-python-keras
-/}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-Sources concernant les fichiers MIDI
-\end_layout
-
-\begin_layout Enumerate
-Spécifications MIDI : 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://web.archive.org/web/20120317213145/http://www.sonicspot.com/guide/midifi
-les.html}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Norme MIDI et les fichiers MIDI : 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{http://www.jchr.be/linux/format-midi.htm}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\noindent
-\align left
-Standard MIDI-File Format Spec : 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-The MIDI File Format : 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-url{https://www.csie.ntu.edu.tw/~r92092/ref/midi/}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-appendix
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-TUTO Keras
 \end_layout
 
 \begin_layout Section
