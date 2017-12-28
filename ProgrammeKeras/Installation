@@ -6,7 +6,7 @@ sudo pip install h5py
 sudo pip install graphviz 
 sudo apt-get install graphviz
 sudo pip install pydot
-
-
+python -mpip install -U matplotlib
+sudo apt-get install python-tk
 sudo apt-get install python python-setuptools python-dev python-augeas gcc swig dialog
 sudo apt install python3-pip
