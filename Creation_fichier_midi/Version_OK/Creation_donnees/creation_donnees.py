@@ -7,7 +7,7 @@ fichier = open("fichierMidiComplet.py", "r")
 mon_fichier = open("fichierMidiSimple.py", "w")
 mon_fichier.write("import midi\npattern=")
 k=0
-bad_words = ['EndOfTrackEvent','SmpteOffsetEvent', 'TrackNameEvent', 'TextMetaEvent', 'SetTempoEvent','CopyrightMetaEvent','TimeSignatureEvent','KeySignatureEvent','ProgramChangeEvent']
+bad_words = ['EndOfTrackEvent','SmpteOffsetEvent', 'TrackNameEvent', 'TextMetaEvent', 'SetTempoEvent','CopyrightMetaEvent','TimeSignatureEvent','KeySignatureEvent','ProgramChangeEvent','MarkerEvent']
 for line in fichier :
 	clean = True
 	if 'midi.Track(' in line:
@@ -34,19 +34,19 @@ for line in mon_fichier :
 		k="0"
 	else: 
 		if 'NoteOnEvent' in line: 
-			k="1"
+			k="0.5"
 		else:
 			if 'EndOfTrackEvent' in line: 
-				k="2"
+				k="1"
 			else: k=-1
-	if k=="0" or k=="1":
+	if k=="0" or k=="0.5":
 		s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
 		donnees.write(k)
 		donnees.write(" "+s[0])
 		donnees.write(" "+s[2])
 		donnees.write(" "+s[3])
 		donnees.write("\n")
-	if k=="2":
+	if k=="1":
 		donnees.write(k+" 0"+" 0"+" 0\n")
 		
 

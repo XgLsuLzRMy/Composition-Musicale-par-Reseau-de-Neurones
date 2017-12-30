@@ -36,7 +36,8 @@ max_data2 = max_data1
 min_data2 = min_data1
 
 for i in range(0,len(event)):
-        e = (float(event[i])-min_event)/(max_event- min_event)
+        #e = (float(event[i])-min_event)/(max_event- min_event)
+        e = float(event[i])
         mon_fichier.write(str(e)+" ")
         t = (float(tick[i])-min_tick)/(max_tick- min_tick)
         mon_fichier.write(str(t)+" ")

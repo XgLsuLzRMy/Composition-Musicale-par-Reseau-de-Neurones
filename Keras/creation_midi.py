@@ -6,6 +6,7 @@ donnees = open(argument1, "r")
 mon_fichier = open("new_midi.py", "w")
 mon_fichier.write("import midi\npattern=midi.Pattern(format=1, resolution=480, tracks=\\\n[midi.Track(\\\n[")
 k=0
+j=0
 for line in donnees :
 	s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
 	if s[0]=="0":
@@ -26,8 +27,10 @@ for line in donnees :
 		else:
 			fin = "]),\n"
 	note="   midi."+event+"("+"tick="+s[1]+", channel=0, data=["+s[2]+","+s[3] + fin
-	mon_fichier.write(note)
-if k!=3:
+	if k<=3:
+		mon_fichier.write(note)
+		j=1
+if k!=3 and j==0:
 	note="   midi."+"EndOfTrackEvent"+"("+"tick="+"0"+", channel=0, data=["+"0"+","+"0" + "])])])\n"
 	mon_fichier.write(note)	
 donnees.close()	

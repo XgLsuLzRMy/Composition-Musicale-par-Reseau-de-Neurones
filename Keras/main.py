@@ -7,7 +7,7 @@ import numpy as np
 from keras.utils import plot_model
 from keras.models import load_model
 import matplotlib.pyplot as plt
-from keras.callbacks import EarlyStopping
+from keras.callbacks import EarlyStopping,ModelCheckpoint
 import sys
 import re
 import subprocess
@@ -44,16 +44,16 @@ data_dim = 4
 number_of_notes_per_song = 10
 nsongs_train = 100
 #tunable parameter
-batch_size = 32
-epochs = 7
+batch_size = 40
+epochs = 50
+learning_rate = 0.001
+opt = optimizers.rmsprop(learning_rate)
+cout = 'categorical_crossentropy'
 nomFichierDuModele = 'modele.h5'
 nomFichierDesPoids = 'poids.h5'
 
-#x_train = transformerArrayEn3D(data,nsongs_train, number_of_notes_per_song, data_dim)
+
 x_train = np.reshape(data,(nsongs_train, number_of_notes_per_song, data_dim))
-#this is a supervised learning problem, but your dataset has no labels..
-#we can use last note in each song as a label when training c 
-#X = x_train[np.mod(np.arange(x_train.shape[0]),number_of_notes_per_song)!=0].reshape(nsongs_train,number_of_notes_per_song-1,data_dim)
 X = transformerArrayEn3D("data.txt",nsongs_train, number_of_notes_per_song, data_dim)
 y = x_train[::number_of_notes_per_song].reshape(nsongs_train,data_dim) 
 
@@ -61,24 +61,25 @@ model = Sequential()
 model.add(LSTM(32, input_shape=(number_of_notes_per_song-1, data_dim),return_sequences=True))
 model.add(Dropout(0.2))
 model.add(LSTM(64))
-model.add(Dropout(0.2))
-model.add(Dense(data_dim, activation='relu'))
-model.add(Dropout(0.2))
-#model.add(TimeDistributed(Dense(data_dim, activation='softmax')),input_shape=(number_of_notes_per_song-1, data_dim))
-model.add(TimeDistributed(Dense(data_dim)))
+model.add(Dense(data_dim, activation='sigmoid'))
 plot_model(model, to_file='modele.png', show_shapes=True, show_layer_names=True)
 model.summary()
 
-model.compile(loss='categorical_crossentropy', optimizer='adam')
 
+model.compile(loss=cout, optimizer=opt,metrics=['accuracy'])
+  
 history = model.fit(X,y,batch_size=batch_size, epochs=epochs)
 
 
 
 
-
 #courbe de la precision sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
-
+#plt.plot(history.history['acc'])
+#plt.title('Precision du modele')
+#plt.ylabel('Precision')
+#plt.xlabel('Iterations')
+#plt.legend(['Apprentissage', 'Test'], loc='upper left')
+#plt.show()
 # courbe de la perte/cout sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
 plt.plot(history.history['loss'])
 #plt.plot(history.history['val_loss'])
@@ -94,9 +95,20 @@ model.save_weights(nomFichierDesPoids)
 #EVALUATION
 loss_and_metrics = model.evaluate(X, y, batch_size=1)
 print ("Loss et metrics ",loss_and_metrics)
+model.save(nomFichierDuModele)
+
+
+
+
+
+
+# Chargement du modele stocke dans le fichier pour le reutiliser
+model = load_model(nomFichierDuModele)
+
+
 
 #PREDICTION
-test = transformerArrayEn3D("test.txt",100,10,4)
+test = transformerArrayEn3D("test.txt",nsongs_train,number_of_notes_per_song,data_dim)
 previsions = model.predict(test)
 np.savetxt('prediction.txt', previsions, fmt="%f")
 subprocess.call("python3 denormalisation.py prediction.txt > prediction1.txt", shell=True)
