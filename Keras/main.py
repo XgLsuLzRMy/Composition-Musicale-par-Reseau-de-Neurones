@@ -1,6 +1,6 @@
 import keras
 from keras.models import Sequential
-from keras.layers import Dense, Activation,Dropout,LSTM
+from keras.layers import Dense, Activation,Dropout,LSTM,TimeDistributed
 from keras import losses
 from keras import optimizers
 import numpy as np
@@ -8,21 +8,10 @@ from keras.utils import plot_model
 from keras.models import load_model
 import matplotlib.pyplot as plt
 from keras.callbacks import EarlyStopping
+import sys
 import re
-##LES DONNEES
-#fd = open("donneesNormalises.txt", 'r')
-#nbLigne = 0
-#for line in fd:
-    #nbLigne += 1
-#division = int(nbLigne/4)
-#reste = nbLigne%4
-#print(division*3+division+reste)
-#print(nbLigne)
-#donnees = np.loadtxt("donneesNormalises.txt", delimiter=" ")
-#x_train = np.zeros((10, 4))
-#y_train = np.zeros(4)
-#print(x_train)
-#print(y_train)
+import subprocess
+
 
 def transformerArrayEn2D(nomFichier):
 	donnees = open(nomFichier,"r")
@@ -42,21 +31,10 @@ def transformerArrayEn2D(nomFichier):
 def transformerArrayEn3D(nomFichier,dim1,dim2,dim3):
 	data = transformerArrayEn2D(nomFichier)
 	data = np.reshape(data,(dim1, dim2, dim3))
-	X = data[np.mod(np.arange(data.shape[0]),number_of_notes_per_song)!=0].reshape(dim1,dim2-1,dim3)
+	X = data[np.mod(np.arange(data.shape[0]),dim2)!=0].reshape(dim1,dim2-1,dim3)
 	return X
 
-#donnees = open("data.txt","r")
-#lines = donnees.readlines()
-#i=0
-#data = [[0 for x in range(4)] for y in range(1000)]
-#for line in lines:
-	#s = re.findall(r"[-+]?\d*\.\d+|\d+\t\n\r\f\v", line)
-	#data[i][0]=float(s[0])
-	#data[i][1]=float(s[1])
-	#data[i][2]=float(s[2])
-	#data[i][3]=float(s[3])
-	#i+=1
-#donnees.close()
+
 
 data = transformerArrayEn2D("data.txt")
 
@@ -67,15 +45,16 @@ number_of_notes_per_song = 10
 nsongs_train = 100
 #tunable parameter
 batch_size = 32
-epochs = 5
+epochs = 7
 nomFichierDuModele = 'modele.h5'
 nomFichierDesPoids = 'poids.h5'
 
 #x_train = transformerArrayEn3D(data,nsongs_train, number_of_notes_per_song, data_dim)
 x_train = np.reshape(data,(nsongs_train, number_of_notes_per_song, data_dim))
 #this is a supervised learning problem, but your dataset has no labels..
-#we can use last note in each song as a label when training LSTM 
-X = x_train[np.mod(np.arange(x_train.shape[0]),number_of_notes_per_song)!=0].reshape(nsongs_train,number_of_notes_per_song-1,data_dim)
+#we can use last note in each song as a label when training c 
+#X = x_train[np.mod(np.arange(x_train.shape[0]),number_of_notes_per_song)!=0].reshape(nsongs_train,number_of_notes_per_song-1,data_dim)
+X = transformerArrayEn3D("data.txt",nsongs_train, number_of_notes_per_song, data_dim)
 y = x_train[::number_of_notes_per_song].reshape(nsongs_train,data_dim) 
 
 model = Sequential()
@@ -83,8 +62,10 @@ model.add(LSTM(32, input_shape=(number_of_notes_per_song-1, data_dim),return_seq
 model.add(Dropout(0.2))
 model.add(LSTM(64))
 model.add(Dropout(0.2))
-model.add(Dense(data_dim, activation='softmax'))
-
+model.add(Dense(data_dim, activation='relu'))
+model.add(Dropout(0.2))
+#model.add(TimeDistributed(Dense(data_dim, activation='softmax')),input_shape=(number_of_notes_per_song-1, data_dim))
+model.add(TimeDistributed(Dense(data_dim)))
 plot_model(model, to_file='modele.png', show_shapes=True, show_layer_names=True)
 model.summary()
 
@@ -117,7 +98,11 @@ print ("Loss et metrics ",loss_and_metrics)
 #PREDICTION
 test = transformerArrayEn3D("test.txt",100,10,4)
 previsions = model.predict(test)
-np.savetxt('prediction.txt', previsions)
-
+np.savetxt('prediction.txt', previsions, fmt="%f")
+subprocess.call("python3 denormalisation.py prediction.txt > prediction1.txt", shell=True)
+subprocess.call("python3 denormalisation.py test.txt > test1.txt", shell=True)
+open("mon_fichier_sortie.txt","w").write(open("test1.txt").read() + open("prediction1.txt").read())
+subprocess.call("python3 creation_midi.py mon_fichier_sortie.txt", shell=True)
+subprocess.call("timidity newMusic.mid", shell=True)
 #sauvegarder le modele
 model.save(nomFichierDuModele)

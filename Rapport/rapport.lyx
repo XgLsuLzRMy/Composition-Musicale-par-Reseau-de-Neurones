@@ -2893,7 +2893,7 @@ NoteOnEvent
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
+0.5
 \end_layout
 
 \end_inset
@@ -2922,7 +2922,7 @@ EndOfTrackEvent
 \begin_inset Text
 
 \begin_layout Plain Layout
-2
+1
 \end_layout
 
 \end_inset
@@ -2946,7 +2946,7 @@ tick
 \begin_inset Formula $\infty[$
 \end_inset
 
- ou? [0,500-1500]
+ ou? [0,1700]
 \end_layout
 
 \end_inset

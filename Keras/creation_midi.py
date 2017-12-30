@@ -27,7 +27,9 @@ for line in donnees :
 			fin = "]),\n"
 	note="   midi."+event+"("+"tick="+s[1]+", channel=0, data=["+s[2]+","+s[3] + fin
 	mon_fichier.write(note)
-		
+if k!=3:
+	note="   midi."+"EndOfTrackEvent"+"("+"tick="+"0"+", channel=0, data=["+"0"+","+"0" + "])])])\n"
+	mon_fichier.write(note)	
 donnees.close()	
 mon_fichier.write('\nmidi.write_midifile("newMusic.mid", pattern)')	
 mon_fichier.close()
