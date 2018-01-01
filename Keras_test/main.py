@@ -41,55 +41,55 @@ def transformerArrayEn3D(nomFichier,dim1,dim2,dim3):
 
 def creationDonneesApprentissage(nomFichier,dim1,dim2,dim3):
 	X = transformerArrayEn3D(nomFichier, dim1,dim2, dim3)
-	x = np.zeros(shape=(n_samples, window_length, note_dim))
-	y = np.zeros(shape=(n_samples, note_dim))
+	x = np.zeros(shape=(nb_echantillon, taille_sequence, note_dim))
+	y = np.zeros(shape=(nb_echantillon, note_dim))
 	for n, X in enumerate(X):
-		for i in range(samples_per_song):
-			x[i+n*samples_per_song][:][:] = X[i:(i+window_length), :]
-			y[i+n*samples_per_song][:][:] = X[i+window_length, :] # note that you want to predict
+		for i in range(echantillons_par_chanson):
+			x[i+n*echantillons_par_chanson][:][:] = X[i:(i+taille_sequence), :]
+			y[i+n*echantillons_par_chanson][:][:] = X[i+taille_sequence, :] # note that you want to predict
 	return x,y
 	
 	
 def creationDonneesPrediction(nomFichier,dim1,dim2,dim3):
 	X = transformerArrayEn3D(nomFichier, dim1,dim2, dim3)
-	x = np.zeros(shape=(n_samples, window_length, note_dim))
-	y = np.zeros(shape=(n_samples, note_dim))
+	x = np.zeros(shape=(nb_echantillon, taille_sequence, note_dim))
+	y = np.zeros(shape=(nb_echantillon, note_dim))
 	for n, X in enumerate(X):
-		for i in range(samples_per_song):
-			x[i+n*samples_per_song][:][:] = X[i:(i+window_length), :]
+		for i in range(echantillons_par_chanson):
+			x[i+n*echantillons_par_chanson][:][:] = X[i:(i+taille_sequence), :]
 	return x
 
 
-batch_size = 32
-window_length = 10
+
+taille_sequence = 10
 note_dim = 4
-n_songs = 2
-notes_per_song = 1000
-samples_per_song = notes_per_song - window_length
-n_samples = n_songs*samples_per_song
+nb_chanson = 2
+nbNotes_par_chanson = 1000
+echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
+nb_echantillon = nb_chanson*echantillons_par_chanson
 data_dim = 4 
-number_of_notes_per_song = 1000
-nsongs_train = 2
-batch_size = 12
-epochs = 10
-learning_rate = 0.001
-opt = optimizers.rmsprop(learning_rate)
+batch_size = 32
+epochs = 20
+taux_apprentissage = 0.01
+opt = optimizers.rmsprop(taux_apprentissage)
 cout = 'categorical_crossentropy'
 nomFichierDuModele = 'modele.h5'
+imageDuModele = 'modele.png'
 nomFichierDesPoids = 'poids.h5'
 
 
-x,y = creationDonneesApprentissage("data.txt",nsongs_train, number_of_notes_per_song, data_dim)
+x,y = creationDonneesApprentissage("data.txt",nb_chanson, nbNotes_par_chanson, data_dim)
 
 
 
 model = Sequential()
-model.add(LSTM(32, input_shape=(10, note_dim),return_sequences=True))
+model.add(LSTM(32, input_shape=(taille_sequence, note_dim),return_sequences=True))
 model.add(Dropout(0.2))
 model.add(LSTM(64))
-model.add(Dense(data_dim, activation='linear'))
+model.add(Dropout(0.2))
+model.add(Dense(data_dim, activation='softmax'))
 model.add(Dense(data_dim, activation='sigmoid'))
-plot_model(model, to_file='modele.png', show_shapes=True, show_layer_names=True)
+plot_model(model, to_file=imageDuModele, show_shapes=True, show_layer_names=True)
 model.summary()
 
 
@@ -132,23 +132,22 @@ model.save(nomFichierDuModele)
 # Chargement du modele stocke dans le fichier pour le reutiliser
 # model = load_model(nomFichierDuModele)
 
-
-
 #PREDICTION
+note_dim = 4
+taille_sequence = 10
+nb_chanson = 1
+nbNotes_par_chanson = 10
+echantillons_par_chanson = 1
+nb_echantillon = nb_chanson*echantillons_par_chanson
+
 nomTest = "test.txt"
 open("fin.txt","a").write(open(nomTest).read())
 prediction='prediction.txt'
 predictionFin ="predictionNormalisee.txt"
 
 
-window_length = 10
-note_dim = 4
-n_songs = 1
-notes_per_song = 10
-samples_per_song = 1
-n_samples = n_songs*samples_per_song
 
-x = creationDonneesPrediction(nomTest, 1,10,data_dim)
+x = creationDonneesPrediction(nomTest, nb_chanson,taille_sequence,note_dim)
 previsions = model.predict(x, verbose=0)[0]
 np.savetxt(prediction, previsions[None], fmt="%f",delimiter=' ')
 open(predictionFin,"w").write(open(nomTest).read() + open(prediction).read())
@@ -157,6 +156,3 @@ subprocess.call("python3 denormalisation.py "+predictionFin+" > predictionBB.txt
 subprocess.call("python3 creation_midi.py predictionBB.txt", shell=True)
 subprocess.call("timidity newMusic.mid", shell=True)
 
-
-#sauvegarder le modele
-model.save(nomFichierDuModele)
