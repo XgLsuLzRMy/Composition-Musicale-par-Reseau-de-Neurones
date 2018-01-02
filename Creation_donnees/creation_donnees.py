@@ -11,20 +11,35 @@ import os
 import os.path 
 
 def creationDonnees(file):
-			#argument1 = cheminFichierMid
+			#nom du fichier
 			pos = file.find('.mid')
 			nom = file[0:pos]
 			print("Traitement du fichier : ",nom)
+			#creation du script MIDI complet
 			nomFichier = subprocess.call("mididump.py "+ file+" > "+ nom+"fMidiComplet.py", shell=True)
+			#creation du script MIDI simplifie
 			fichier = open(nom+"fMidiComplet.py", "r")
 			mon_fichier = open(nom+"fMidiSimple.py", "w")
 			mon_fichier.write("import midi\npattern=")
 			k=0
 			bad_words = ['PortEvent','EndOfTrackEvent','SmpteOffsetEvent', 'TrackNameEvent', 'TextMetaEvent', 'SetTempoEvent','CopyrightMetaEvent','TimeSignatureEvent','KeySignatureEvent','ProgramChangeEvent','MarkerEvent']
 			nombreTrack = 0
+			ligne=[]
 			for line in fichier :
-				 if 'midi.Track(' in line :
-					 nombreTrack+=1
+				 ligne.append(line)
+			fichier.close()
+			end = 0
+			nbTrack=0
+			for i in range(len(ligne)):
+				if "midi.Track(" in ligne[i]:
+					nbTrack+=1
+					if(i<len(ligne)-3) and end==0:
+						if "PortEvent" in ligne[i+1] and  "midi.TrackNameEvent" in ligne[i+2] and  "midi.EndOfTrackEvent" in ligne[i+3]:
+							end=nbTrack
+						else: 
+							if "TrackNameEvent" in ligne[i+1] and  "midi.EndOfTrackEvent" in ligne[i+2]:
+								end=nbTrack
+			print(end)
 			fichier.close()
 			fichier = open(nom+"fMidiComplet.py", "r")
 			for line in fichier :
@@ -40,7 +55,7 @@ def creationDonnees(file):
 								mon_fichier.write("[midi.Track(\\\n[")
 							if k==3:
 								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])]),\n midi.Track(\\\n[ ')
-							if k==nombreTrack:
+							if k==nbTrack-1:
 								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])])])')	
 						else: mon_fichier.write(line)
 			mon_fichier.write('\nmidi.write_midifile("creationMidi.mid", pattern)')	

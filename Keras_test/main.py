@@ -32,21 +32,17 @@ def transformerArrayEn2D(nomFichier,dim):
 def transformerArrayEn3D(nomFichier,dim1,dim2,dim3):
 	data = transformerArrayEn2D(nomFichier,dim1*dim2)
 	data = np.reshape(data,(dim1, dim2, dim3))
-	print(data.shape)
-	print(np.arange(data.shape[0]))
-	print(np.mod(np.arange(data.shape[0]),dim2)!=0)
 	X = data[np.mod(np.arange(data.shape[0]),dim2)].reshape(dim1,dim2,dim3)
-	print(np.array(X).shape)
 	return X
 
-def creationDonneesApprentissage(nomFichier,dim1,dim2,dim3):
+def creationDonneesApprentissage(nomFichier,dim1,dim2,dim3,nbE,ePc,tS,notedim):
 	X = transformerArrayEn3D(nomFichier, dim1,dim2, dim3)
-	x = np.zeros(shape=(nb_echantillon, taille_sequence, note_dim))
-	y = np.zeros(shape=(nb_echantillon, note_dim))
+	x = np.zeros(shape=(nbE, tS, notedim))
+	y = np.zeros(shape=(nbE, notedim))
 	for n, X in enumerate(X):
-		for i in range(echantillons_par_chanson):
-			x[i+n*echantillons_par_chanson][:][:] = X[i:(i+taille_sequence), :]
-			y[i+n*echantillons_par_chanson][:][:] = X[i+taille_sequence, :] # note that you want to predict
+		for i in range(ePc):
+			x[i+n*ePc][:][:] = X[i:(i+tS), :]
+			y[i+n*ePc][:][:] = X[i+tS, :] # note that you want to predict
 	return x,y
 	
 	
@@ -63,31 +59,40 @@ def creationDonneesPrediction(nomFichier,dim1,dim2,dim3):
 
 taille_sequence = 10
 note_dim = 4
-nb_chanson = 2
-nbNotes_par_chanson = 1000
+nb_chanson = 173
+nbNotes_par_chanson = 3500
 echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
 nb_echantillon = nb_chanson*echantillons_par_chanson
 data_dim = 4 
 batch_size = 32
-epochs = 20
-taux_apprentissage = 0.01
-opt = optimizers.rmsprop(taux_apprentissage)
-cout = 'categorical_crossentropy'
+epochs = 12
+taux_apprentissage = 0.001
+#opt = optimizers.rmsprop(taux_apprentissage)
+opt = optimizers.sgd(taux_apprentissage)
+#cout = 'categorical_crossentropy'
+cout = 'mean_squared_error'
 nomFichierDuModele = 'modele.h5'
 imageDuModele = 'modele.png'
 nomFichierDesPoids = 'poids.h5'
 
 
-x,y = creationDonneesApprentissage("data.txt",nb_chanson, nbNotes_par_chanson, data_dim)
 
+x,y = creationDonneesApprentissage("donneesNormalisees.txt",nb_chanson, nbNotes_par_chanson, data_dim,nb_echantillon,echantillons_par_chanson,taille_sequence,note_dim)
 
+taille_sequence_test = 10
+nb_chanson_test  = 159
+nbNotes_par_chanson_test  = 500
+echantillons_par_chanson_test  = nbNotes_par_chanson_test  - taille_sequence
+nb_echantillon_test  = nb_chanson_test *echantillons_par_chanson_test 
+x_test,y_test = creationDonneesApprentissage("donneesTest.txt",nb_chanson_test, nbNotes_par_chanson_test, data_dim,nb_echantillon_test,echantillons_par_chanson_test,taille_sequence,note_dim)
 
 model = Sequential()
 model.add(LSTM(32, input_shape=(taille_sequence, note_dim),return_sequences=True))
 model.add(Dropout(0.2))
-model.add(LSTM(64))
+model.add(LSTM(32))
 model.add(Dropout(0.2))
-model.add(Dense(data_dim, activation='softmax'))
+model.add(Dense(data_dim, activation='sigmoid'))
+model.add(Dropout(0.2))
 model.add(Dense(data_dim, activation='sigmoid'))
 plot_model(model, to_file=imageDuModele, show_shapes=True, show_layer_names=True)
 model.summary()
@@ -120,7 +125,7 @@ plt.show()
 model.save_weights(nomFichierDesPoids)
 
 #EVALUATION
-loss_and_metrics = model.evaluate(x, y, batch_size=1)
+loss_and_metrics = model.evaluate(x_test, y_test, batch_size=1)
 print ("Loss et metrics ",loss_and_metrics)
 model.save(nomFichierDuModele)
 
@@ -132,27 +137,27 @@ model.save(nomFichierDuModele)
 # Chargement du modele stocke dans le fichier pour le reutiliser
 # model = load_model(nomFichierDuModele)
 
-#PREDICTION
-note_dim = 4
-taille_sequence = 10
-nb_chanson = 1
-nbNotes_par_chanson = 10
-echantillons_par_chanson = 1
-nb_echantillon = nb_chanson*echantillons_par_chanson
+##PREDICTION
+#note_dim = 4
+#taille_sequence = 10
+#nb_chanson = 1
+#nbNotes_par_chanson = 10
+#echantillons_par_chanson = 1
+#nb_echantillon = nb_chanson*echantillons_par_chanson
 
-nomTest = "test.txt"
-open("fin.txt","a").write(open(nomTest).read())
-prediction='prediction.txt'
-predictionFin ="predictionNormalisee.txt"
+#nomTest = "test.txt"
+#open("fin.txt","a").write(open(nomTest).read())
+#prediction='prediction.txt'
+#predictionFin ="predictionNormalisee.txt"
 
 
 
-x = creationDonneesPrediction(nomTest, nb_chanson,taille_sequence,note_dim)
-previsions = model.predict(x, verbose=0)[0]
-np.savetxt(prediction, previsions[None], fmt="%f",delimiter=' ')
-open(predictionFin,"w").write(open(nomTest).read() + open(prediction).read())
+#x = creationDonneesPrediction(nomTest, nb_chanson,taille_sequence,note_dim)
+#previsions = model.predict(x, verbose=0)[0]
+#np.savetxt(prediction, previsions[None], fmt="%f",delimiter=' ')
+#open(predictionFin,"w").write(open(nomTest).read() + open(prediction).read())
 
-subprocess.call("python3 denormalisation.py "+predictionFin+" > predictionBB.txt", shell=True)
-subprocess.call("python3 creation_midi.py predictionBB.txt", shell=True)
-subprocess.call("timidity newMusic.mid", shell=True)
+#subprocess.call("python3 denormalisation.py "+predictionFin+" > predictionBB.txt", shell=True)
+#subprocess.call("python3 creation_midi.py predictionBB.txt", shell=True)
+#subprocess.call("timidity newMusic.mid", shell=True)
 
