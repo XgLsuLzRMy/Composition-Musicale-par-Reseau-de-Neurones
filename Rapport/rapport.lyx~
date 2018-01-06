@@ -2753,11 +2753,18 @@ consignes
 \end_inset
 
  contenues dans le fichier MIDI peut alors produire le son.
+ Les fichiers MIDI sont des fichiers binaires : les données sont stockées
+ en format binaire et non codées (texte, objets etc...).
+ Vous trouverez en annexe des explications plus détaillées sur ces fichiers
+ MIDI.
  
 \end_layout
 
-\begin_layout Paragraph
-Fréquences 
+\begin_layout Standard
+Nous avions choisi d'étudier un seul genre de musique afin de rendre l'apprentis
+sage plus simple et plus précis.
+ Pour cela, nous avons trouvé sur Internet des fichiers MIDI contenant des
+ musiques classiques jouées au piano (
 \begin_inset ERT
 status open
 
@@ -2765,88 +2772,348 @@ status open
 
 
 \backslash
-url{http://newt.phys.unsw.edu.au/jw/notes.html}
+url{http://www.piano-midi.de/}
 \end_layout
 
 \end_inset
 
-
-\begin_inset Newline newline
+).
+ Nous avons alors à notre disposition 
+\begin_inset Formula $\mathbf{336\;fichiers\;MIDI}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Un fichier MIDI est composé d'un en-tête et d'un corps de fichier.
- L'en-tête décrit des informations nécessaires à la lecture du fichier.
+.
  
 \end_layout
 
 \begin_layout Standard
-Le corps du fichier est composé d'une ou plusieurs pistes.
+Chaque fichier MIDI représente une musique créée par un musicien.
+ Toutes les musiques ont des durées et des notes différentes.
+ Les éventements MIDI sont aussi différents selon les musiques.
  
 \end_layout
 
+\begin_layout Paragraph
+DEFINITION
+\end_layout
+
 \begin_layout Standard
-Les fichiers MIDI sont des fichiers binaires : les données sont stockées
- en format binaire et non codées (texte, objets etc)
+NoteOnEvent, tick, data, channel, track
 \end_layout
 
 \begin_layout Section
-Les données
+L'extraction d'informations
 \end_layout
 
 \begin_layout Standard
-Nos données seront des fichiers contenant des informations extraites de
- plusieurs fichiers MIDI.
- Nous allons avoir un ensemble de données que l'on partagera en deux: les
- données pour l'apprentissage et les données pour les tests.
+Notre objectif est d'obtenir deux fichiers de données: l'un pour l'apprentissage
+ et l'un pour les tests.
+ Dans le fichier se trouvera toutes les informations que l'on jugera nécessaire
+ pour la création d'une musique.
+ Et ainsi dans un fichier se trouvera plusieurs musiques avec leurs différentes
+ informations.
 \end_layout
 
 \begin_layout Subsection
-Les fichiers
+Script Python
 \end_layout
 
 \begin_layout Standard
-Où a-t-on trouvé les données? Sous quelles formes sont-elles? Combien d'exemples
- pour l'apprentissage et pour les tests?
-\end_layout
-
-\begin_layout Subsection
-Extraction d'informations des données
-\end_layout
-
-\begin_layout Enumerate
-Création d'un programme python à partir d'un fichier midi
-\end_layout
-
-\begin_layout Enumerate
-Modification de ce programme afin de l'adapter à ce que l'on souhaite
-\end_layout
-
-\begin_layout Enumerate
-Extraction des informations afin de création nos données: 
-\begin_inset Newline newline
+Tout d'abord, nous avons construit un programme python permettant d'extraire
+ des informations d'un fichier MIDI.
+ Cependant, étant donné que les fichiers MIDI sont très complexes et très
+ difficiles à manipuler, nous avons finalement décidé d'utiliser une bibliothèqu
+e python permettant de faire cela.
+ Cette bibliothèque est appelé 
+\begin_inset Quotes fld
 \end_inset
 
-Une note est défini par plusieurs paramètres et voici ses différents paramètres
- variant au cours du temps: 
+python-midi
+\begin_inset Quotes frd
+\end_inset
+
+ et peut être trouvée à l'adresse suivante: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://github.com/vishnubob/python-midi}
+\end_layout
+
+\end_inset
+
+.
+ Il s'agit d'un projet mis sur GitHub.
+ 
 \end_layout
 
 \begin_layout Standard
+Cette bibliothèque est très intéressante car elle permet de créer un script
+ Python à partir d'un fichier MIDI.
+ Par exemple, si nous avons le fichier midi suivant: 
+\begin_inset Quotes fld
+\end_inset
+
+alb_esp1.mid
+\begin_inset Quotes frd
+\end_inset
+
+ et que nous voulons voir les différents évenements qui permettent de créer
+ la musique de ce fichier, il suffit d'utiliser la commande suivante: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\textrm{mididump.py mary.mid}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Et nous obtenons alors le script (raccourci) suivant: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/exempleMIDI.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous pouvons aussi faire l'opération dans l'autre sens en créant un fichier
+ MIDI à partir d'un script Python.
+ Pour cela, il suffit d'utiliser le Pattern crée par le script et d'utiliser
+ la méthode 
+\begin_inset Quotes fld
+\end_inset
+
+midi.write_file
+\begin_inset Quotes frd
+\end_inset
+
+ de la manière suivante: 
+\begin_inset Formula 
+\[
+\textrm{midi.write\_midifile("newMusique.mid", pattern)')	}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Par cette commande, nous obtenons dans le répertoire courant un fichier
+ MIDI que l'on peut écouter.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Nous avons à présent la possibilité de créer un fichier MIDI à partir d'un
+ script python et réciproquement.
+ Maintenant, nous avons comme objectif de créer ces scripts pour tous les
+ fichiers que l'on dispose afin d'extraire, par la suite, les informations
+ que l'on souhaite.
+ 
+\end_layout
+
+\begin_layout Subsection
+Analyse des scripts
+\end_layout
+
+\begin_layout Standard
+Nous avons besoin d'extraire des informations de types identiques pour chacune
+ de nos données.
+ Ainsi, nous avons lu la plupart de nos fichiers afin d'en déduire les informati
+ons communes entre nos données mais aussi la façon dont est écrit les fichiers
+ afin de pouvoir lire automatiquement et identiquement tous nos fichiers.
+ Nous avons alors détecter que tous les fichiers ont la même entête et qu'ils
+ ont au moins 2 
+\begin_inset Quotes fld
+\end_inset
+
+tracks
+\begin_inset Quotes frd
+\end_inset
+
+ (pistes).
+ De plus, les événements 
+\begin_inset Quotes fld
+\end_inset
+
+NoteOnEvent
+\begin_inset Quotes frd
+\end_inset
+
+ sont contiennent toujours le même nombre d'arguments comme suit: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\textrm{midi.NoteOnEvent(tick=160, channel=0, data=[62, 0])}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Chaque track finisse de la même façon et toutes les fichiers se terminent
+ de la même manière.
+ Les événements différents de NoteOnEvent sont optionnels et n'importent
+ pas d'informations essentiels pour joueur des notes.
+ Nous avons alors décidé de récupérer les arguments pour tous les évenements
+ NoteOnEvent de chaque fichier que l'on dispose.
+ 
+\end_layout
+
+\begin_layout Standard
+La valeur de 
+\begin_inset Quotes fld
+\end_inset
+
+channel
+\begin_inset Quotes frd
+\end_inset
+
+ est toujours nulle et ainsi nous ne tiendrons pas en compte cet argument.
+ Nous prenons alors: 
+\end_layout
+
+\begin_layout Enumerate
+Tick, représentant le temps.
+\end_layout
+
+\begin_layout Enumerate
+Data1, représentant la note.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Data2, représentant la velocity.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Nous avons décidé de ne prendre en compte que les événements NoteOnEvent
+ ainsi que les 3 valeurs les représentant.
+ Nous allons alors devoir créer un programme qui extrait les 3 valeurs pour
+ tous les événements NoteOnEvent pour tous nos fichiers.
+ 
+\end_layout
+
+\begin_layout Subsection
+Extraction des informations
+\end_layout
+
+\begin_layout Standard
+Vous trouverez le programme nommé 
+\series bold
+
+\begin_inset Quotes fld
+\end_inset
+
+creation_donnees.py
+\begin_inset Quotes frd
+\end_inset
+
+
+\series default
+ permettant d'extraire les informations en annexe.
+ Ce programme permet d'abord de créer un script Python complet pour tous
+ nos fichiers MIDI.
+ Ensuite, il crée un deuxième script simplifié pour chacun de ses scripts,
+ c'est-à-dire que ces nouveaux scripts ne contiennent seulement les événements
+ NoteOnEvent ainsi que seulement 2 tracks.
+ Puis, à partir de ces scripts, le programme permet de créer des fichiers
+ textes pour chaque script.
+ Chaque fichier texte représente alors une musique et il y a autant de lignes
+ qu'il y a d’événements NoteOnEvent.
+ Chaque ligne contient les trois valeurs citées précédemment.
+ Les noms des fichiers sont les titres de la musique qu'ils représentent.
+ Par exemple, si on a le fichier MIDI 
+\begin_inset Quotes fld
+\end_inset
+
+alb_esp1.txt
+\begin_inset Quotes frd
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Enumerate
+D'abord, le script complet est créé: 
+\begin_inset Quotes fld
+\end_inset
+
+alb_esp1fMidiComplet.py
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Ensuite le script simplifié est créé: 
+\begin_inset Quotes fld
+\end_inset
+
+alb_esp1fMidiSimple.py
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Enfin, le fichier teste est créé : 
+\begin_inset Quotes fld
+\end_inset
+
+alb_esp1.txt
+\begin_inset Quotes frd
+\end_inset
+
+ qui commence de la sorte: 
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="3">
+<lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Événement
+240
 \end_layout
 
 \end_inset
@@ -2855,7 +3122,407 @@ Une note est défini par plusieurs paramètres et voici ses différents paramèt
 \begin_inset Text
 
 \begin_layout Plain Layout
-ControlChangeEvent
+81
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+240
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+81
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+81
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+88
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+66
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+..
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+..
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+..
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Analyse de nos données
+\end_layout
+
+\begin_layout Subsection
+Les données initiales
+\end_layout
+
+\begin_layout Standard
+Nous avons maintenant 336 fichiers textes représentant chacun une musique
+ unique et des nombres de lignes différents ainsi que des valeurs différentes
+ selon les fichiers.
+ Pour bien effecteur l'apprentissage, nous avons besoin d'analyser nos données.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Objectif
+\end_layout
+
+\begin_layout Standard
+Le but est d'avoir le même nombre de notes pour les données de l'apprentissage
+ et le même nombre de notes pour les notes du test.
+ Aussi, nous devons éliminer les valeurs qui sont trop élevées afin que
+ l'on puisse faire une normalisation efficace par la suite.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Analyse 
+\end_layout
+
+\begin_layout Standard
+Vous trouverez le programme 
+\begin_inset Quotes fld
+\end_inset
+
+analyse.py
+\begin_inset Quotes frd
+\end_inset
+
+ qui nous a permis d'analyser nos données.
+ Nous avons cherché par différents tests, les valeurs pour le 
+\begin_inset Quotes fld
+\end_inset
+
+tick
+\begin_inset Quotes frd
+\end_inset
+
+ et pour le nombre de lignes optimales afin de ne perdre le moins d'informations
+ possibles.
+ Aussi, nous voulions respecté le principe des 2/3 de données pour l'apprentissa
+ge et 1/3 des données pour le test.
+ 
+\end_layout
+
+\begin_layout Standard
+Voici les résultats de l'analyse pour le nombre de lignes et pour les valeurs
+ des ticks:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Nombre de lignes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31 900
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+334
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 621
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Médiane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 247
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+supérieur à 2000 (inclus)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+242
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+compris entre à 440(inclus) et 2000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+93
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tick
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+155 520
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
 \end_layout
 
 \end_inset
@@ -2884,7 +3551,7 @@ ControlChangeEvent
 \begin_inset Text
 
 \begin_layout Plain Layout
-NoteOnEvent
+Moyenne
 \end_layout
 
 \end_inset
@@ -2893,7 +3560,7 @@ NoteOnEvent
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
+85.7
 \end_layout
 
 \end_inset
@@ -2913,7 +3580,7 @@ NoteOnEvent
 \begin_inset Text
 
 \begin_layout Plain Layout
-EndOfTrackEvent
+Mediane
 \end_layout
 
 \end_inset
@@ -2922,98 +3589,94 @@ EndOfTrackEvent
 \begin_inset Text
 
 \begin_layout Plain Layout
-2
+0
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-tick
+Ecart-type
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-[0,+
-\begin_inset Formula $\infty[$
-\end_inset
-
- ou? [0,1700]
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+317.23
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-data1
+supérieur à 3800
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0-127
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+289
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-data2
+inférieur à 3800 (inclus)
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0-127
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+1 552 563
 \end_layout
 
 \end_inset
@@ -3027,16 +3690,1219 @@ data2
 \end_layout
 
 \begin_layout Standard
-On veut ainsi extraire 4 informations pour chaque note.
+En choisissant un nombre de lignes égale à 2000 pour l'apprentissage et
+ un nombre de lignes égale à 440 pour les tests, nous obtenons 242 musiques
+ pour l'apprentissage et 93 pour le test.
+ Nous constatons que les valeurs des ticks sont très éparpillés et qu'il
+ y a quelques valeurs aberrantes.
+ En effet, seulement 289 ticks sont au dessus de 3800 alors que 99.9% des
+ ticks sont inférieurs à 3800.
  
 \end_layout
 
-\begin_layout Subsection
-Analyse de nos données
+\begin_layout Standard
+En écartant toutes les notes dont la valeur de 
+\begin_inset Quotes fld
+\end_inset
+
+tick
+\begin_inset Quotes frd
+\end_inset
+
+ est supérieur à 3800 et en respectant le nombre de lignes, nous obtenons:
+ 
 \end_layout
 
 \begin_layout Standard
-corrélation...
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Apprentissage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+241 musiques
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 musiques
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+= 335
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Seulement une seule musique sera alors exclue et était doté de seulement
+ 334 notes.
+ 
+\end_layout
+
+\begin_layout Standard
+Voici l'analyse pour les deux autres valeurs: 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Key
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+107
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Médiane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+65
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Velocity
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+127
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Les données partagées
+\end_layout
+
+\begin_layout Standard
+Nous pouvons maintenant analyser les données que nous allons utiliser pour
+ l'apprentissage et pour les tests.
+ 
+\end_layout
+
+\begin_layout Standard
+Voici les résultats pour l'apprentissage:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tick
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3780 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+103.8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ecart-type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+211.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Key
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+103
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Velocity
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+110
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25.502
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Voici les résultats pour le test:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tick
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3720 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+82.47
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ecart-type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+164.18
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Key
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+106 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+70.54
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Velocity
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+127 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moyenne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26.65
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mediane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Normalisation de nos données
+\end_layout
+
+\begin_layout Standard
+Ayant des valeurs largement supérieures à 1, nous allons normaliser nos
+ données sur l'intervalle 0 et 1.
+ 
+\end_layout
+
+\begin_layout Standard
+482000 lignes pour l'apprentissage.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -6642,6 +8508,40 @@ On utilise la fonction suivante :
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
 filename "Keras/code/exemple_sauvegarde-chargement.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Les programmes
+\end_layout
+
+\begin_layout Section
+creation_donnees.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/creation_donnees.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+analyse.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/analyse.py"
 lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
 
 \end_inset
