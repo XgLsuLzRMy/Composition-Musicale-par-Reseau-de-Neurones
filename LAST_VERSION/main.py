@@ -66,8 +66,8 @@ def creationDonneesPrediction(nomFichier,dim1,dim2,dim3):
 
 taille_sequence = 10
 note_dim = 3
-nb_chanson = 272
-nbNotes_par_chanson = 1500
+nb_chanson = 241
+nbNotes_par_chanson = 2000
 echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
 nb_echantillon = nb_chanson*echantillons_par_chanson
 batch_size = 15
@@ -88,7 +88,7 @@ nomFichierDesPoids = 'poids.h5'
 
 x,y = creationDonneesApprentissage("donneesNormalisees.txt",nb_chanson, nbNotes_par_chanson, note_dim,nb_echantillon,echantillons_par_chanson,taille_sequence)
 print(x.shape)
-nb_chanson_test  = 60
+nb_chanson_test  = 94
 nbNotes_par_chanson_test  = 440
 echantillons_par_chanson_test  = nbNotes_par_chanson_test  - taille_sequence
 nb_echantillon_test  = nb_chanson_test *echantillons_par_chanson_test 
