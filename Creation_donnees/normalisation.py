@@ -33,13 +33,12 @@ def normalisation(file):
     
     max_event = 1
     min_event = 0
-    max_tick = 663120
+    max_tick = 155520
     min_tick = 0
     max_data1 = 127
     min_data1 = 0
     max_data2 = max_data1
     min_data2 = min_data1
-    
     for i in range(0,len(event)):
 	    e = float(event[i])
 	    mon_fichier.write(str(e)+" ")
@@ -63,6 +62,7 @@ def normalisation(file):
 	    mon_fichier.write(str(d2)+"\n")
 	    if (e or t or d1 or d2)>1.0 or (e or t or d1 or d2)<0.0:
                 print("Probleme de normalisation!")
+                print(i)
     
     
     mon_fichier.close()
@@ -95,14 +95,14 @@ def deplacer(file):
     for line in fichier :
              nbLignes+=1
     emplacement = " "
-    if nbLignes>=3500:
+    if nbLignes>=2000:
         emplacement = "Apprentissage"
-        decouper(file,3500,nbLignes)
+        decouper(file,2000,nbLignes)
         os.rename(file, emplacement+"/"+file)
     else:
-        if nbLignes in range(500,3500):
+        if nbLignes in range(400,2000):
             emplacement = "Test"
-            decouper(file,500,nbLignes)
+            decouper(file,400,nbLignes)
             os.rename(file, emplacement+"/"+file)
     if emplacement!=" ":
         os.chdir(emplacement)

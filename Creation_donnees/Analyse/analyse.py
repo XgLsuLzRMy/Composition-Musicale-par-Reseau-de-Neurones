@@ -23,9 +23,9 @@ def lecture(file):
              data2.append(float(s[3]))
              nbLignes+=1
         liste.append(nbLignes)
-        if nbLignes>3500:
+        if nbLignes>2000:
             nbLignesSup3500+=1
-        if nbLignes<=3500 and nbLignes>=500:
+        if nbLignes<=2000 and nbLignes>=400:
             nbLignesInf3500+=1
 
 

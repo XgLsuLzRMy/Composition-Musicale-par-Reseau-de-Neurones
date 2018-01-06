@@ -551,17 +551,5 @@ pattern=midi.Pattern(format=1, resolution=480, tracks=\
    midi.NoteOnEvent(tick=0, channel=0, data=[59, 22]),
    midi.NoteOnEvent(tick=480, channel=0, data=[59, 0]),
    midi.NoteOnEvent(tick=0, channel=0, data=[55, 0]),
-   midi.ControlChangeEvent(tick=3106, channel=0, data=[64, 127]),
-   midi.ControlChangeEvent(tick=739, channel=0, data=[64, 0]),
-   midi.ControlChangeEvent(tick=9729, channel=0, data=[64, 127]),
-   midi.ControlChangeEvent(tick=840, channel=0, data=[64, 0]),
-   midi.ControlChangeEvent(tick=4052, channel=0, data=[64, 127]),
-   midi.ControlChangeEvent(tick=739, channel=0, data=[64, 0]),
-   midi.ControlChangeEvent(tick=9729, channel=0, data=[64, 127]),
-   midi.ControlChangeEvent(tick=840, channel=0, data=[64, 0]),
-   midi.ControlChangeEvent(tick=14520, channel=0, data=[64, 127]),
-   midi.ControlChangeEvent(tick=840, channel=0, data=[64, 0]),
-   midi.ControlChangeEvent(tick=14520, channel=0, data=[64, 127]),
-   midi.ControlChangeEvent(tick=840, channel=0, data=[64, 0]),
    midi.EndOfTrackEvent(tick=0, data=[])])])
 midi.write_midifile("creationMidi.mid", pattern)

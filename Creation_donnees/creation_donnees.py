@@ -55,9 +55,12 @@ def creationDonnees(file):
 								mon_fichier.write("[midi.Track(\\\n[")
 							if k==3:
 								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])]),\n midi.Track(\\\n[ ')
-							if k==nbTrack-1:
-								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])])])')	
-						else: mon_fichier.write(line)
+							if k==4:
+								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])])])')
+								print(k)
+						else:
+							if (k<4): 
+								mon_fichier.write(line)
 			mon_fichier.write('\nmidi.write_midifile("creationMidi.mid", pattern)')	
 			mon_fichier.close()
 			mon_fichier = open(nom+"fMidiSimple.py","r")

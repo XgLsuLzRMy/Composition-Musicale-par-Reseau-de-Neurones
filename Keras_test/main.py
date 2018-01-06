@@ -4,6 +4,7 @@ from keras.layers import Dense, Activation,Dropout,LSTM,TimeDistributed
 from keras import losses
 from keras import optimizers
 import numpy as np
+from keras import regularizers
 from keras.utils import plot_model
 from keras.models import load_model
 import matplotlib.pyplot as plt
@@ -57,20 +58,20 @@ def creationDonneesPrediction(nomFichier,dim1,dim2,dim3):
 
 
 
-taille_sequence = 10
+taille_sequence = 20
 note_dim = 4
-nb_chanson = 173
-nbNotes_par_chanson = 3500
+nb_chanson = 244
+nbNotes_par_chanson = 2000
 echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
 nb_echantillon = nb_chanson*echantillons_par_chanson
 data_dim = 4 
-batch_size = 32
-epochs = 12
+batch_size = 50
+epochs = 10
 taux_apprentissage = 0.001
 #opt = optimizers.rmsprop(taux_apprentissage)
-opt = optimizers.sgd(taux_apprentissage)
-#cout = 'categorical_crossentropy'
-cout = 'mean_squared_error'
+opt = optimizers.rmsprop(taux_apprentissage)
+cout = 'categorical_crossentropy'
+#cout = 'mean_squared_error'
 nomFichierDuModele = 'modele.h5'
 imageDuModele = 'modele.png'
 nomFichierDesPoids = 'poids.h5'
@@ -79,9 +80,11 @@ nomFichierDesPoids = 'poids.h5'
 
 x,y = creationDonneesApprentissage("donneesNormalisees.txt",nb_chanson, nbNotes_par_chanson, data_dim,nb_echantillon,echantillons_par_chanson,taille_sequence,note_dim)
 
-taille_sequence_test = 10
-nb_chanson_test  = 159
-nbNotes_par_chanson_test  = 500
+print(x.shape)
+print(y.shape)
+taille_sequence_test = 20
+nb_chanson_test  = 88
+nbNotes_par_chanson_test  = 400
 echantillons_par_chanson_test  = nbNotes_par_chanson_test  - taille_sequence
 nb_echantillon_test  = nb_chanson_test *echantillons_par_chanson_test 
 x_test,y_test = creationDonneesApprentissage("donneesTest.txt",nb_chanson_test, nbNotes_par_chanson_test, data_dim,nb_echantillon_test,echantillons_par_chanson_test,taille_sequence,note_dim)
@@ -89,24 +92,21 @@ x_test,y_test = creationDonneesApprentissage("donneesTest.txt",nb_chanson_test, 
 model = Sequential()
 model.add(LSTM(32, input_shape=(taille_sequence, note_dim),return_sequences=True))
 model.add(Dropout(0.2))
-model.add(LSTM(32))
-model.add(Dropout(0.2))
-model.add(Dense(data_dim, activation='sigmoid'))
-model.add(Dropout(0.2))
-model.add(Dense(data_dim, activation='sigmoid'))
+model.add(LSTM(data_dim))
+model.add(Dense(data_dim, activation='relu',activity_regularizer=regularizers.l2(0.1)))
+model.add(Dense(data_dim, activation='sigmoid',activity_regularizer=regularizers.l2(0.1)))
 plot_model(model, to_file=imageDuModele, show_shapes=True, show_layer_names=True)
 model.summary()
 
 
 model.compile(loss=cout, optimizer=opt,metrics=['accuracy'])
   
-history = model.fit(x,y,batch_size=batch_size, epochs=epochs)
-
-
+history = model.fit(x,y,verbose=1, validation_data=(x_test, y_test),batch_size=batch_size, epochs=epochs, shuffle=True)
 
 
 #courbe de la precision sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
 plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
 plt.title('Precision du modele')
 plt.ylabel('Precision')
 plt.xlabel('Iterations')
@@ -114,7 +114,7 @@ plt.legend(['Apprentissage', 'Test'], loc='upper left')
 plt.show()
 # courbe de la perte/cout sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
 plt.plot(history.history['loss'])
-#plt.plot(history.history['val_loss'])
+plt.plot(history.history['val_loss'])
 plt.title('Cout du modele')
 plt.ylabel('Cout')
 plt.xlabel('Iterations')

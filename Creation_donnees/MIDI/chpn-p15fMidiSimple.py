@@ -3530,9 +3530,5 @@ pattern=midi.Pattern(format=1, resolution=480, tracks=\
    midi.NoteOnEvent(tick=0, channel=0, data=[37, 24]),
    midi.NoteOnEvent(tick=1920, channel=0, data=[37, 0]),
    midi.ControlChangeEvent(tick=1067, channel=0, data=[64, 0]),
-   midi.EndOfTrackEvent(tick=0, data=[])])])   midi.ControlChangeEvent(tick=0, channel=0, data=[7, 127]),
-   midi.ControlChangeEvent(tick=0, channel=0, data=[10, 64]),
-   midi.ControlChangeEvent(tick=0, channel=0, data=[7, 127]),
-   midi.ControlChangeEvent(tick=0, channel=0, data=[10, 64]),
-
+   midi.EndOfTrackEvent(tick=0, data=[])])])
 midi.write_midifile("creationMidi.mid", pattern)

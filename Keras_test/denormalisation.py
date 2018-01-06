@@ -2,21 +2,22 @@ import sys
 import re
 import math
 import subprocess
+from decimal import Decimal
 argument1 = sys.argv[1]
 donnees = open(argument1, "r")
 mon_fichier = open("donneesDenormalises.txt", "w")
 	
 def arrondis(e):
-	if e<0.20 :
+	if e<0.40 :
 		 e=0
 	else:
-		if e>=0.20 and e<0.9:
+		if e>=0.40 and e<0.9:
 			e=0.5
 		else:
 			e=1
 	return e
 
-max_tick = 663120
+max_tick = 155520
 min_tick = 0
 max_data1 = 127
 min_data1 = 0
