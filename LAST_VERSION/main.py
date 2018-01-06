@@ -88,7 +88,7 @@ nomFichierDesPoids = 'poids.h5'
 
 x,y = creationDonneesApprentissage("donneesNormalisees.txt",nb_chanson, nbNotes_par_chanson, note_dim,nb_echantillon,echantillons_par_chanson,taille_sequence)
 print(x.shape)
-nb_chanson_test  = 93
+nb_chanson_test  = 60
 nbNotes_par_chanson_test  = 440
 echantillons_par_chanson_test  = nbNotes_par_chanson_test  - taille_sequence
 nb_echantillon_test  = nb_chanson_test *echantillons_par_chanson_test 
