@@ -52,7 +52,7 @@ event = []
 tick = []
 data1 = []
 data2 = []
-os.chdir('Test')
+os.chdir('Apprentissage')
 liste=[]
 for root, dirs, files in os.walk(os.getcwd()):
     for file in files:
@@ -102,4 +102,5 @@ print("Mediane data2 = ",np.median(data2))
 
 #from collections import Counter
 #print(Counter(liste))
+
 
