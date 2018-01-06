@@ -68,6 +68,9 @@ def creationDonnees(file):
 			os.chdir(os.path.dirname(os.getcwd()))
 			os.chdir('Donnees')
 			donnees = open(nom+".txt", "w")
+			global nb
+			nb+=1
+			print("NB",nb)
 			for line in mon_fichier :
 				if 'ControlChangeEvent' in line:
 					k="0"
@@ -93,10 +96,13 @@ def creationDonnees(file):
 			#os.remove(nom+"fMidiComplet.py")
 
 os.chdir('MIDI')
+i=0
+nb=0
 for root, dirs, files in os.walk(os.getcwd()):
     for file in files:
         if file.endswith('.mid'):
             creationDonnees(file)
-
+            i+=1
+print(i)
 
 	

@@ -10,48 +10,39 @@ import subprocess
 import os
 import os.path 
 
+max_ligne = 2000
+min_ligne = 440
+max_tick = 3800
+
+
 def lecture(file):
-        global nbLignesSup3500,nbLignesInf3500
-        max_tick = 155520
-        min_tick = 0
-        max_data1 = 127
-        min_data1 = 0
-        max_data2 = max_data1
-        min_data2 = min_data1
+        global nbLignesSup3500,nbLignesInf3500,nbLignesSupTICK,nbLignesInfTICK
         print("Lecture du fichier: ", file)
-        fichier = open(file, "r")
-        for line in fichier :
-             s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
-             e = float(s[0])
-             t = float(s[1])
-             d1 = float(s[2])
-             d2 = float(s[3])
-             if (e or t or d1 or d2)>1.0 or (e or t or d1 or d2)<0.0:
-                print("Probleme de normalisation!")
-        
-        fichier.close()
         fichier = open(file, "r")
         nbLignes=0
         for line in fichier :
              s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
-             e = int(float(s[0]))
-             t = int(float(s[1])*(max_tick- min_tick)+min_tick)
-             d1 = int(float(s[2])*(max_data1- min_data1)+min_data1)
-             d2 = int(float(s[3])*(max_data2- min_data2)+min_data2)
-             event.append(e)
-             tick.append(t)
-             data1.append(d1)
-             data2.append(d2)
+             tick.append(float(s[0]))
+             data1.append(float(s[1]))
+             data2.append(float(s[2]))
              nbLignes+=1
         liste.append(nbLignes)
-        if nbLignes>2000:
+        if nbLignes>=max_ligne:
             nbLignesSup3500+=1
-        if nbLignes<=2000 and nbLignes>=400:
+        if nbLignes<max_ligne and nbLignes>=min_ligne:
             nbLignesInf3500+=1
+        if nbLignes>=max_ligne and float(s[0]) <=max_tick:
+            nbLignesSupTICK+=1
+        if nbLignes<max_ligne and float(s[0]) <= max_tick:
+            nbLignesInfTICK+=1
 
 
 nbLignesSup3500=0
 nbLignesInf3500=0
+nbLignesSupTICK=0
+nbLignesInfTICK=0
+nbTickSup=0
+nbTickInf=0
 event = []
 tick = []
 data1 = []
@@ -63,27 +54,34 @@ for root, dirs, files in os.walk(os.getcwd()):
         if file.endswith('.txt'):
             lecture(file)
 
+for element in tick:
+    if element > max_tick:
+        nbTickSup+=1
+    if element <=max_tick:
+        nbTickInf+=1
+
+
 print('\n')
 print("Maximum lignes = ",max(liste))
 print("Minimim lignes = ",min(liste))
 print("Moyenne lignes = ",int(np.mean(liste)))
 print("Mediane lignes = ",int(np.median(liste)))
 print("Mediane groupe lignes = ",stats.median_grouped(liste))
-print("Nombre de lignes > 3500 = ",nbLignesSup3500)
-print("Nombre de lignes < 3500 = ",nbLignesInf3500)
+print("Nombre de lignes > 1500 = ",nbLignesSup3500)
+print("Nombre de lignes < 1500 = ",nbLignesInf3500)
+print("Nombre de lignes  et tick > = ",nbLignesSupTICK)
+print("Nombre de lignes  et tick < = ",nbLignesInfTICK)
 #print( list(sorted(set(liste))))
 
-print('\n')
-print("Maximum event = ",max(event))
-print("Minimim event = ",min(event))
-print("Moyenne event= ",np.mean(event))
-print("Mediane event= ",np.median(event))
 
 print('\n')
 print("Maximum tick = ",max(tick))
 print("Minimim tick = ",min(tick))
 print("Moyenne tick = ",np.mean(tick))
 print("Mediane tick = ",np.median(tick))
+print("Ecart type tick = ",np.std(tick))
+print("Nb Sup tick = ",nbTickSup)
+print("Nb Inf tick = ",nbTickInf)
 
 print('\n')
 print("Maximum data1 = ",max(data1))

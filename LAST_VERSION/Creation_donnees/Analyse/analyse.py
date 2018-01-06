@@ -10,8 +10,13 @@ import subprocess
 import os
 import os.path 
 
+max_ligne = 2000
+min_ligne = 440
+max_tick = 3800
+
+
 def lecture(file):
-        global nbLignesSup3500,nbLignesInf3500
+        global nbLignesSup3500,nbLignesInf3500,nbLignesSupTICK,nbLignesInfTICK
         print("Lecture du fichier: ", file)
         fichier = open(file, "r")
         nbLignes=0
@@ -22,14 +27,20 @@ def lecture(file):
              data2.append(float(s[2]))
              nbLignes+=1
         liste.append(nbLignes)
-        if nbLignes>=1500:
+        if nbLignes>=max_ligne:
             nbLignesSup3500+=1
-        if nbLignes<1500 and nbLignes>=440:
+        if nbLignes<max_ligne and nbLignes>=min_ligne:
             nbLignesInf3500+=1
+        if nbLignes>=max_ligne and float(s[0]) <=max_tick:
+            nbLignesSupTICK+=1
+        if nbLignes<max_ligne and float(s[0]) <= max_tick:
+            nbLignesInfTICK+=1
 
 
 nbLignesSup3500=0
 nbLignesInf3500=0
+nbLignesSupTICK=0
+nbLignesInfTICK=0
 nbTickSup=0
 nbTickInf=0
 event = []
@@ -45,9 +56,9 @@ for root, dirs, files in os.walk(os.getcwd()):
             lecture(file)
 
 for element in tick:
-    if element > 3500:
+    if element > max_tick:
         nbTickSup+=1
-    if element <=3500:
+    if element <=max_tick:
         nbTickInf+=1
 
 
@@ -59,6 +70,8 @@ print("Mediane lignes = ",int(np.median(liste)))
 print("Mediane groupe lignes = ",stats.median_grouped(liste))
 print("Nombre de lignes > 1500 = ",nbLignesSup3500)
 print("Nombre de lignes < 1500 = ",nbLignesInf3500)
+print("Nombre de lignes  et tick > = ",nbLignesSupTICK)
+print("Nombre de lignes  et tick < = ",nbLignesInfTICK)
 #print( list(sorted(set(liste))))
 
 

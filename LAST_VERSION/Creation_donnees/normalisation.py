@@ -9,6 +9,15 @@ import os,glob
 import os.path 
 from decimal import Decimal
 
+max_ligne = 2000
+min_ligne = 440
+max_tick = 3800
+min_tick = 0
+max_data1 = 127
+min_data1 = 0
+max_data2 = max_data1
+min_data2 = min_data1
+
 def normalisation(file):
     print("Normalisation du fichier: ",file)
     pos = file.find('.mid')
@@ -25,20 +34,12 @@ def normalisation(file):
     data2 = []
     for line in lines:
 	    s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
-	    if float(s[0])<=3500:
+	    if float(s[0])<=max_tick:
                 tick.append(float(s[0]))
                 data1.append(float(s[1]))
                 data2.append(float(s[2]))
     donnees.close()
-    
-    max_event = 1
-    min_event = 0
-    max_tick = 3500
-    min_tick = 0
-    max_data1 = 127
-    min_data1 = 0
-    max_data2 = max_data1
-    min_data2 = min_data1
+
     for i in range(0,len(tick)):
 	    t = Decimal((float(tick[i])-min_tick)/(max_tick- min_tick))
 	    if (t==0):
@@ -93,14 +94,14 @@ def deplacer(file):
     for line in fichier :
              nbLignes+=1
     emplacement = " "
-    if nbLignes>=1500:
+    if nbLignes>=max_ligne:
         emplacement = "Apprentissage"
-        decouper(file,1500,nbLignes)
+        decouper(file,max_ligne,nbLignes)
         os.rename(file, emplacement+"/"+file)
     else:
-        if nbLignes in range(440,1500):
+        if nbLignes in range(min_ligne,max_ligne):
             emplacement = "Test"
-            decouper(file,440,nbLignes)
+            decouper(file,min_ligne,nbLignes)
             os.rename(file, emplacement+"/"+file)
     if emplacement!=" ":
         os.chdir(emplacement)

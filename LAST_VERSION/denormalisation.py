@@ -8,7 +8,10 @@ donnees = open(argument1, "r")
 mon_fichier = open("donneesDenormalises.txt", "w")
 	
 
-max_tick = 3500
+
+max_ligne = 2000
+min_ligne = 440
+max_tick = 3800
 min_tick = 0
 max_data1 = 127
 min_data1 = 0
