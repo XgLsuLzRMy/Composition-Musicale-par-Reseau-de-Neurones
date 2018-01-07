@@ -3580,7 +3580,7 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Médiane
 \end_layout
 
 \end_inset
@@ -3609,7 +3609,7 @@ Mediane
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ecart-type
+Écart-type
 \end_layout
 
 \end_inset
@@ -3828,7 +3828,7 @@ Voici l'analyse pour les deux autres valeurs:
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="3">
+<lyxtabular version="3" rows="10" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -3952,6 +3952,35 @@ Médiane
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Écart-type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13.40
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
@@ -4050,11 +4079,40 @@ Moyenne
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Médiane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Écart-type
 \end_layout
 
 \end_inset
@@ -4063,7 +4121,7 @@ Mediane
 \begin_inset Text
 
 \begin_layout Plain Layout
-0
+28.04
 \end_layout
 
 \end_inset
@@ -4093,7 +4151,7 @@ Voici les résultats pour l'apprentissage:
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="13" columns="3">
+<lyxtabular version="3" rows="15" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -4201,7 +4259,7 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Médiane
 \end_layout
 
 \end_inset
@@ -4230,7 +4288,7 @@ Mediane
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ecart-type
+Écart-type
 \end_layout
 
 \end_inset
@@ -4348,7 +4406,7 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Médiane
 \end_layout
 
 \end_inset
@@ -4358,6 +4416,35 @@ Mediane
 
 \begin_layout Plain Layout
 69.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Écart-type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.02
 \end_layout
 
 \end_inset
@@ -4462,11 +4549,40 @@ Moyenne
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Médiane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Écart-type
 \end_layout
 
 \end_inset
@@ -4475,7 +4591,7 @@ Mediane
 \begin_inset Text
 
 \begin_layout Plain Layout
-16.0
+27.46
 \end_layout
 
 \end_inset
@@ -4495,7 +4611,7 @@ Voici les résultats pour le test:
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="13" columns="3">
+<lyxtabular version="3" rows="15" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -4603,7 +4719,7 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Médiane
 \end_layout
 
 \end_inset
@@ -4632,7 +4748,7 @@ Mediane
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ecart-type
+Écart-type
 \end_layout
 
 \end_inset
@@ -4750,7 +4866,7 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Médiane
 \end_layout
 
 \end_inset
@@ -4760,6 +4876,35 @@ Mediane
 
 \begin_layout Plain Layout
 71
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Écart-type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.24
 \end_layout
 
 \end_inset
@@ -4864,11 +5009,40 @@ Moyenne
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Médiane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mediane
+Écart-type
 \end_layout
 
 \end_inset
@@ -4877,7 +5051,7 @@ Mediane
 \begin_inset Text
 
 \begin_layout Plain Layout
-0
+29.00
 \end_layout
 
 \end_inset

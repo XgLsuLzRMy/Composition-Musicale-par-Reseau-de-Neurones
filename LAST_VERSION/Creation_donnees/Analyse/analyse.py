@@ -89,13 +89,14 @@ print("Maximum data1 = ",max(data1))
 print("Minimim data1 = ",min(data1))
 print("Moyenne data1 = ",np.mean(data1))
 print("Mediane data1 = ",np.median(data1))
+print("Ecart type data1 = ",np.std(data1))
 
 print('\n')
 print("Maximum data2 = ",max(data2))
 print("Minimim data2 = ",min(data2))
 print("Moyenne data2 = ",np.mean(data2))
 print("Mediane data2 = ",np.median(data2))
-
+print("Ecart type data2 = ",np.std(data2))
 #from collections import Counter
 #print(Counter(liste))
 
