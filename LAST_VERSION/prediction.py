@@ -112,7 +112,7 @@ nbNotesAPredire = 9
 taille_sequence = 10
 note_dim = 3
 nb_chanson = 1
-nbNotes_par_chanson = 1436
+nbNotes_par_chanson = 40
 #nbNotes_par_chanson = 10
 echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
 nb_echantillon = nb_chanson*echantillons_par_chanson
@@ -137,19 +137,14 @@ fichierPasNormalise.close()
 nomFichierFinal = "testFinal.txt"
 fichierFinal = open(nomFichierFinal,"a")
 fichierFinal.write(open(nomTestNormalise).read())
-
-for i in range(nbNotesAPredire+1):
-    x = creationDonneesPrediction(nomFichier10Notes,nb_chanson, nbNotes_par_chanson, note_dim,nb_echantillon,echantillons_par_chanson,taille_sequence)
-    prediction = model.predict(x, verbose=0, batch_size=1)[0]
-    print(prediction)
-    lines = open(nomFichier10Notes).readlines()
-    with open(nomFichier10Notes, 'w') as f:
-	    f.writelines(lines[1:])
-    fichier10Notes = open(nomFichier10Notes,"a")
-    fichier10Notes.write(str(float(prediction[0]))+" "+str(float(prediction[1]))+" "+str(float(prediction[2])) + "\n")
-    fichierFinal.write(str(float(prediction[0]))+" "+str(float(prediction[1]))+" "+str(float(prediction[2])) + "\n")
-    fichier10Notes.close()
-
+fichierFinal.close()
+x = creationDonneesPrediction(nomFichierFinal,nb_chanson, nbNotes_par_chanson, note_dim,nb_echantillon,echantillons_par_chanson,taille_sequence)
+prediction = model.predict(x, verbose=0, batch_size=1)
+with open(nomFichierFinal, "a") as fic:
+    for item in prediction:
+        print(item)
+        fic.write(str(item[0])+" "+str(item[1])+" "+str(item[2])+"\n")
+	
 fichierFinal.close()
 subprocess.call("python3 denormalisation.py "+nomFichierFinal+" > predictionFinale.txt", shell=True)
 subprocess.call("python3 creation_midi.py predictionFinale.txt", shell=True)
@@ -161,14 +156,5 @@ os.remove("donneesDenormalises.txt")
 subprocess.call("timidity newMusic.mid", shell=True)
 
 
-#nomFinal= "testPrediction.txt"
-#x = creationDonneesPrediction(nomFichier10Notes,nb_chanson, nbNotes_par_chanson, note_dim,nb_echantillon,echantillons_par_chanson,taille_sequence)
-#previsions = model.predict(x, verbose=0, batch_size=1)[0]
-#print(previsions)
-#fichier10Notes.write(str(Decimal(float(previsions[0])))+" "+str(Decimal(float(previsions[1])))+" "+str(Decimal(float(previsions[2]))) + "\n")
 
-#subprocess.call("python3 denormalisation.py "+nomFinal+" > predictionFinale.txt", shell=True)
-#subprocess.call("python3 creation_midi.py predictionFinale.txt", shell=True)
-#subprocess.call("timidity newMusic.mid", shell=True)
-#os.remove(nomFinal)
-#os.remove("predictionFinale.py")
+
