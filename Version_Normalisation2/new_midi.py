@@ -21,6 +21,16 @@ pattern=midi.Pattern(format=1, resolution=480, tracks=\
    midi.NoteOnEvent(tick=113, channel=0, data=[74,26]),
    midi.NoteOnEvent(tick=117, channel=0, data=[75,25]),
    midi.NoteOnEvent(tick=120, channel=0, data=[75,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
+   midi.NoteOnEvent(tick=123, channel=0, data=[76,25]),
    midi.EndOfTrackEvent(tick=0, channel=0, data=[0,0])])])
 
 midi.write_midifile("newMusic.mid", pattern)
