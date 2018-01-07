@@ -2,12 +2,6 @@ import sys
 import re
 import subprocess
 import os
-
-
-import sys
-import re
-import subprocess
-import os
 import os.path 
 
 def creationDonnees(file):
@@ -28,19 +22,6 @@ def creationDonnees(file):
 			for line in fichier :
 				 ligne.append(line)
 			fichier.close()
-			end = 0
-			nbTrack=0
-			for i in range(len(ligne)):
-				if "midi.Track(" in ligne[i]:
-					nbTrack+=1
-					if(i<len(ligne)-3) and end==0:
-						if "PortEvent" in ligne[i+1] and  "midi.TrackNameEvent" in ligne[i+2] and  "midi.EndOfTrackEvent" in ligne[i+3]:
-							end=nbTrack
-						else: 
-							if "TrackNameEvent" in ligne[i+1] and  "midi.EndOfTrackEvent" in ligne[i+2]:
-								end=nbTrack
-			print(end)
-			fichier.close()
 			fichier = open(nom+"fMidiComplet.py", "r")
 			for line in fichier :
 				 clean = True
@@ -57,52 +38,31 @@ def creationDonnees(file):
 								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])]),\n midi.Track(\\\n[ ')
 							if k==4:
 								mon_fichier.write('   midi.EndOfTrackEvent(tick=0, data=[])])])')
-								print(k)
 						else:
 							if (k<4): 
 								mon_fichier.write(line)
 			mon_fichier.write('\nmidi.write_midifile("creationMidi.mid", pattern)')	
 			mon_fichier.close()
 			mon_fichier = open(nom+"fMidiSimple.py","r")
-			k=-1
 			os.chdir(os.path.dirname(os.getcwd()))
 			os.chdir('Donnees')
 			donnees = open(nom+".txt", "w")
-			global nb
-			nb+=1
-			print("NB",nb)
 			for line in mon_fichier :
-				if 'ControlChangeEvent' in line:
-					k="0"
-				else: 
 					if 'NoteOnEvent' in line: 
-						k="0.5"
-					else:
-						if 'EndOfTrackEvent' in line: 
-							k="1"
-						else: k=-1
-				if k=="0.5":
-					s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
-					#donnees.write(k)
-					donnees.write(s[0])
-					donnees.write(" "+s[2])
-					donnees.write(" "+s[3])
-					donnees.write("\n")
+						s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
+						donnees.write(s[0])
+						donnees.write(" "+s[2])
+						donnees.write(" "+s[3])
+						donnees.write("\n")
 			donnees.close()	
 			mon_fichier.close()
 			os.chdir(os.path.dirname(os.getcwd()))
 			os.chdir('MIDI')
-			#os.remove(nom+"fMidiSimple.py")
-			#os.remove(nom+"fMidiComplet.py")
 
 os.chdir('MIDI')
-i=0
-nb=0
 for root, dirs, files in os.walk(os.getcwd()):
     for file in files:
         if file.endswith('.mid'):
             creationDonnees(file)
-            i+=1
-print(i)
 
 	

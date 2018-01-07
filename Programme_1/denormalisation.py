@@ -19,7 +19,6 @@ max_data2 = max_data1
 min_data2 = min_data1
 	
 lines = donnees.readlines()
-event = []
 tick = []
 data1 = []
 data2 = []

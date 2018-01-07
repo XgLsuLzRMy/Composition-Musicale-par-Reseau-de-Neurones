@@ -1,0 +1,2 @@
+1. Pour executer le reseau: python3 main.py
+2. Pour faire une prédiction sur des notes mises dans le fichier testD.txt: python3 prediction.py

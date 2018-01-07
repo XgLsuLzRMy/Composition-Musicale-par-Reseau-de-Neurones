@@ -141,36 +141,3 @@ model.save_weights(nomFichierDesPoids)
 #loss_and_metrics = model.evaluate(x_test, y_test, batch_size=1)
 #print ("Loss et metrics ",loss_and_metrics)
 model.save(nomFichierDuModele)
-
-
-
-
-
-
-# Chargement du modele stocke dans le fichier pour le reutiliser
-# model = load_model(nomFichierDuModele)
-
-##PREDICTION
-#note_dim = 4
-#taille_sequence = 10
-#nb_chanson = 1
-#nbNotes_par_chanson = 10
-#echantillons_par_chanson = 1
-#nb_echantillon = nb_chanson*echantillons_par_chanson
-
-#nomTest = "test.txt"
-#open("fin.txt","a").write(open(nomTest).read())
-#prediction='prediction.txt'
-#predictionFin ="predictionNormalisee.txt"
-
-
-
-#x = creationDonneesPrediction(nomTest, nb_chanson,taille_sequence,note_dim)
-#previsions = model.predict(x, verbose=0)[0]
-#np.savetxt(prediction, previsions[None], fmt="%f",delimiter=' ')
-#open(predictionFin,"w").write(open(nomTest).read() + open(prediction).read())
-
-#subprocess.call("python3 denormalisation.py "+predictionFin+" > predictionBB.txt", shell=True)
-#subprocess.call("python3 creation_midi.py predictionBB.txt", shell=True)
-#subprocess.call("timidity newMusic.mid", shell=True)
-

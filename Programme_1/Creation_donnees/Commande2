@@ -1,2 +1,0 @@
-python3 normalisation.py donnees.txt
-python3 denormalisation.py donneesNormalises.txt

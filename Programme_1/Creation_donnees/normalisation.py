@@ -26,7 +26,6 @@ def normalisation(file):
     os.chdir(os.path.dirname(os.getcwd()))
     os.chdir('DonneesNormalisees')
     mon_fichier = open(nom+".txt", "w")
-	    
     lines = donnees.readlines()
     event = []
     tick = []
@@ -39,7 +38,6 @@ def normalisation(file):
                 data1.append(float(s[1]))
                 data2.append(float(s[2]))
     donnees.close()
-
     for i in range(0,len(tick)):
 	    t = Decimal((float(tick[i])-min_tick)/(max_tick- min_tick))
 	    if (t==0):
@@ -61,9 +59,6 @@ def normalisation(file):
 	    mon_fichier.write(str(d2)+"\n")
 	    if (t or d1 or d2)>1.0 or (t or d1 or d2)<0.0:
                 print("Probleme de normalisation!")
-                print(i)
-    
-    
     mon_fichier.close()
     os.chdir(os.path.dirname(os.getcwd()))
     os.chdir('Donnees')

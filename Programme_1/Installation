@@ -1,7 +1,0 @@
- sudo -H pip3 install keras
- sudo -H pip3 install tensorflow
- sudo -H pip3 install matplotlib
- sudo apt-get install python3-tk  
- sudo -H pip3 install pydot 
- sudo -H pip3 install h5py
-

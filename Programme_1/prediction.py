@@ -86,25 +86,7 @@ def normalisation(fileRead,fileWrite):
                 print("Probleme de normalisation!")
                 print(i)
     fileWrite.close()
-    
-#PREDICTION
-def ecrire10NotesDansFichier(nomFinal,nomIntermediaire,note,nbIteration):	
-    f = open(nomFinal,"r")
-    fIntermediaire = open(nomIntermediaire,"w")
-    lines = f.readlines()
-    nbNotes=0
-    i=1
-    for line in lines:
-       if i>nbIteration and nbNotes==10:
-           fIntermediaire.write(str(Decimal(float(note[0][0])))+" "+str(Decimal(float(note[0][1])))+" "+str(Decimal(float(note[0][2]))) + "\n")
-       if i>nbIteration and nbNotes<10:
-            fIntermediaire.write(line)
-            nbNotes+=1
-       i+=1
-    f.close()
-    fIntermediaire.close()
 
-    
 
 
 model = load_model('modele.h5')
@@ -112,24 +94,16 @@ nbNotesAPredire = 9
 taille_sequence = 10
 note_dim = 3
 nb_chanson = 1
-nbNotes_par_chanson = 40
-#nbNotes_par_chanson = 10
+nbNotes_par_chanson = 20
 echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
 nb_echantillon = nb_chanson*echantillons_par_chanson
-#echantillons_par_chanson =1
-#nb_echantillon = nb_chanson*echantillons_par_chanson
-
 
 #Normalisation du fichier d'entree et creation d'un fichier pour les 10 notes
 nomTestPasNormalise = "testD.txt"
 fichierPasNormalise = open(nomTestPasNormalise,"r")
 nomTestNormalise = "testN.txt"
 fichierNormalise = open(nomTestNormalise,"w")
-nomFichier10Notes = "fichier10Notes.txt"
 normalisation(fichierPasNormalise,fichierNormalise)
-fichier10Notes  = open(nomFichier10Notes,"a")
-fichier10Notes.write(open(nomTestNormalise).read())
-fichier10Notes.close()
 fichierNormalise.close()
 fichierPasNormalise.close()
 
@@ -150,7 +124,6 @@ subprocess.call("python3 denormalisation.py "+nomFichierFinal+" > predictionFina
 subprocess.call("python3 creation_midi.py predictionFinale.txt", shell=True)
 os.remove(nomFichierFinal)
 os.remove("predictionFinale.txt")
-os.remove(nomFichier10Notes)
 os.remove(nomTestNormalise)
 os.remove("donneesDenormalises.txt")
 subprocess.call("timidity newMusic.mid", shell=True)
