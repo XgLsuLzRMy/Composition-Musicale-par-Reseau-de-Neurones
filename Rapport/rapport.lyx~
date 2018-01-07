@@ -4183,6 +4183,8 @@ Voici les résultats pour l'apprentissage et le test après avoir retirer
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Apprentissage + Test 
 \end_layout
 
@@ -4192,6 +4194,8 @@ Apprentissage + Test
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Apprentissage
 \end_layout
 
@@ -4201,6 +4205,8 @@ Apprentissage
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Test
 \end_layout
 
@@ -4208,7 +4214,7 @@ Test
 </cell>
 </row>
 <row>
-<cell multirow="3" alignment="center" valignment="middle" leftline="true" usebox="none">
+<cell multirow="3" alignment="center" valignment="middle" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4223,6 +4229,8 @@ Tick
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Maximum
 \end_layout
 
@@ -4270,6 +4278,8 @@ Maximum
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Minimum
 \end_layout
 
@@ -4317,6 +4327,8 @@ Minimum
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Moyenne
 \end_layout
 
@@ -4364,6 +4376,8 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Médiane
 \end_layout
 
@@ -4398,7 +4412,7 @@ Médiane
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4411,6 +4425,8 @@ Médiane
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Écart-type
 \end_layout
 
@@ -4460,6 +4476,8 @@ Key
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Maximum
 \end_layout
 
@@ -4507,6 +4525,8 @@ Maximum
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Minimum
 \end_layout
 
@@ -4554,6 +4574,8 @@ Minimum
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Moyenne
 \end_layout
 
@@ -4601,6 +4623,8 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Médiane
 \end_layout
 
@@ -4648,6 +4672,8 @@ Médiane
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Écart-type
 \end_layout
 
@@ -4697,6 +4723,8 @@ Velocity
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Maximum
 \end_layout
 
@@ -4744,6 +4772,8 @@ Maximum
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Minimum
 \end_layout
 
@@ -4791,6 +4821,8 @@ Minimum
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Moyenne
 \end_layout
 
@@ -4838,6 +4870,8 @@ Moyenne
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Médiane
 \end_layout
 
@@ -4885,6 +4919,8 @@ Médiane
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Écart-type
 \end_layout
 
@@ -4925,8 +4961,386 @@ Médiane
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Paragraph
+Matrice de corrélation
+\end_layout
 
+\begin_layout Standard
+Pour l'apprentissage: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/correlation.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Matrice de corrélation (Apprentissage)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour le test: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/correlationTest.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Matrice de corrélation (Test)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous pouvons en déduire que les variables ne sont pas du tout corrélées.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Effectif (Key)
+\end_layout
+
+\begin_layout Standard
+Pour l'apprentissage: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/key.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effectif Key (Apprentissage)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour le test: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/keyTest.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effectif Key (Test)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut se rendre compte que peu importe l'échantillon, les 
+\begin_inset Quotes fld
+\end_inset
+
+keys
+\begin_inset Quotes frd
+\end_inset
+
+ pour les musiques classiques sont très centrées autour de 70.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Effectif (Velocity)
+\end_layout
+
+\begin_layout Standard
+Pour l'apprentissage: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/velocity.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effectif Velocity (Apprentissage)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour le test: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/velocityTest.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effectif Velocity (Test)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On remarque alors que les valeurs de la velocity sont relativement éparpillées
+ mais plutôt centrées autour de 50.
+ Cependant nous constatons un pic au niveau du 0 pour les deux échantillons.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Effectif (Tick)
+\end_layout
+
+\begin_layout Standard
+Pour l'apprentissage: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/tick.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effectif Tick (Apprentissage)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour le test: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/tickTest.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effectif Tick (Test)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On remarque que les valeurs des ticks sont très étalées sur la gamme des
+ valeurs possibles et qu'il n'y a pas vraiment de tendance.
+ On constate tout de même un pic pour la valeur 0.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Nous avons remarqué que la musique classique a ses propres caractéristiques.
+ En effet, pour les deux échantillons nous avons retrouvé les mêmes caractéristi
+ques.
+ Cependant les pics pour les effectifs pour la modalité 0 sont à prendre
+ compte car ils pourraient avoir une influence sur le résultat final.
+ Toutes ces remarques vont nous permettent de bien définir notre réseau
+ de neurones ainsi que le choix de la normalisation.
 \end_layout
 
 \begin_layout Section
@@ -4940,8 +5354,41 @@ Ayant des valeurs largement supérieures à 1, nous allons normaliser nos
 \end_layout
 
 \begin_layout Standard
-482000 lignes pour l'apprentissage.
- 
+La première normalisation que l'on peut appliquer est la suivante: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{i}'=\frac{x_{i}-min(x)}{max(x)-min(x)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elle permet de normaliser nos données sur l'intervalle [0,1].
+\end_layout
+
+\begin_layout Standard
+La deuxième qui peut être appliquée est la suivante: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{i}'=\frac{1}{2}\left(0.01\cdot tanh(\frac{x_{i}-moyenne(x)}{ecartType(x)})+1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elle permet aussi de normaliser les données sur l'intervalle [0,1].
 \end_layout
 
 \begin_layout Chapter
@@ -4949,208 +5396,561 @@ Composition musicale: le réseau de neurones
 \end_layout
 
 \begin_layout Standard
+
+\shape italic
 Nous allons définir dans cette partie l'architecture de notre réseau.
- 
-\end_layout
-
-\begin_layout Section
-Les différentes couches
-\end_layout
-
-\begin_layout Paragraph
-La couche d'entrée et de sortie
-\end_layout
-
-\begin_layout Standard
-Si une note est représentée par 3 valeurs alors une note sera représentée
- par 3 neurones de la couche d'entrée.
- La couché d'entrée contiendra plusieurs notes.
- Si la couche d'entrée contient 5 notes alors il y aura 
-\begin_inset Formula $3\times5=15$
+ Nous allons programme un réseau de neurone récurrent.
+ Dans cette partie, nous utiliserons le programme 
+\begin_inset Quotes fld
 \end_inset
 
- neurones.
- La couche de sortie contiendra 3 neurones correspondant à la note qui devra
- être jouée après la séquence de notes de la couche d'entrée.
- 
-\end_layout
+main.py
+\begin_inset Quotes frd
+\end_inset
 
-\begin_layout Paragraph
-Les couches cachées
-\end_layout
-
-\begin_layout Standard
-Le nombre de couches cachées est arbitraire et il dépendra de nos résultats.
+ que vous trouverez en annexe.
  
 \end_layout
 
 \begin_layout Section
-L'architecture du réseau
+Structure de données
 \end_layout
 
 \begin_layout Standard
-Fonction d'activation, formule des changements de poids avec le pas d'apprentiss
-age, réseau récurrent, profond ? etc...
-\end_layout
 
-\begin_layout Chapter
-Programmation du réseau de neurones
-\end_layout
-
-\begin_layout Standard
-Dans cette partie, nous allons expliquer comment nous avons programmer notre
- réseau de neurones.
+\shape italic
+Dans cette section, nous supposons qu'une séquence est de taille 10 mais
+ cette valeur est arbitraire.
  
 \end_layout
 
-\begin_layout Section
-Keras
+\begin_layout Standard
+Nous souhaitons que notre réseau suit le modèle suivant: 
+\end_layout
+
+\begin_layout Enumerate
+Le réseau reçoit un tableau de notes en entrée et prend les 10 premières
+ notes.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Le réseau prédit la note qui suit les 10 notes passées en entrée.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Le réseau décale l'entrée d'un rang de 1 et prédit la note qui suit la note
+ de l'étape 2.
+\end_layout
+
+\begin_layout Enumerate
+etc...jusqu'à la fin de musique.
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
+Pour cela, nous allons stocker nos données d'entrée dans un tableau de 3
+ dimensions.
+ La première dimension sera le nombre de le nombre de séquences de taille
+ 10 possibles par musiques.
+ Nous rappelons que les musiques sont maintenant de même taille, c'est-à-dire
+ qu'elles ont le même nombre de notes.
+ La deuxième dimension représente la taille des séquences, c'est-à-dire
+ 10.
+ Enfin, la troisième dimension sera le nombre de caractéristiques par note,
+ c'est-à-dire 3 (tick, key et velocity).
+ Ensuite, la sortie du réseau sera de dimension 2 avec les mêmes dimensions
+ que les deux premiers de l'entrée.
+ 
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, nous avons deux fichiers: l'un contenant toutes les musiques
+ pour l'apprentissage et l'autre pour le test.
+ En utilisant une fonction 
+\begin_inset Quotes fld
+\end_inset
+
+creationDonnees
+\begin_inset Quotes frd
+\end_inset
+
+ définie dans notre programme, les fichiers sont lus et sont transformés
+ en un tableau de 3 dimensions.
+ Ainsi, nous obtenons: 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
 
 \begin_layout Plain Layout
 
-
-\backslash
-url{https://stackoverflow.com/questions/44747343/keras-input-explanation-input-sh
-ape-units-batch-size-dim-etc}
 \end_layout
 
 \end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
 
 \begin_layout Plain Layout
-
-
-\backslash
-url{https://stackoverflow.com/questions/47988983/how-does-keras-read-input-data}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Création du modèle
-\end_layout
-
-\begin_layout Standard
-A utiliser: 
-\end_layout
-
-\begin_layout Enumerate
-Conv2D 
-\begin_inset Formula $model.add(Conv2D(32,(3,3),activation='relu',input_{s}hape=(100,100,3)))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Dense 
-\begin_inset Formula $model.add(Dense(64,activation='relu',input_{d}im=20))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-LSTM 
-\begin_inset Formula $model.add(LSTM(32,returnequences=True,stateful=True,batch_{i}nput_{s}hape=(batch_{s}ize,timesteps,data_{d}im)))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Modèle faux...juste pour donner une idée
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "Keras/code/exemple_creationModele.py"
-lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Normalisation de nos données
-\end_layout
-
-\begin_layout Section
 Apprentissage
 \end_layout
 
-\begin_layout Section
-Interprétation de la sortie
-\end_layout
-
-\begin_layout Subsection
-Dé-normalisation
-\end_layout
-
-\begin_layout Subsection
-Création d'un fichier MIDI
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
 
 \begin_layout Plain Layout
 
-
-\backslash
-lstset{inputencoding=utf8/latin1}
 \end_layout
 
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+479 590
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40 420
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+479590 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sslash$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Subsubsection
-1er exemple
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40 420
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sslash$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "Midi/code/exemple1_creation_fichierMIDI.py"
-lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-2eme exemple
+avec X le tableau pour l’entrée et Y pour la sortie.
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "Midi/code/exemple2_creation_fichierMIDI.py"
-lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+Le réseau de neurones prendra alors une séquence de taille 10 en entrée.
+ 
+\end_layout
 
+\begin_layout Section
+Le réseau récurrent avec LSTM
+\end_layout
+
+\begin_layout Standard
+Qu'est qu'un LSTM? Comment ça fonctionne?
+\end_layout
+
+\begin_layout Section
+Les paramètres du modèle
+\end_layout
+
+\begin_layout Standard
+Notre réseau a plusieurs paramètres (valeurs ayant une influence sur le
+ modèle et qui sont modifiables sans que le programme rencontre des problèmes),
+ qui sont: 
+\end_layout
+
+\begin_layout Enumerate
+La taille de la séquence: cette valeur peut être modifiée.
+\end_layout
+
+\begin_layout Enumerate
+Le nombre d'itérations.
+\end_layout
+
+\begin_layout Enumerate
+La taille du batch.
+\end_layout
+
+\begin_layout Enumerate
+Le taux d'apprentissage.
+\end_layout
+
+\begin_layout Enumerate
+Les fonctions d'activation.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes fld
+\end_inset
+
+L'optimizer
+\begin_inset Quotes frd
+\end_inset
+
+ et ses paramètres.
+\end_layout
+
+\begin_layout Enumerate
+La fonction coût.
+\end_layout
+
+\begin_layout Enumerate
+Les différentes couches et leur nombre de neurones.
+\end_layout
+
+\begin_layout Section
+Les fonctions d'activations
+\end_layout
+
+\begin_layout Standard
+Quelles fonctions peut-on utiliser avec Keras? et qui sont pertinentes avec
+ nos données?
+\end_layout
+
+\begin_layout Section
+Les 
+\begin_inset Quotes fld
+\end_inset
+
+optimizers
+\begin_inset Quotes frd
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Quels sont les optimizers que l'on peut utiliser? Quels sont leurs paramètres?
+\end_layout
+
+\begin_layout Section
+Les fonctions coûts
+\end_layout
+
+\begin_layout Standard
+Quelles sont les fonctions coûts que l'on peut utiliser?
+\end_layout
+
+\begin_layout Section
+L'architecture du réseau: les couches
+\end_layout
+
+\begin_layout Chapter
+Analyse et Test du réseau de neurones
+\end_layout
+
+\begin_layout Chapter
+Prédiction avec le réseau de neurones
+\end_layout
+
+\begin_layout Standard
+Dans cette partie, nous allons expliquer comment prédire des données avec
+ nos programmes et notre réseau de neurones.
+ 
+\end_layout
+
+\begin_layout Section
+Création de la prédiction
+\end_layout
+
+\begin_layout Standard
+Pour création des prédictions, nous avons créé le programme 
+\begin_inset Quotes fld
+\end_inset
+
+prediction.py
+\begin_inset Quotes frd
+\end_inset
+
+ que vous trouverez en annexe.
+ Ce programme permet charger le modèle de notre réseau de neurones et de
+ lire un fichier dans lequel nous avons mis quelques notes (ticks, keys,
+ velocity).
+ Le programme normalise ensuite le fichier et le transforme en un tableau
+ à 3 dimensions.
+ Ensuite, le programme créé plusieurs plusieurs prédictions grâce à la fonction
+ 
+\begin_inset Quotes fld
+\end_inset
+
+model.predict(x)
+\begin_inset Quotes frd
+\end_inset
+
+ de la bibliothèque Keras.
+ Il y a un seul paramètre qui peut être changé: c'est le nombre de notes
+ pour la chanson.
+ Il faut tout de même mettre au moins le même nombre de notes que la taille
+ de la séquence défini dans le modèle.
+ La prédiciton fonctionne sur le même principe que le réseau de neurones,
+ c'est-à-dire qu'il lit 10 notes et prédit la 11ème.
+ Ensuite, il utilise les 10 notes après la première pour en prédire la 12ème
+ etc...
+\end_layout
+
+\begin_layout Standard
+Une fois que plusieurs notes ont été créées, le programme ajoute ces notes
+ aux notes précédentes et les dé normalisent.
+ 
+\end_layout
+
+\begin_layout Section
+Lecture de la prédiction
+\end_layout
+
+\begin_layout Standard
+Afin de pouvoir créer de la musique, le programme lit les notes normalisées
+ qui ont été prédites et les utilisent pour créer de la musique.
+ 
+\end_layout
+
+\begin_layout Standard
+Pour cela, nous avons fait un programme 
+\begin_inset Quotes fld
+\end_inset
+
+creation_fichierMIDI
+\begin_inset Quotes frd
+\end_inset
+
+ qui à partir d'un fichier contenant des valeurs de ticks, keys et velocity
+ créé un fichier MIDI.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -8581,6 +9381,36 @@ analyse.py
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
 filename "Midi/code/analyse.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+main.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Keras/code/main.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+prediction.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Keras/code/prediction.py"
 lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
 
 \end_inset
