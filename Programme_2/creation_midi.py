@@ -5,8 +5,6 @@ argument1 = sys.argv[1]
 donnees = open(argument1, "r")
 mon_fichier = open("new_midi.py", "w")
 mon_fichier.write("import midi\npattern=midi.Pattern(format=1, resolution=480, tracks=\\\n[midi.Track(\\\n[")
-k=0
-j=0
 for line in donnees :
 	s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
 	note="   midi."+"NoteOnEvent"+"("+"tick="+s[0]+", channel=0, data=["+s[1]+","+s[2] + "]),\n"
