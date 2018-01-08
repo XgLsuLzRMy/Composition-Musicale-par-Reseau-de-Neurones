@@ -5425,7 +5425,8 @@ Dans cette section, nous supposons qu'une séquence est de taille 10 mais
 \end_layout
 
 \begin_layout Standard
-Nous souhaitons que notre réseau suit le modèle suivant: 
+Pour l'entrainement, nous souhaitons que le réseau suive le modèle suivant:
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -5435,7 +5436,8 @@ Le réseau reçoit un tableau de notes en entrée et prend les 10 premières
 \end_layout
 
 \begin_layout Enumerate
-Le réseau prédit la note qui suit les 10 notes passées en entrée.
+Le réseau prédit la note qui suit les 10 notes passées en entrée (la 11ème
+ note).
  
 \end_layout
 
@@ -5445,15 +5447,16 @@ Le réseau décale l'entrée d'un rang de 1 et prédit la note qui suit la note
 \end_layout
 
 \begin_layout Enumerate
-etc...jusqu'à la fin de musique.
+etc...
+ jusqu'à la fin de musique.
  
 \end_layout
 
 \begin_layout Standard
 Pour cela, nous allons stocker nos données d'entrée dans un tableau de 3
  dimensions.
- La première dimension sera le nombre de le nombre de séquences de taille
- 10 possibles par musiques.
+ La première dimension sera le nombre de séquences de taille 10 possibles
+ par musiques.
  Nous rappelons que les musiques sont maintenant de même taille, c'est-à-dire
  qu'elles ont le même nombre de notes.
  La deuxième dimension représente la taille des séquences, c'est-à-dire
@@ -5780,8 +5783,392 @@ Le réseau de neurones prendra alors une séquence de taille 10 en entrée.
 Le réseau récurrent avec LSTM
 \end_layout
 
+\begin_layout Subsection
+Réseau de neurones récurrent
+\end_layout
+
+\begin_layout Subsection*
+Présentation
+\end_layout
+
 \begin_layout Standard
-Qu'est qu'un LSTM? Comment ça fonctionne?
+Un réseau de neurone standard donne une valeur en sortie à partir d'une
+ donnée en entrée.
+ Cependant une telle représentation ne tient compte que d'une entrée à l'instant
+ présent.
+ Ce type de réseau ne peut donc pas apprendre de schémas ou de suites récurrente
+s.
+ Or, pour générer de la musique nous avons besoin que le réseau soit capable
+ d'analyser un suite de note et de prévoir la note en suivante en fonction
+ de cette suite et non pas seulement de la dernière note.
+ C'est pourquoi nous avons utilisé un réseau de neurones récurrent.
+\end_layout
+
+\begin_layout Standard
+Dans un réseau de neurones récurrent, l'information peut se propager dans
+ les deux sens.
+ C'est à dire que l'information va des premières couches vers les couches
+ profondes mais l'information sortant des couches profondes peut aussi devenir
+ une entrée pour une première couche.
+ Si l'information provient d'une couche plus profonde il s'agit alors d'une
+ information passée puisqu'elle a été générée par l'entrée précédente (la
+ suite de note précédente).
+ Ainsi dans ce type de réseau une information peut être conservée 
+\begin_inset Quotes fld
+\end_inset
+
+en mémoire
+\begin_inset Quotes frd
+\end_inset
+
+ en étant réinjectée dans le réseau.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_1.PNG
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_2.PNG
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Réseau de neurones standard et récurrent
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut avoir une représentation développée en fonction du temps 
+\shape italic
+t
+\shape default
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_3.PNG
+	lyxscale 25
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Réseau de neurones récurrent développé
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'une façon plus générale on peut avoir une sortie du réseau différente
+ de l'entrée qui sera réinjectée :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_4.PNG
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Réseau de neurone récurent général
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un réseau de neurone récurrent standard (aussi appelé 
+\begin_inset Quotes fld
+\end_inset
+
+Vanilla RNN
+\begin_inset Quotes frd
+\end_inset
+
+ en anglais) peut être représenté ainsi :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_5.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Réseau de neurone récurrent standard
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Problèmes du réseau de neurones récurrent standard
+\end_layout
+
+\begin_layout Itemize
+Mémoire très court terme
+\end_layout
+
+\begin_layout Standard
+Avec un tel réseau, une information qui serait importante ne sera pas sauvegardé
+e de façon privilégiée par rapport aux entrées suivantes et précédentes.
+ Aussi, cette information sera petit à petit oubliée, ou plus précisément,
+ 
+\begin_inset Quotes fld
+\end_inset
+
+diluée
+\begin_inset Quotes frd
+\end_inset
+
+ parmis les autres données.
+ Les dernièeres informations auront donc plus de poids.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_6.png
+	lyxscale 15
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mémoire à court terme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Disparition du gradient
+\end_layout
+
+\begin_layout Standard
+Les réseaux de neurones récurrent utilisent les fonctions d'activation sigmoïdes
+ et peuvent donc conduire au problème de disparition du gradient.
+\end_layout
+
+\begin_layout Standard
+En effet, la méthode du gradient fonctionne en analysant le changement sur
+ la sortie impacté par un changement sur certains neurones.
+ Or ce changement peut se trouver très faible à cause des fonctions d'activation
+s sigmoïdes.
+ Par exemple si l'entrée d'une sigmoïde tanh est 2 et qu'on la modifie en
+ 3 on n'observera un changement de 0.03 environ et ça devient de plus en
+ plus petit quand les nombres augmentent.
+ Ainsi, le changement des poids sera compliqué si de nombreuses sigmoïdes
+ sont présentes.
+\end_layout
+
+\begin_layout Standard
+Dans le cas d'un réseau récurrent, les valeurs du temps présent ne passent
+ pas beaucoup de sigmoïdes puisqu'elles traversent le réseau une seule fois.
+ Cependant, les valeurs passées retraversent le réseau de nombreuses fois
+ et vont donc être oubliées.
+\end_layout
+
+\begin_layout Standard
+Remarque : Les fonctions d'activation ReLu ne sont pas affectées par ce
+ problème.
+\end_layout
+
+\begin_layout Subsection
+LSTM
+\end_layout
+
+\begin_layout Standard
+Un LSTM (Long Short Term Memory) est un réseau de neurones récurrent composé
+ de cellules de LSTM de la forme suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RNN-LSTM/RNN_7.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+LSTM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ce réseau permet de se souvenir d'informations importantes correspondant
+ à une mémoire courte (informations sur l'instant présent) mais sur une
+ longue période.
+\end_layout
+
+\begin_layout Standard
+Le probème de disparition de gradient n'affecte pas le LSTM car les fonctions
+ d'activation utilisées ne sont pas des sigmoïdes (sauf pour l'apprentissage)
+ mais des fonctions logisitiques ou des fonctions ReLu.
+\end_layout
+
+\begin_layout Standard
+Ainsi, ce type de réseau convient parfaitement à notre objectif puisqu'il
+ permet de prédire une valeur en tenant compte d'une séquence passée en
+ conservant les éléments importants de ces séquences.
 \end_layout
 
 \begin_layout Section
@@ -5877,6 +6264,339 @@ Analyse et Test du réseau de neurones
 \begin_layout Standard
 Graphes, précisions, les différents tests effectués, le temps de calcul
  et analyse des résultats....
+\end_layout
+
+\begin_layout Section
+Modèle LSTM + Dense
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/modeles/modele3.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle LSTM + Dense
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+acc
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_acc
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9291
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0183
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Modèle LSTM + Dense + Activation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/modeles/modele4.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle LSTM + Dense + Activation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+acc
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_acc
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9291
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0307
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Modèle LSTM + Dropout + LSTM + Dropout + Dense + Activation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/modeles/modele2.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+LSTM + Dropout + LSTM + Dropout + Dense + Activation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+acc
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_acc
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -6173,6 +6893,38 @@ status open
 \backslash
 url{https://www.youtube.com/watch?v=stuU2TK3t0Q&list=PL6Xpj9I5qXYGhsvMWM53ZLfwUInz
 vYWsm}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+LSTM
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://www.youtube.com/watch?v=WCUNPb-5EYI}
 \end_layout
 
 \end_inset

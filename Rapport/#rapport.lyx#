@@ -6162,7 +6162,7 @@ Ce réseau permet de se souvenir d'informations importantes correspondant
 \begin_layout Standard
 Le probème de disparition de gradient n'affecte pas le LSTM car les fonctions
  d'activation utilisées ne sont pas des sigmoïdes (sauf pour l'apprentissage)
- mais des fonctions logisitiques ou des fonctions ReLu.
+ mais des fonctions logisitiques :
 \end_layout
 
 \begin_layout Section
