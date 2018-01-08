@@ -80,9 +80,9 @@ opt = optimizers.SGD(lr=taux_apprentissage, momentum=momentum, decay=decay_rate,
 #opt = optimizers.Adadelta(lr=taux_apprentissage, epsilon=1e-6)
 #cout = 'categorical_crossentropy'
 cout = 'mean_squared_error'
-nomFichierDuModele = 'modele.h5'
-imageDuModele = 'modele.png'
-nomFichierDesPoids = 'poids.h5'
+nomFichierDuModele = 'modele4.h5'
+imageDuModele = 'modele4.png'
+nomFichierDesPoids = 'poids4.h5'
 
 
 
@@ -95,12 +95,14 @@ nb_echantillon_test  = nb_chanson_test *echantillons_par_chanson_test
 x_test,y_test = creationDonneesApprentissage("donneesTest.txt",nb_chanson_test, nbNotes_par_chanson_test, note_dim,nb_echantillon_test,echantillons_par_chanson_test,taille_sequence)
 
 model = Sequential()
-model.add(LSTM(taille_sequence, input_shape=(taille_sequence, note_dim),return_sequences=True))
+model.add(LSTM(taille_sequence, input_shape=(taille_sequence, note_dim),return_sequences=False))
 #model.add(TimeDistributed(Dense(taille_sequence, activation='sigmoid')))
-model.add(Dropout(0.2))
-model.add(LSTM(1000))
-model.add(Dense(128, activation='sigmoid'))
+#model.add(Dropout(0.2))
+#model.add(LSTM(taille_sequence))
+#model.add(Dropout(0.2))
+#model.add(Dense(note_dim, activation='sigmoid'))
 model.add(Dense(y.shape[1], activation='sigmoid'))
+model.add(Activation('softmax'))
 plot_model(model, to_file=imageDuModele, show_shapes=True, show_layer_names=True)
 model.summary()
 
@@ -117,27 +119,29 @@ model.compile(loss=cout, optimizer=opt,metrics=['accuracy'])
 history = model.fit(x,y,verbose=1, validation_data=(x_test, y_test),batch_size=batch_size, epochs=epochs,callbacks=callbacks, shuffle=False)
 
 
-#courbe de la precision sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
-#plt.plot(history.history['acc'])
-#plt.plot(history.history['val_acc'])
-#plt.title('Precision du modele')
-#plt.ylabel('Precision')
-#plt.xlabel('Iterations')
-#plt.legend(['Apprentissage', 'Test'], loc='upper left')
-#plt.show()
+##courbe de la precision sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('Precision du modele')
+plt.ylabel('Precision')
+plt.xlabel('Iterations')
+plt.legend(['Apprentissage', 'Test'], loc='upper left')
+plt.show()
 ## courbe de la perte/cout sur les ensembles de donnees d'apprentissage et de validation au cours des iterations d'apprentissage.
-#plt.plot(history.history['loss'])
-#plt.plot(history.history['val_loss'])
-#plt.title('Cout du modele')
-#plt.ylabel('Cout')
-#plt.xlabel('Iterations')
-#plt.legend(['Apprentissage', 'Test'], loc='upper left')
-#plt.show()
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Cout du modele')
+plt.ylabel('Cout')
+plt.xlabel('Iterations')
+plt.legend(['Apprentissage', 'Test'], loc='upper left')
+plt.show()
 
-#obtenir les valeurs des poids par couche (utiliser le logicie HDFView)
+##obtenir les valeurs des poids par couche (utiliser le logicie HDFView)
 model.save_weights(nomFichierDesPoids)
 
-#EVALUATION
+##EVALUATION
+## pas utile car correspond deja a val_loss et val_acc
 #loss_and_metrics = model.evaluate(x_test, y_test, batch_size=1)
 #print ("Loss et metrics ",loss_and_metrics)
+
 model.save(nomFichierDuModele)
