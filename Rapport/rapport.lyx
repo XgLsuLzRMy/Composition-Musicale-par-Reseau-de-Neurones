@@ -5826,6 +5826,7 @@ en mémoire
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -5881,6 +5882,7 @@ t
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -5921,6 +5923,7 @@ D'une façon plus générale on peut avoir une sortie du réseau différente
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -5928,7 +5931,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/RNN-LSTM/RNN_4.PNG
+	filename Images/RNN-LSTM/RNN_4.png
 	lyxscale 20
 	scale 20
 
@@ -5972,6 +5975,7 @@ Vanilla RNN
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -6035,6 +6039,7 @@ diluée
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -6116,6 +6121,7 @@ Un LSTM (Long Short Term Memory) est un réseau de neurones récurrent composé
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -6225,8 +6231,258 @@ Les fonctions d'activations
 \end_layout
 
 \begin_layout Standard
-Quelles fonctions peut-on utiliser avec Keras? et qui sont pertinentes avec
- nos données?
+Les fonctions d'activation permettent d'ajouter de la non-linéarité au réseau.
+ La propriété de non-linéarité de la fonction d'activation est donc importante
+ car si un réseau profond utilise n'utilise que des fonctions d'activation
+ linéaires alors ce réseau est équivalent à un réseau à un réseau possédant
+ une seule couche.
+\end_layout
+
+\begin_layout Standard
+Il est aussi interressant que cette fonction soit différentiable afin de
+ faciliter les calculs lors de l'algorithme du gradient conjugué.
+ Cependant, ce n'est pas une condition nécessaire.
+\end_layout
+
+\begin_layout Subsection*
+Fonction identité
+\end_layout
+
+\begin_layout Standard
+La droite identié est la fonction y=x.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/identite.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fonction identité
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elle est utile dans les cas où le réseau correspond à une régression.
+\end_layout
+
+\begin_layout Subsection*
+Fonction sigmoïd
+\end_layout
+
+\begin_layout Standard
+Cette fonction permet de transformer son entrée en un nombre compris entre
+ 0 et 1.
+ Elle peut donc s'interpréter comme l'activation (1) ou non (0) du neurone.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/sigmoide.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fonction sigmoïd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cependant, cette fonction peut conduire au problème de disparition du gradient.
+\end_layout
+
+\begin_layout Standard
+De plus, la sigmoïd n'est pas centrée en 0 donc sa sortie sera toujours
+ positive.
+ Ainsi, le gradient sera soit toujours positif, soit toujours négatif ce
+ qui rend plus difficile la rétro-propagation.
+\end_layout
+
+\begin_layout Subsection*
+Fonction tanh
+\end_layout
+
+\begin_layout Standard
+Cette fonction est très similaire à la sigmoïd mais est centrée en 0 et
+ ne possède donc pas ce défaut par rapport à la sigmoïd.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/tanh.png
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fonction tanh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Néanmoins, tanh possède aussi le problème de disparition de gradient.
+\end_layout
+
+\begin_layout Subsection*
+Fonction ReLU
+\end_layout
+
+\begin_layout Standard
+Cette fonction permet de ne conserver que les informations importantes.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/relu.jpeg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fonction ReLu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dans cet exemple de fonction ReLU, les informations considérées non importantes
+ sont négatives et on conserve les sorties positives.
+\end_layout
+
+\begin_layout Standard
+Cette fonction est très simple et permet d'éviter la disparition de gradient
+ puisque cette fonction évolue avec une pente constante.
+\end_layout
+
+\begin_layout Standard
+On utilisera donc cette fonction le plus souvent possible et spécialement
+ dans les couches cachées comme nous l'avons vu avec le LSTM.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour notre réseau nous utiliserons des fonctions ReLU dans les couches
+ cachées mais des tanh ou identité pour les couches externes.
 \end_layout
 
 \begin_layout Section
@@ -6242,7 +6498,97 @@ optimizers
 \end_layout
 
 \begin_layout Standard
-Quels sont les optimizers que l'on peut utiliser? Quels sont leurs paramètres?
+Les fonctions d'optimisations sont basées sur l'algorithme du gradient que
+ nous avons vu précédemment.
+\end_layout
+
+\begin_layout Subsection*
+Algorithme du gradient stochastique
+\end_layout
+
+\begin_layout Standard
+Dans cette méthode, on considère la fonction à minimiser comme une somme
+ de fonctions.
+ Ces fonctions sont associées aux données.
+ Ainsi, avec un vecteur en entrée de 10 composantes, il y aura 10 fonctions
+ associées à ces observations.
+\end_layout
+
+\begin_layout Standard
+Le gradient est approximé par la gradient de chaque fonction composant la
+ somme.
+ L'itération s'effectue comme dans la méthode du gradient.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Keras/code/sgd.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+lr 
+\begin_inset Quotes fld
+\end_inset
+
+Learning Rate
+\begin_inset Quotes frd
+\end_inset
+
+ correspond au taux d'apprentissage pour l'agorithme du gradient.
+\end_layout
+
+\begin_layout Standard
+Nous utiliserons la valeur 0.01.
+\end_layout
+
+\begin_layout Itemize
+momentum correspond à une amélioration de l'algorithme du gradient stochastique
+\end_layout
+
+\begin_layout Standard
+Si le momentum vaut 0 alors on utilise l'algorithme classique.
+ Sinon, l'algorithme utilisera la différence calculée lors de l'étape précédente
+, la multipliera par le momentum et l'ajoutera à la différence calculée
+ à l'étape présente.
+ Cela permet donc d'accélérer l'algorithme en gardant en mémoire des information
+s concernant l'itération précédente.
+\end_layout
+
+\begin_layout Itemize
+decay permet de réduire la valeur du taux d'apprentissage au cours du temps
+ (des itérations)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $lr:=lr\times\frac{1}{1+decay\times iterations}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+nesterov correspond à une autre façon d'utiliser le momentum
+\end_layout
+
+\begin_layout Subsection*
+Root Mean Square Propagation (RMSprop)
+\end_layout
+
+\begin_layout Standard
+Dans cette méthode, le taux d'apprentissage est adapté selon les paramètres.
+ Ainsi, le taux d'apprentissage est augmenté pour les données dispersées
+ mais réduit pour les données centrées.
+\end_layout
+
+\begin_layout Standard
+Ainsi, cette méthode permet d'améliorer la reconnaissance lorsque les données
+ importantes sont dispersées.
 \end_layout
 
 \begin_layout Section
@@ -6250,11 +6596,166 @@ Les fonctions coûts
 \end_layout
 
 \begin_layout Standard
-Quelles sont les fonctions coûts que l'on peut utiliser?
+L'objectif de ces fonctions est de donner une valeur à l'écart entre la
+ valeur obtenue par le réseau et la valeur que l'on attendait.
+\end_layout
+
+\begin_layout Standard
+Ici 
+\begin_inset Formula $y_{pred}$
+\end_inset
+
+ représente la prédiciton que le réseau a effectué et 
+\begin_inset Formula $y$
+\end_inset
+
+ la valeur que l'on attendait.
+\end_layout
+
+\begin_layout Subsection*
+Erreur quadratique moyenne
+\end_layout
+
+\begin_layout Standard
+C'est la fonction que nous utilisons pour entrainer notre réseau.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $EQM(y_{pred})=moyenne((y_{pred}-y)^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Erreur moyenne absolue
+\end_layout
+
+\begin_layout Standard
+Cette fonction ressemble beaucoup à la précédente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $EMA(y_{pred})=moyenne(\left|y_{pred}-y\right|)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Hinge
+\end_layout
+
+\begin_layout Standard
+Cette fonction est utilisée pour entrainer un réseau de neurone de classificatio
+n.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $hinge(y_{pred})=max(0,1-y\times y_{pred})$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il existe d'autres fonctions mais l'EQM correspond à notre cas d'étude puisque
+ nous ne sommes pas dans une catégorisation.
 \end_layout
 
 \begin_layout Section
 L'architecture du réseau: les couches
+\end_layout
+
+\begin_layout Standard
+Nous avons utilisé un réseau utilisant le LSTM puisque c'est un réseau qui
+ correspond à nos besoins : il permet de baser la prédiction sur une séquence
+ de notes et non sur une seule et permet de ne pas oublier de notes trop
+ éloignées dans le temps.
+\end_layout
+
+\begin_layout Standard
+Afin d'éviter le suraprentissage nous avons aussi ajouté une deuxième couche
+ appelée dropout.
+ Cette couche est dense mais place à 0 certains de ses poids choisis aléatoireme
+nt à chaque itération.
+ Ainsi, le réseau ne peut pas 
+\begin_inset Quotes fld
+\end_inset
+
+apprendre par coeur
+\begin_inset Quotes frd
+\end_inset
+
+ puisqu'à chaque itération des informations aléatoires lui sont retirées.
+\end_layout
+
+\begin_layout Standard
+Nous avons ajouté une couche dense afin de baser la prédiction sur toutes
+ les données 
+\begin_inset Quotes fld
+\end_inset
+
+mélangées
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/modeles/modele.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -6266,13 +6767,13 @@ Graphes, précisions, les différents tests effectués, le temps de calcul
  et analyse des résultats....
 \end_layout
 
-\begin_layout Section
-Modèle LSTM + Dense
+\begin_layout Subsection*
+Modèle LSTM
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -6280,8 +6781,308 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/modeles/modele3.png
-	scale 25
+	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele7.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle LSTM 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous avons essayé le modèle LSTM dans différentes configurations.
+\end_layout
+
+\begin_layout Standard
+La fonction d'activation :
+\end_layout
+
+\begin_layout Itemize
+linear
+\end_layout
+
+\begin_layout Itemize
+softmax
+\end_layout
+
+\begin_layout Itemize
+tanh
+\end_layout
+
+\begin_layout Standard
+La fonction d'activation récurrente :
+\end_layout
+
+\begin_layout Itemize
+ReLU
+\end_layout
+
+\begin_layout Itemize
+Hard Sigmoïd
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+activation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+activation récurrente
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_acc
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+linear
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ReLU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1299
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0072
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SoftMax
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ReLU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1162
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0489
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hard Sigmoïd
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tanh
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0167
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hard Sigmoïd
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tanh
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0176
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remarque : le 4eme exemple a été effectué avec un dropout inclu au LSTM
+ de 0.2.
+\end_layout
+
+\begin_layout Standard
+On observe que les résultats obtenus avec les fonctions d'activation linear
+ et softmax sont très mauvais.
+ Par contre le réseau utilisant une sigmoïd donne de bien meilleurs résultats.
+\end_layout
+
+\begin_layout Standard
+Nous avons donc conservé le 3eme réseau comme réseau de référence bien que
+ le résultat ne soit pas bon.
+ En effet, plusieurs notes sont jouées en même temps créant un accord qui
+ n'est pas agréable à l'écoute.
+\end_layout
+
+\begin_layout Standard
+L'ajout d'un dropout interne au LSTM semble remédier à ce problème bien
+ que les notes générées par ce réseau ont un tempo très élevé et répétitives.
+\end_layout
+
+\begin_layout Subsection*
+Modèle LSTM + Dense
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele11.png
+	scale 30
 
 \end_inset
 
@@ -6306,8 +7107,18 @@ Modèle LSTM + Dense
 \end_layout
 
 \begin_layout Standard
+Afin d'être sûr que le résultat finale prenne bien en compte tous les neurones
+ du réseau, nous utilisons une couche dense supplémentaire.
+\end_layout
+
+\begin_layout Standard
+Nous avons testé avec plusieurs activations pour le réseau dense
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="3">
+<lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -6317,7 +7128,7 @@ Modèle LSTM + Dense
 \begin_inset Text
 
 \begin_layout Plain Layout
-acc
+Dense
 \end_layout
 
 \end_inset
@@ -6342,11 +7153,69 @@ val_acc
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sigmoïd
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0183
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Linear
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0156
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.9291
+Sigmoïd
 \end_layout
 
 \end_inset
@@ -6355,7 +7224,7 @@ val_acc
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.0183
+0.0182
 \end_layout
 
 \end_inset
@@ -6377,13 +7246,26 @@ val_acc
 
 \end_layout
 
-\begin_layout Section
-Modèle LSTM + Dense + Activation
+\begin_layout Standard
+Remarque : le 3eme exemple a été effectué avec un dropout inclu au LSTM
+ de 0.2.
+\end_layout
+
+\begin_layout Standard
+Avec l'activation linéaire, les notes prédites avec notre fichier de test
+ ont un tempo lent et sont de plus en plus grave.
+ Par contre avec les réseaux contenant une couche dense d'activation sigmoïde
+ les notes prédites ont un tempo plus élevé et varient entre grave et aigue
+ mais sont troujours très répétitives.
+\end_layout
+
+\begin_layout Subsection*
+Modèle LSTM+Activation
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -6391,8 +7273,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/modeles/modele4.png
-	scale 25
+	filename ../Programme_1/modeles/mean_squared_error/LSTM+Activation/modele6.png
+	scale 30
 
 \end_inset
 
@@ -6403,7 +7285,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Modèle LSTM + Dense + Activation
+Modèle LSTM 
 \end_layout
 
 \end_inset
@@ -6417,6 +7299,7 @@ Modèle LSTM + Dense + Activation
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="3">
 <features tabularvalignment="middle">
@@ -6428,7 +7311,7 @@ Modèle LSTM + Dense + Activation
 \begin_inset Text
 
 \begin_layout Plain Layout
-acc
+Activation
 \end_layout
 
 \end_inset
@@ -6457,7 +7340,153 @@ val_acc
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.9291
+Linear
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0179
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9498
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous avons testé un réseau LSTM avec une couche de sortie possédant une
+ activation linéaire afin de voir son impact.
+\end_layout
+
+\begin_layout Standard
+Les notes ont un tempo assez lent et sont de plus en plus grave.
+ L'activation linéaire semble donc générer ce genre de son puisque nous
+ avons déjà eu ce cas dans la partie précédente.
+\end_layout
+
+\begin_layout Standard
+Nous avons donc décidé d'écarter l'activation linéaire.
+\end_layout
+
+\begin_layout Subsection*
+Modèle LSTM + Dense + Activation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense+Activation/modele4.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modèle LSTM + Dense + Activation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dense
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+val_acc
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sigmoid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SoftMax
 \end_layout
 
 \end_inset
@@ -6488,13 +7517,18 @@ val_acc
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
+Cette configuration nous donne un résultat au tempo très lent et dont les
+ notes sont très répétitives.
+\end_layout
+
+\begin_layout Subsection*
 Modèle LSTM + Dropout + LSTM + Dropout + Dense + Activation
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -6502,8 +7536,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/modeles/modele2.png
-	scale 25
+	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dropout+LSTM+Dropout+Dense+Activation/modele2.png
+	scale 30
 
 \end_inset
 
@@ -6528,9 +7562,11 @@ LSTM + Dropout + LSTM + Dropout + Dense + Activation
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="3">
+<lyxtabular version="3" rows="2" columns="4">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -6539,7 +7575,16 @@ LSTM + Dropout + LSTM + Dropout + Dense + Activation
 \begin_inset Text
 
 \begin_layout Plain Layout
-acc
+Dense
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activation
 \end_layout
 
 \end_inset
@@ -6568,7 +7613,7 @@ val_acc
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Sigmoid
 \end_layout
 
 \end_inset
@@ -6577,7 +7622,16 @@ val_acc
 \begin_inset Text
 
 \begin_layout Plain Layout
+SoftMax
+\end_layout
 
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0308
 \end_layout
 
 \end_inset
@@ -6586,7 +7640,7 @@ val_acc
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.9498
 \end_layout
 
 \end_inset
@@ -6597,6 +7651,14 @@ val_acc
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Nous avons essayer de placer deux couches LSTM à la suite afin d'augmenter
+ la précision de la prédiction.
+ Cependant, avec ce réseau, la prédiction semble être toujours la même note.
+ Ce phénomène est peut être dû à l'enchainement Dense(sigmoïde) et Activation(So
+ftMax) puisque nous avions un résultat comparable avec le modèle précédent.
 \end_layout
 
 \begin_layout Chapter

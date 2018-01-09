@@ -1,0 +1,12 @@
+modele n°	type
+2			LSTM + Dropout + LSTM + Dropout + Dense(Sigmoid) + Activation(SoftMax)
+3			LSTM + Dense(sigmoid)
+4			LSTM + Dense(sigmoid) + Activation(softmax)
+5			LSTM + Dense(linear)
+6			LSTM + activation(linear)
+7			LSTM(activation=linear, recurrent_activation=relu)
+8			LSTM(activation='softmax', recurrent_activation='relu')
+9			LSTM(dropout=0.2)
+10			LSTM
+11			LSTM(dropout=0.2) + Dense(sigmoid)
+12			LSTM(dropout=0.2) + LSTM(dropout=0.2)

@@ -1,0 +1,1 @@
+keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
