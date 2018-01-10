@@ -19,10 +19,12 @@ def creationDonnees(file):
 			bad_words = ['ControlChangeEvent','PortEvent','EndOfTrackEvent','SmpteOffsetEvent', 'TrackNameEvent', 'TextMetaEvent', 'SetTempoEvent','CopyrightMetaEvent','TimeSignatureEvent','KeySignatureEvent','ProgramChangeEvent','MarkerEvent']
 			nombreTrack = 0
 			ligne=[]
+			#ajout des lignes du fichier dans un tableau
 			for line in fichier :
 				 ligne.append(line)
 			fichier.close()
 			fichier = open(nom+"fMidiComplet.py", "r")
+			#creation du script complet
 			for line in fichier :
 				 clean = True
 				 if 'midi.Track(' in line :
@@ -30,7 +32,7 @@ def creationDonnees(file):
 				 for word in bad_words :
 				     if word in line:
 				         clean = False
-				 if clean == True:
+				 if clean == True:  #si la ligne ne contient pas un mot non souhaite
 						if 'midi.Track(' in line:
 							if k==2:
 								mon_fichier.write("[midi.Track(\\\n[")
@@ -47,6 +49,7 @@ def creationDonnees(file):
 			os.chdir(os.path.dirname(os.getcwd()))
 			os.chdir('Donnees')
 			donnees = open(nom+".txt", "w")
+			#creation du script simplifie
 			for line in mon_fichier :
 					if 'NoteOnEvent' in line: 
 						s = re.findall(r"[-+]?\d*\.\d+|\d+", line)
@@ -60,6 +63,7 @@ def creationDonnees(file):
 			os.chdir('MIDI')
 
 os.chdir('MIDI')
+#recherche de tous les fichiers MIDI
 for root, dirs, files in os.walk(os.getcwd()):
     for file in files:
         if file.endswith('.mid'):

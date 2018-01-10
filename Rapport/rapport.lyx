@@ -2790,15 +2790,62 @@ url{http://www.piano-midi.de/}
 Chaque fichier MIDI représente une musique créée par un musicien.
  Toutes les musiques ont des durées et des notes différentes.
  Les éventements MIDI sont aussi différents selon les musiques.
+ Ci-dessous, nous allons définir quelques termes nécessaires pour comprendre
+ la suite du projet: 
+\end_layout
+
+\begin_layout Enumerate
+NoteOnEvent est un événement qui capture le début d'une note activée.
  
 \end_layout
 
-\begin_layout Paragraph
-DEFINITION
+\begin_layout Enumerate
+Le 
+\begin_inset Quotes fld
+\end_inset
+
+tick
+\begin_inset Quotes frd
+\end_inset
+
+ est la valeur entière qui permet de définir quand un événement vient de
+ se produire.
+ Il ne s'agit pas d'un temps exprimé en secondes.
 \end_layout
 
-\begin_layout Standard
-NoteOnEvent, tick, data, channel, track
+\begin_layout Enumerate
+La 
+\begin_inset Quotes fld
+\end_inset
+
+key
+\begin_inset Quotes frd
+\end_inset
+
+ correspond au numéro de la note qui est jouée (0-127).
+\end_layout
+
+\begin_layout Enumerate
+La 
+\begin_inset Quotes fld
+\end_inset
+
+velocity
+\begin_inset Quotes frd
+\end_inset
+
+ est la mesure de la force et de la rapidité avec laquelle la note vient
+ d'être jouée.
+ Plus la velocity est élevée, plus la note sera jouée fortement.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Track
+\end_layout
+
+\begin_layout Enumerate
+Channel
 \end_layout
 
 \begin_layout Section
@@ -2999,11 +3046,19 @@ channel
 \end_layout
 
 \begin_layout Enumerate
-Tick, représentant le temps.
+Tick, représentant le temps du commencement du note.
 \end_layout
 
 \begin_layout Enumerate
-Data1, représentant la note.
+Data1, représentant la note (
+\begin_inset Quotes fld
+\end_inset
+
+key
+\begin_inset Quotes frd
+\end_inset
+
+).
  
 \end_layout
 
@@ -5348,13 +5403,14 @@ Normalisation de nos données
 \end_layout
 
 \begin_layout Standard
-Ayant des valeurs largement supérieures à 1, nous allons normaliser nos
- données sur l'intervalle 0 et 1.
+Afin de rester dans le domaine des fonctions d'activations et ayant des
+ valeurs de données largement supérieures à 1 et, nous allons normaliser
+ nos données sur l'intervalle 0 et 1.
  
 \end_layout
 
 \begin_layout Standard
-La première normalisation que l'on peut appliquer est la suivante: 
+Voici la normalisation que nous avons choisi de faire: 
 \end_layout
 
 \begin_layout Standard
@@ -5373,13 +5429,46 @@ Elle permet de normaliser nos données sur l'intervalle [0,1].
 \end_layout
 
 \begin_layout Standard
-La deuxième qui peut être appliquée est la suivante: 
+Pour normaliser, nous avons créer un programme nommé 
+\begin_inset Quotes fld
+\end_inset
+
+normalisation.py
+\begin_inset Quotes frd
+\end_inset
+
+ que vous trouverez en annexe.
+ Ce programme permet de lire tous les fichiers textes que nous avons crée
+ et permet de normaliser tous les fichiers un par un.
+ La normalisation se fait comme suit: 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
 \begin_inset Formula 
 \[
-x_{i}'=\frac{1}{2}\left(0.01\cdot tanh(\frac{x_{i}-moyenne(x)}{ecartType(x)})+1\right)
+tick_{i}'=\frac{tick_{i}-0}{3800-0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula 
+\[
+key_{i}'=\frac{key_{i}-0}{127-0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula 
+\[
+velocity_{i}'=\frac{velocity_{i}-0}{127-0}
 \]
 
 \end_inset
@@ -5388,7 +5477,42 @@ x_{i}'=\frac{1}{2}\left(0.01\cdot tanh(\frac{x_{i}-moyenne(x)}{ecartType(x)})+1\
 \end_layout
 
 \begin_layout Standard
-Elle permet aussi de normaliser les données sur l'intervalle [0,1].
+Ensuite, ce programme rassemble toutes les données dans un même fichier
+ pour les données d'apprentissage et de tests.
+ 
+\end_layout
+
+\begin_layout Standard
+Nous obtenons alors deux fichiers: 
+\begin_inset Quotes fld
+\end_inset
+
+donneesNormalisees.txt
+\begin_inset Quotes frd
+\end_inset
+
+ et 
+\begin_inset Quotes fld
+\end_inset
+
+donneesTest.txt
+\begin_inset Quotes frd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Nous avons, à présent, deux fichiers contenant nos données normalisées pour
+ l'apprentissage et pour les tests.
+ Il reste maintenant à créer le réseau de neurones et à faire l'apprentissage
+ avec ces données.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -5399,7 +5523,7 @@ Composition musicale: le réseau de neurones
 
 \shape italic
 Nous allons définir dans cette partie l'architecture de notre réseau.
- Nous allons programme un réseau de neurone récurrent.
+ Nous allons programmer un réseau de neurone récurrent.
  Dans cette partie, nous utiliserons le programme 
 \begin_inset Quotes fld
 \end_inset
@@ -5409,6 +5533,8 @@ main.py
 \end_inset
 
  que vous trouverez en annexe.
+ Pour créer notre réseau, nous allons utiliser une bibliothèque Keras.
+ Vous trouverez en annexe une description non exhaustive de celle-ci.
  
 \end_layout
 
@@ -5425,7 +5551,7 @@ Dans cette section, nous supposons qu'une séquence est de taille 10 mais
 \end_layout
 
 \begin_layout Standard
-Pour l'entrainement, nous souhaitons que le réseau suive le modèle suivant:
+Pour l’entraînement, nous souhaitons que le réseau suive le modèle suivant:
  
 \end_layout
 
@@ -5479,8 +5605,15 @@ creationDonnees
 \begin_inset Quotes frd
 \end_inset
 
- définie dans notre programme, les fichiers sont lus et sont transformés
- en un tableau de 3 dimensions.
+ définie dans notre programme 
+\begin_inset Quotes fld
+\end_inset
+
+main.py
+\begin_inset Quotes frd
+\end_inset
+
+, les fichiers sont lus et sont transformés en un tableau de 3 dimensions.
  Ainsi, nous obtenons: 
 \end_layout
 
@@ -6182,13 +6315,13 @@ Les paramètres du modèle
 \end_layout
 
 \begin_layout Standard
-Notre réseau a plusieurs paramètres (valeurs ayant une influence sur le
- modèle et qui sont modifiables sans que le programme rencontre des problèmes),
- qui sont: 
+Notre réseau, qui sera donc une réseau de neurones récurrent, a plusieurs
+ paramètres (valeurs ayant une influence sur le modèle et qui sont modifiables
+ sans que le programme rencontre des problèmes), qui sont: 
 \end_layout
 
 \begin_layout Enumerate
-La taille de la séquence: cette valeur peut être modifiée.
+La taille de la séquence.
 \end_layout
 
 \begin_layout Enumerate
@@ -6224,6 +6357,12 @@ La fonction coût.
 
 \begin_layout Enumerate
 Les différentes couches et leur nombre de neurones.
+\end_layout
+
+\begin_layout Standard
+Nous allons essayer de prendre en compte tous ces paramètres lors de la
+ création de notre réseau ainsi que pendant les tests.
+ 
 \end_layout
 
 \begin_layout Section
@@ -6758,16 +6897,447 @@ Modèle
 
 \end_layout
 
+\begin_layout Section
+Création du réseau de neurones
+\end_layout
+
+\begin_layout Standard
+Nous allons donc utiliser la bibliothèque Keras pour créer notre réseau.
+ Tout d'abord, dans la première section, nous avons défini comment nous
+ avons transformé nos données.
+ Rappelons alors que nous avec deux tableaux d'entrées x (apprentissage)
+ et x_test ainsi que deux tableaux sorties y (apprentissage) et y_test.
+ Il faut à présent le réseau.
+ Voici les paramètres que notre réseau utilise: 
+\end_layout
+
+\begin_layout Enumerate
+taille_sequence = 10
+\end_layout
+
+\begin_layout Enumerate
+note_dim = 3
+\end_layout
+
+\begin_layout Enumerate
+nb_chanson = 241
+\end_layout
+
+\begin_layout Enumerate
+nbNotes_par_chanson = 2000
+\end_layout
+
+\begin_layout Enumerate
+echantillons_par_chanson = nbNotes_par_chanson - taille_sequence
+\end_layout
+
+\begin_layout Enumerate
+nb_echantillon = nb_chanson*echantillons_par_chanson
+\end_layout
+
+\begin_layout Enumerate
+batch_size = 15.
+ Cette valeur peut varier et représente le nombre d'exemples qui est propagé
+ à travers le réseau.
+ Par exemple, si le batch vaut 15, alors le réseau prend les 15 premiers
+ exemples et entraine le réseau avec ces derniers.
+ Puis il prend les 15 suivants et ainsi de suite...
+\end_layout
+
+\begin_layout Enumerate
+epochs, le nombre d'itérations.
+ 
+\end_layout
+
+\begin_layout Enumerate
+taux_apprentissage
+\end_layout
+
+\begin_layout Enumerate
+opt permet de définir le l'optimizer.
+ 
+\end_layout
+
+\begin_layout Enumerate
+cout permet de définir la fonction coût.
+ 
+\end_layout
+
+\begin_layout Enumerate
+nb_chanson_test
+\end_layout
+
+\begin_layout Enumerate
+nbNotes_par_chanson_test
+\end_layout
+
+\begin_layout Standard
+Ensuite, il suffit de créer un modèle en lui ajoutant une plusieurs couches
+ avec des fonctions d'activations et un nombre de neurones défini.
+ Etant donné que nous avons fait varier les paramètres, nous n'avons pas
+ un modèle pré-défini car nous avons fait plusieurs modèles.
+ Tous les modèles ont été néanmoins tous sauvegardés sous la forme d'un
+ fichier HDF5 (Hierarchical Data Format).
+ Le fichier HDF5 est un conteneur de fichier est permet de sauvegarder et
+ de structurer des fichiers contenant de très grandes quantités de données.
+ Ainsi dans le modèle sous ce format, nous pouvons retrouver toutes les
+ définitions des couches et toutes les valeurs des poids par couche.
+ Les fichiers HDF5 peuvent être visualiser avec le logiciel HDFView.
+ 
+\end_layout
+
+\begin_layout Standard
+Seule la couche d'entrée reste la même et définie de la sorte: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\textrm{model.add(LSTM(taille\_sequence, input\_shape=(taille\_sequence, note\_dim),return\_sequences=True))}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Une fois que l'on a ajouté toutes les couches nécessaires, nous avons besoin
+ d'appeler la fonction suivante afin de commencer l'apprentissage: 
+\begin_inset Formula 
+\[
+\textrm{model.fit(x,y,verbose=1, validation\_data=(x\_test, y\_test),batch\_size=batch\_size, epochs=epochs)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En exécutant cette fonction, on obtient sur le terminal: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/main.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exécution du programme 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le tableau affiché permet de résumer les informations sur le modèle implémenté.
+ Ensuite, le programme nous indique le nombre de paramètres pris en compte
+ pour le modèle.
+ Puis nous pouvons voir le nombre d'exemples pour l'apprentissage et pour
+ les tests de validation.
+ Enfin, les itérations peuvent commencer (
+\begin_inset Quotes fld
+\end_inset
+
+Epoch 1/10
+\begin_inset Quotes frd
+\end_inset
+
+).
+ La dernière ligne sur l'image indique le temps d’exécution restant avant
+ la fin de l'itération et indique la valeur de la fonction coût ainsi que
+ la précision du modèle.
+ 
+\end_layout
+
+\begin_layout Chapter
+Prédiction avec le réseau de neurones
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Dans cette partie, nous allons expliquer comment prédire des données avec
+ nos programmes et notre réseau de neurones.
+ 
+\end_layout
+
+\begin_layout Section
+Création de la prédiction
+\end_layout
+
+\begin_layout Standard
+Pour la création des prédictions, nous avons créé le programme 
+\begin_inset Quotes fld
+\end_inset
+
+prediction.py
+\begin_inset Quotes frd
+\end_inset
+
+ que vous trouverez en annexe.
+ Ce programme permet de charger le modèle de notre réseau de neurones et
+ de lire un fichier dans lequel nous avons mis 10 notes (ticks, keys, velocity).
+ Le programme normalise ensuite le fichier et le transforme en un tableau
+ à 3 dimensions.
+ Ensuite, le programme créé plusieurs prédictions grâce à la fonction 
+\begin_inset Quotes fld
+\end_inset
+
+model.predict(x)
+\begin_inset Quotes frd
+\end_inset
+
+ de la bibliothèque Keras.
+ Il y a un seul paramètre qui peut être changé: c'est le nombre de notes
+ pour la chanson.
+ Notre programme fonctionne sur le même principe que le réseau de neurones,
+ c'est-à-dire qu'il lit 10 notes et prédit la 11ème.
+ Ensuite, il utilise les 10 notes après la première pour en prédire la 12ème
+ etc...
+\end_layout
+
+\begin_layout Standard
+Une fois que plusieurs notes ont été créées, le programme ajoute ces notes
+ aux notes précédentes et les dé normalisent avec le programme nommé 
+\begin_inset Quotes fld
+\end_inset
+
+denormalisation.py
+\begin_inset Quotes frd
+\end_inset
+
+ que vous trouverez en annexe.
+ 
+\end_layout
+
+\begin_layout Section
+Lecture de la prédiction
+\end_layout
+
+\begin_layout Standard
+Afin de pouvoir créer de la musique, le programme lit les notes dé-normalisées
+ qui ont été prédites et les utilisent pour créer de la musique.
+ 
+\end_layout
+
+\begin_layout Standard
+Pour cela, nous avons fait un programme 
+\begin_inset Quotes fld
+\end_inset
+
+creation_MIDI
+\begin_inset Quotes frd
+\end_inset
+
+, que vous trouverez en annexe, qui à partir d'un fichier contenant des
+ valeurs de ticks, keys et velocity créer un script Python pour ensuite
+ l’exécuter afin de créer un fichier MIDI.
+ Ce fichier est ensuite lu grâce au logiciel 
+\begin_inset Quotes fld
+\end_inset
+
+timidity
+\begin_inset Quotes frd
+\end_inset
+
+ et ainsi nous pouvons directement écouter le résultat.
+ 
+\end_layout
+
+\begin_layout Section
+Résultats
+\end_layout
+
+\begin_layout Standard
+Nous allons faire une prédiction avec un réseau de neurones en particulier.
+ Dans la partie suivante, nous allons tester plusieurs réseaux de neurones
+ et nous commenterons les résultats de la prédictions.
+ Par exemple, prenons le réseau de neurones suivants: 
+\end_layout
+
+\begin_layout Itemize
+?????
+\end_layout
+
+\begin_layout Standard
+Nous devons inscrire dans un fichier au moins 10 notes.
+ Par exemple, prenons: 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="1">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+120 74 57
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+120 76 57
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 74 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100 78 57
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 76 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100 69 60
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 78 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100 69 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 78 57
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+120 76 57
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En faisant la prédiction, nous obtenons alors: 
+\end_layout
+
 \begin_layout Chapter
 Analyse et Test du réseau de neurones
 \end_layout
 
 \begin_layout Standard
-Graphes, précisions, les différents tests effectués, le temps de calcul
- et analyse des résultats....
+
+\shape italic
+Dans cette partie, nous allons tester différents types de réseau de neurones
+ afin de trouver le modèle qui s'adapte au mieux à nos données.
+ Nous utilisons toujours le programme 
+\begin_inset Quotes fld
+\end_inset
+
+main.py
+\begin_inset Quotes frd
+\end_inset
+
+.
+ 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section
 Modèle LSTM
 \end_layout
 
@@ -6875,7 +7445,7 @@ val_loss
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -6913,7 +7483,7 @@ ReLU
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -6951,7 +7521,7 @@ ReLU
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -6989,7 +7559,7 @@ tanh
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -7027,7 +7597,7 @@ tanh
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -7067,7 +7637,7 @@ L'ajout d'un dropout interne au LSTM semble remédier à ce problème bien
  que les notes générées par ce réseau ont un tempo très élevé et répétitives.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section
 Modèle LSTM + Dense
 \end_layout
 
@@ -7259,7 +7829,7 @@ Avec l'activation linéaire, les notes prédites avec notre fichier de test
  mais sont troujours très répétitives.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section
 Modèle LSTM+Activation
 \end_layout
 
@@ -7386,7 +7956,7 @@ Les notes ont un tempo assez lent et sont de plus en plus grave.
 Nous avons donc décidé d'écarter l'activation linéaire.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section
 Modèle LSTM + Dense + Activation
 \end_layout
 
@@ -7522,7 +8092,7 @@ Cette configuration nous donne un résultat au tempo très lent et dont les
  notes sont très répétitives.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section
 Modèle LSTM + Dropout + LSTM + Dropout + Dense + Activation
 \end_layout
 
@@ -7657,87 +8227,12 @@ SoftMax
 Nous avons essayer de placer deux couches LSTM à la suite afin d'augmenter
  la précision de la prédiction.
  Cependant, avec ce réseau, la prédiction semble être toujours la même note.
- Ce phénomène est peut être dû à l'enchainement Dense(sigmoïde) et Activation(So
+ Ce phénomène est peut être dû à l’enchaînement Dense(sigmoïde) et Activation(So
 ftMax) puisque nous avions un résultat comparable avec le modèle précédent.
 \end_layout
 
-\begin_layout Chapter
-Prédiction avec le réseau de neurones
-\end_layout
-
-\begin_layout Standard
-Dans cette partie, nous allons expliquer comment prédire des données avec
- nos programmes et notre réseau de neurones.
- 
-\end_layout
-
 \begin_layout Section
-Création de la prédiction
-\end_layout
-
-\begin_layout Standard
-Pour création des prédictions, nous avons créé le programme 
-\begin_inset Quotes fld
-\end_inset
-
-prediction.py
-\begin_inset Quotes frd
-\end_inset
-
- que vous trouverez en annexe.
- Ce programme permet charger le modèle de notre réseau de neurones et de
- lire un fichier dans lequel nous avons mis quelques notes (ticks, keys,
- velocity).
- Le programme normalise ensuite le fichier et le transforme en un tableau
- à 3 dimensions.
- Ensuite, le programme créé plusieurs plusieurs prédictions grâce à la fonction
- 
-\begin_inset Quotes fld
-\end_inset
-
-model.predict(x)
-\begin_inset Quotes frd
-\end_inset
-
- de la bibliothèque Keras.
- Il y a un seul paramètre qui peut être changé: c'est le nombre de notes
- pour la chanson.
- Il faut tout de même mettre au moins le même nombre de notes que la taille
- de la séquence défini dans le modèle.
- La prédiciton fonctionne sur le même principe que le réseau de neurones,
- c'est-à-dire qu'il lit 10 notes et prédit la 11ème.
- Ensuite, il utilise les 10 notes après la première pour en prédire la 12ème
- etc...
-\end_layout
-
-\begin_layout Standard
-Une fois que plusieurs notes ont été créées, le programme ajoute ces notes
- aux notes précédentes et les dé normalisent.
- 
-\end_layout
-
-\begin_layout Section
-Lecture de la prédiction
-\end_layout
-
-\begin_layout Standard
-Afin de pouvoir créer de la musique, le programme lit les notes normalisées
- qui ont été prédites et les utilisent pour créer de la musique.
- 
-\end_layout
-
-\begin_layout Standard
-Pour cela, nous avons fait un programme 
-\begin_inset Quotes fld
-\end_inset
-
-creation_fichierMIDI
-\begin_inset Quotes frd
-\end_inset
-
- qui à partir d'un fichier contenant des valeurs de ticks, keys et velocity
- créé un fichier MIDI.
- 
+Conclusion
 \end_layout
 
 \begin_layout Chapter*
@@ -11217,6 +11712,51 @@ prediction.py
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
 filename "Keras/code/prediction.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+normalisation.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/normalisation.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+denormalisation.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/denormalisation.py"
+lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+creation_fichierMIDI.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Midi/code/creation_midi.py"
 lstparams "language={Python},basicstyle={\\ttm},keywordstyle={\\color{deepblue}},commentstyle={\\color{deepgreen}},emphstyle={\\ttb\\color{deepred}},frame=trblTRBL,breaklines=true"
 
 \end_inset

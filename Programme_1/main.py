@@ -39,17 +39,10 @@ def creationDonneesApprentissage(nomFichier,dim1,dim2,dim3,nbE,ePc,tS):
 	X = transformerArrayEn3D(nomFichier, dim1,dim2, dim3)
 	x = np.zeros(shape=(nbE, tS, dim3))
 	y = np.zeros(shape=(nbE, dim3))
-	print("X shape = ",X.shape) #(272, 1500, 3)
-	print("x shape = ",x.shape) #(405280, 10,3)
-	print("Y shape = ",y.shape) #(405280, 3)
-	print(enumerate(X))
-	#n va de 0 a 271
 	for n, X in enumerate(X):
 		for i in range(ePc):
-			x[i+n*ePc][:][:] = X[i:(i+tS), :] #ePc = 1490 #i+nePc = 0 a 405279
-			y[i+n*ePc][:] = X[i+tS, :] #i+tS va de 0 a 1499
-	print("x shape = ",x.shape) #(405280, 10,3)
-	print("Y shape = ",y.shape) #(405280, 3)
+			x[i+n*ePc][:][:] = X[i:(i+tS), :] 
+			y[i+n*ePc][:] = X[i+tS, :] 
 	return x,y
 	
 	
@@ -63,7 +56,7 @@ def creationDonneesPrediction(nomFichier,dim1,dim2,dim3):
 	return x
 
 
-
+#Parametres du modele
 taille_sequence = 10
 note_dim = 3
 nb_chanson = 241
@@ -87,13 +80,16 @@ nomFichierDesPoids = 'poids4.h5'
 
 
 x,y = creationDonneesApprentissage("donneesNormalisees.txt",nb_chanson, nbNotes_par_chanson, note_dim,nb_echantillon,echantillons_par_chanson,taille_sequence)
-print(x.shape)
+
+#Creation des donnees pour le test de validation
 nb_chanson_test  = 94
 nbNotes_par_chanson_test  = 440
 echantillons_par_chanson_test  = nbNotes_par_chanson_test  - taille_sequence
 nb_echantillon_test  = nb_chanson_test *echantillons_par_chanson_test 
 x_test,y_test = creationDonneesApprentissage("donneesTest.txt",nb_chanson_test, nbNotes_par_chanson_test, note_dim,nb_echantillon_test,echantillons_par_chanson_test,taille_sequence)
 
+
+#Creation du reseau de neurones
 model = Sequential()
 model.add(LSTM(taille_sequence, input_shape=(taille_sequence, note_dim),return_sequences=False))
 #model.add(TimeDistributed(Dense(taille_sequence, activation='sigmoid')))
@@ -115,7 +111,7 @@ callbacks = [
 
 
 model.compile(loss=cout, optimizer=opt,metrics=['accuracy'])
-  
+#apprentissage
 history = model.fit(x,y,verbose=1, validation_data=(x_test, y_test),batch_size=batch_size, epochs=epochs,callbacks=callbacks, shuffle=False)
 
 
