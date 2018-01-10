@@ -5529,8 +5529,6 @@ main.py
 \end_inset
 
  que vous trouverez en annexe.
- Pour créer notre réseau, nous allons utiliser une bibliothèque Keras.
- Vous trouverez en annexe une description non exhaustive de celle-ci.
  
 \end_layout
 
@@ -8298,7 +8296,7 @@ Graphiques de coût et précision
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -11085,7 +11083,7 @@ Conclusion
 Après avoir créé plusieurs réseaux de neurones, nous avons testé les modèles
  en faisant des prédictions sur des notes arbitraires.
  Nous nous sommes rendus compte que les résultats ne sont pas satisfaisant
- car les notes ont tendance à se répéter ou ne pas créer d'harmonie.
+ car les notes ont tendance à se répeter ou ne pas créer d'harmonie.
  Cependant, le réseau prédit bel et bien des notes qui sont différentes
  selon les notes passées en entrée, et cela était notre principal objectif.
 \end_layout
