@@ -10,3 +10,5 @@ modele n°	type
 10			LSTM
 11			LSTM(dropout=0.2) + Dense(sigmoid)
 12			LSTM(dropout=0.2) + LSTM(dropout=0.2)
+13			LSTM(dropout=0.2) + Dense(1000, sigmoid) + Dense(3, sigmoid)
+14			pareil que 11 (pour voir l'effet de l'aleatoire du dropout)

@@ -1,0 +1,4 @@
+val_loss: 0.0148 - val_acc: 0.9460
+mse
+LSTM(dropout=0.2) + Dense(sigmoid)
+rmsprop
