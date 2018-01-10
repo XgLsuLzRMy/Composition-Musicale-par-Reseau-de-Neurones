@@ -667,8 +667,8 @@ Les réseaux de neurones
 \end_layout
 
 \begin_layout Standard
-On compte deux types de réseaux de neurones; les réseaux à propagation avant
- ou réseaux de neurone acycliques et les réseaux de neurones cycliques.
+On compte deux types de réseaux de neurones; les réseaux à propagation avant,
+ ou réseaux de neurone acycliques, et les réseaux de neurones cycliques.
  Un réseau de neurone est modélisé comme un graphe, adapté au problème en
  question.
  Les nœuds sont alors les neurones et les arêtes, les connexions entre ces
@@ -792,9 +792,9 @@ Remarque:
 
 \begin_layout Standard
 La notion de nœud est alors introduite.
- Les nœuds, qui peuvent appelés neurones, reçoivent une information de leurs
- prédécesseurs (les neurones de la couche précédente) et combinent cette
- information selon des pondérations identifiées par des poids 
+ Les nœuds, qui peuvent être appelés neurones, reçoivent une information
+ de leurs prédécesseurs (les neurones de la couche précédente) et combinent
+ cette information selon des pondérations identifiées par des poids 
 \begin_inset Formula $w_{i}$
 \end_inset
 
@@ -976,9 +976,9 @@ e à partir de ce point, ce qui rend facilement applicable la méthode du
 \end_layout
 
 \begin_layout Standard
-La fonction ReLu (Unité de Rectification Linéaire () peut aussi être utilisée
+La fonction ReLu (Unité de Rectification Linéaire ) peut aussi être utilisée
  comme fonction d'activation.
- Elle définie comme suit: 
+ Elle est définie comme suit: 
 \end_layout
 
 \begin_layout Standard
@@ -1065,7 +1065,7 @@ e à apprendre continuellement et à faire des prévisions grâce à l'analyse
 Dans le domaine des réseaux de neurones, il s'agit d'une phase du développement
  du réseau durant laquelle le comportement du réseau est modifié jusqu’à
  l’obtention du comportement désiré.
- Il y a deux types d’algorithmes d’apprentissage : 
+ Il y a deux types d’algorithme d’apprentissage : 
 \end_layout
 
 \begin_layout Enumerate
@@ -1085,8 +1085,8 @@ Dans le cas de l'apprentissage supervisé, les exemples sont des couples
 
 \begin_layout Standard
 L'apprentissage consiste à modifier le poids des connections entre les neurones.
- Au démarrage de la phase de l'apprentissage, nous disposons d'une base
- de données.
+ Au démarrage de la phase d'apprentissage, nous disposons d'une base de
+ données.
  Nous avons les entrées 
 \begin_inset Formula $(x_{i})_{i\in I}$
 \end_inset
@@ -1794,7 +1794,7 @@ Modification des poids
 \end_layout
 
 \begin_layout Standard
-La règle delta, appelé méthode du gradient simple, stipule que:
+La règle delta, appelée méthode du gradient simple, stipule que:
 \end_layout
 
 \begin_layout Standard
@@ -2430,12 +2430,12 @@ Exemple d'un apprentissage
 \begin_layout Standard
 Nous allons appliquer l'algorithme précédent afin de mieux comprendre son
  fonctionnement.
- Nous allons utilisé un réseau de neurones avec L=4 couches comprenant une
- couche d'entrée et de sorties ainsi que deux couches cachées.
+ Nous allons utiliser un réseau de neurones avec L=4 couches comprenant
+ une couche d'entrée et de sorties ainsi que deux couches cachées.
  La couche d'entrée ainsi que les couches cachées contiennent chacune deux
  neurones.
  La couche de sortie contient un seul neurone.
- Nous allons utilisé qu'un seul exemple.
+ Nous n'allons utiliser qu'un seul exemple.
  Voici les données: 
 \begin_inset Formula 
 \begin{align*}
@@ -2789,7 +2789,7 @@ url{http://www.piano-midi.de/}
 \begin_layout Standard
 Chaque fichier MIDI représente une musique créée par un musicien.
  Toutes les musiques ont des durées et des notes différentes.
- Les éventements MIDI sont aussi différents selon les musiques.
+ Les événements MIDI sont aussi différents selon les musiques.
  
 \end_layout
 
@@ -2825,7 +2825,7 @@ vélocitée (velocity) : Le volume de la note
 \end_layout
 
 \begin_layout Itemize
-data : Correspond à une inforation arbitraire stockée dans un événement.
+data : Correspond à une information arbitraire stockée dans un événement.
  Par exemple, il est possible de stocker le nom du morceau dans un champ
  data.
 \end_layout
@@ -2849,7 +2849,7 @@ Ainsi, les informations nous intéressant sont les événements NoteOnEvent
 Cependant, nous avons remarqué que nos fichiers MIDI n'utilisaient pas d'événeme
 nt NoteOffEvent, mais plutôt des événements NoteOnEvent avec une vélocitée
  nulle.
- Cela revient donc au même donc nous avons continué dans cette voie.
+ Cela revient donc au même et nous avons continué dans cette voie.
 \end_layout
 
 \begin_layout Section
@@ -2859,7 +2859,7 @@ L'extraction d'informations
 \begin_layout Standard
 Notre objectif est d'obtenir deux fichiers de données: l'un pour l'apprentissage
  et l'un pour les tests.
- Dans le fichier se trouvera toutes les informations que l'on jugera nécessaire
+ Dans le fichier se trouvera toutes les informations que l'on jugera nécessaires
  pour la création d'une musique.
  Et ainsi dans un fichier se trouvera plusieurs musiques avec leurs différentes
  informations.
@@ -2870,12 +2870,12 @@ Script Python
 \end_layout
 
 \begin_layout Standard
-Tout d'abord, nous avons construit un programme python permettant d'extraire
+Tout d'abord, nous avons construit un programme en C permettant d'extraire
  des informations d'un fichier MIDI.
  Cependant, étant donné que les fichiers MIDI sont très complexes et très
  difficiles à manipuler, nous avons finalement décidé d'utiliser une bibliothèqu
 e python permettant de faire cela.
- Cette bibliothèque est appelé 
+ Cette bibliothèque est appelée 
 \begin_inset Quotes fld
 \end_inset
 
@@ -2992,9 +2992,10 @@ Analyse des scripts
 Nous avons besoin d'extraire des informations de types identiques pour chacune
  de nos données.
  Ainsi, nous avons lu la plupart de nos fichiers afin d'en déduire les informati
-ons communes entre nos données mais aussi la façon dont est écrit les fichiers
- afin de pouvoir lire automatiquement et identiquement tous nos fichiers.
- Nous avons alors détecter que tous les fichiers ont la même entête et qu'ils
+ons communes entre nos données mais aussi la façon dont sont écrits les
+ fichiers afin de pouvoir lire automatiquement et identiquement tous nos
+ fichiers.
+ Nous avons alors détecté que tous les fichiers ont la même entête et qu'ils
  ont au moins 2 
 \begin_inset Quotes fld
 \end_inset
@@ -3012,7 +3013,7 @@ NoteOnEvent
 \begin_inset Quotes frd
 \end_inset
 
- sont contiennent toujours le même nombre d'arguments comme suit: 
+ contiennent toujours le même nombre d'arguments comme suit: 
 \end_layout
 
 \begin_layout Standard
@@ -3027,12 +3028,12 @@ NoteOnEvent
 \end_layout
 
 \begin_layout Standard
-Chaque track finisse de la même façon et toutes les fichiers se terminent
+Chaque tracks finissent de la même façon et tous les fichiers se terminent
  de la même manière.
- Les événements différents de NoteOnEvent sont optionnels et n'importent
- pas d'informations essentiels pour joueur des notes.
+ Les événements différents de NoteOnEvent sont optionnels et ne comportent
+ pas d'informations essentielles pour joueur des notes.
  Nous avons alors décidé de récupérer les arguments pour tous les évenements
- NoteOnEvent de chaque fichier que l'on dispose.
+ NoteOnEvent de chaque fichier dont l'on dispose.
  
 \end_layout
 
@@ -3095,9 +3096,9 @@ creation_donnees.py
  permettant d'extraire les informations en annexe.
  Ce programme permet d'abord de créer un script Python complet pour tous
  nos fichiers MIDI.
- Ensuite, il crée un deuxième script simplifié pour chacun de ses scripts,
- c'est-à-dire que ces nouveaux scripts ne contiennent seulement les événements
- NoteOnEvent ainsi que seulement 2 tracks.
+ Ensuite, il crée un deuxième script simplifié pour chacun de ces scripts,
+ c'est-à-dire que ces nouveaux scripts ne contiennent seulement que les
+ événements NoteOnEvent ainsi que seulement 2 tracks.
  Puis, à partir de ces scripts, le programme permet de créer des fichiers
  textes pour chaque script.
  Chaque fichier texte représente alors une musique et il y a autant de lignes
@@ -3140,7 +3141,7 @@ alb_esp1fMidiSimple.py
 \end_layout
 
 \begin_layout Enumerate
-Enfin, le fichier teste est créé : 
+Enfin, le fichier test est créé : 
 \begin_inset Quotes fld
 \end_inset
 
@@ -4196,8 +4197,8 @@ Nous pouvons maintenant analyser les données que nous allons utiliser pour
 \end_layout
 
 \begin_layout Standard
-Voici les résultats pour l'apprentissage et le test après avoir retirer
- les valeurs trop élevés ainsi qu'après le découpage des fichiers pour réduire
+Voici les résultats pour l'apprentissage et le test après avoir retiré les
+ valeurs trop élevées ainsi qu'après le découpage des fichiers pour réduire
  le nombre de lignes: 
 \end_layout
 
@@ -5286,7 +5287,10 @@ Effectif Velocity (Test)
 On remarque alors que les valeurs de la velocity sont relativement éparpillées
  mais plutôt centrées autour de 50.
  Cependant nous constatons un pic au niveau du 0 pour les deux échantillons.
- 
+ En effet, un événement NoteOnEvent possédant une velocity nulle correspond,
+ en fait, à un événement NoteOffEvent.
+ Le choix d'utiliser NoteOnEvent avec velocity null ou NoteOffEvent est
+ laissé au créateur du fichier.
 \end_layout
 
 \begin_layout Paragraph
@@ -5958,7 +5962,7 @@ en mémoire
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5967,6 +5971,10 @@ status collapsed
 	lyxscale 20
 	scale 20
 
+\end_inset
+
+
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -6611,14 +6619,14 @@ Cette fonction est très similaire à la fonction ReLu mais son activation
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/hard_sigmoid.png
-	lyxscale 50
-	scale 30
+	lyxscale 25
+	scale 25
 
 \end_inset
 
@@ -7691,7 +7699,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele7_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7699,7 +7707,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele7_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7711,7 +7719,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele8_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7719,7 +7727,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele8_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7731,7 +7739,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele10_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7739,7 +7747,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele10_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7751,7 +7759,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele9_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -7759,7 +7767,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM/modele9_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8221,7 +8229,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele5_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8229,7 +8237,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele5_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8241,7 +8249,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele5_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8249,7 +8257,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele5_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8261,7 +8269,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele14_rms_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8269,7 +8277,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele14_rms_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8305,7 +8313,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele14_rms(2)_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8313,7 +8321,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Dense/modele5_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8325,7 +8333,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_absolute_error/LSTM+Dense/modele3_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8333,7 +8341,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_absolute_error/LSTM+Dense/modele3_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8533,7 +8541,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Activation/modele6_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8541,7 +8549,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+Activation/modele6_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8845,7 +8853,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_absolute_error/LSTM+Dense+Activation/modele4_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -8853,7 +8861,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_absolute_error/LSTM+Dense+Activation/modele4_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -9129,7 +9137,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+LSTM/modele12_cout.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -9137,7 +9145,7 @@ status collapsed
 \begin_inset Graphics
 	filename ../Programme_1/modeles/mean_squared_error/LSTM+LSTM/modele12_precision.png
 	lyxscale 50
-	scale 50
+	scale 40
 
 \end_inset
 
