@@ -106,7 +106,6 @@ model.summary()
 
 callbacks = [
     EarlyStopping(monitor='val_loss', patience=2, verbose=0),
-    ModelCheckpoint("weights.{epoch:02d}-{val_loss:.2f}.hdf5",monitor='val_loss', save_best_only=True, verbose=0),
 ]
 
 

@@ -1,0 +1,20 @@
+***Programmes****
+1. Pour executer le reseau: python3 main.py
+2. Pour faire une prédiction sur des notes mises dans le fichier testD.txt: python3 prediction.py
+
+Les programmes "denormalisation.py" et "creation_midi.py" sont implicitement utilisés dans le programme "prediction.py".
+
+
+***Fichiers text****
+1. "donneesNormalises.txt" représente les données pour l'apprentissage.
+2. "donneesTest.txt" représente les données pour les tests. 
+3. "testD.txt" représente le fichier dans lequel il faut intégrer les 10 notes. 
+
+***Fichiers HDF***
+1. "modele.h5" représente le fichier où se trouve toutes les informations sur le modèle qui vient d'être crée.
+
+***Dossiers***
+1. "Creation_donnees" représente le dossier où l'on créer nos données. 
+2. Dans "modeles" se trouvent les différents modèles que l'on a testé (HDF, graphes etc...).
+3. Dans "predictions" se trouvent quelques fichiers MIDI après prédictions. 
+

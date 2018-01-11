@@ -1,0 +1,9 @@
+***Programmes***
+1. Pour créer les données à partir des fichiers MIDI:python3 creation_donnees.py
+2. Pour normaliser les données et les découper:  python3 normalisation.py
+3. Si besoin d'une analyse, faire : python3 analyseFichierTexte.py 'nomDuDossier'
+
+***Dossiers***
+1. "Donnees" contient toutes les données sous formes de fichiers .txt.
+2. "DonneesNormalisees" contient deux sous dossiers contenant l'un les données pour l'apprentissage et l'autre pour les tests.
+3. "MIDI" contenant les données que l'on avait au départ en tant que fichier MIDI. Le dossier contient aussi les scripts python.   
