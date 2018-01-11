@@ -1,0 +1,3 @@
+val_loss: 0.1162 - val_acc: 0.0489
+mse
+LSTM(activation='softmax', recurrent_activation='relu')

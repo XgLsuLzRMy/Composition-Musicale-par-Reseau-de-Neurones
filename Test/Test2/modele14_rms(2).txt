@@ -1,0 +1,5 @@
+val_loss: 0.0143 - val_acc: 0.9498
+mse
+LSTM(dropout=0.2) + Dense(sigmoid)
+rms
+La prédiction ne fait que répéter la séquence précédente donc on n'entend rien (les notes sont superposées)

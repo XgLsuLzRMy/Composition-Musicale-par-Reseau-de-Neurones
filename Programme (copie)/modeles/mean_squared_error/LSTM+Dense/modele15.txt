@@ -1,0 +1,4 @@
+val_loss: 0.0156 - val_acc: 0.9498
+mse
+LSTM(dropout=0.2) + Dense(tanh)
+RMSProp

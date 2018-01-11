@@ -57,7 +57,7 @@ def normalisation(fileRead,fileWrite):
 	    data2.append(float(s[2]))
     fileRead.close()
     
-    max_tick = 3500
+    max_tick = 3800
     min_tick = 0
     max_data1 = 127
     min_data1 = 0
@@ -87,28 +87,11 @@ def normalisation(fileRead,fileWrite):
                 print(i)
     fileWrite.close()
     
-#PREDICTION
-def ecrire10NotesDansFichier(nomFinal,nomIntermediaire,note,nbIteration):	
-    f = open(nomFinal,"r")
-    fIntermediaire = open(nomIntermediaire,"w")
-    lines = f.readlines()
-    nbNotes=0
-    i=1
-    for line in lines:
-       if i>nbIteration and nbNotes==10:
-           fIntermediaire.write(str(Decimal(float(note[0][0])))+" "+str(Decimal(float(note[0][1])))+" "+str(Decimal(float(note[0][2]))) + "\n")
-       if i>nbIteration and nbNotes<10:
-            fIntermediaire.write(line)
-            nbNotes+=1
-       i+=1
-    f.close()
-    fIntermediaire.close()
 
-    
-
-
+argument1 = sys.argv[1]
+argument2 = sys.argv[2]
 model = load_model('modele.h5')
-nbNotesAPredire = 40
+nbNotesAPredire = int(argument2)
 taille_sequence = 10
 note_dim = 3
 nb_chanson = 1
@@ -121,7 +104,7 @@ nb_echantillon = nb_chanson*echantillons_par_chanson
 
 
 #Normalisation du fichier d'entree et creation d'un fichier pour les 10 notes
-nomTestPasNormalise = "testD.txt"
+nomTestPasNormalise = argument1
 fichierPasNormalise = open(nomTestPasNormalise,"r")
 nomTestNormalise = "testN.txt"
 fichierNormalise = open(nomTestNormalise,"w")
@@ -156,6 +139,7 @@ subprocess.call("python3 creation_midi.py predictionFinale.txt", shell=True)
 os.remove("fichier10Notes.txt")
 os.remove("testFinal.txt")
 os.remove("testN.txt")
+os.remove("predictionFinale.txt")
 os.remove("donneesDenormalises.txt")
 subprocess.call("timidity newMusic.mid", shell=True)
 
